@@ -1,0 +1,90 @@
+name: movie_bloc_app
+description: "A new Flutter project."
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+  #Fonts
+  google_fonts: ^6.2.1
+
+  #State Management
+  flutter_bloc: ^8.1.6
+  hydrated_bloc: ^9.1.5
+  equatable: ^2.0.5
+
+  #Routes
+  go_router: ^14.2.0
+
+  #Dependency Injection
+  get_it: ^7.7.0
+
+  #Shimmer
+  shimmer: ^3.0.0
+
+  #Animations
+  animate_do: ^3.3.4
+  loading_animation_widget: ^1.2.1
+
+  #Splash Screen
+  flutter_native_splash: ^2.4.0
+
+  #Internet Connection
+  connectivity_plus: ^6.0.3
+
+  #Icons
+  font_awesome_flutter: ^10.7.0
+
+  #Network
+  cached_network_image: ^3.3.1
+  dio: ^5.4.3+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

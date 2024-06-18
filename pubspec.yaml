@@ -29,6 +29,9 @@ dependencies:
   #Shimmer
   shimmer: ^3.0.0
 
+  #Widgets (experimental)
+  getwidget: ^4.0.0
+
   #Animations
   animate_do: ^3.3.4
   loading_animation_widget: ^1.2.1

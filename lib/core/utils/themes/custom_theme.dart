@@ -8,6 +8,7 @@ class CustomTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: AppColors.diamondCut).copyWith(brightness: Brightness.light),
       textTheme: LightTextTheme.lightTextTheme,
+      scaffoldBackgroundColor: AppColors.diamondCut,
       useMaterial3: true,
     );
   }
@@ -16,6 +17,7 @@ class CustomTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: AppColors.insomnia).copyWith(brightness: Brightness.dark),
       textTheme: DarkTextTheme.darkTextTheme,
+      scaffoldBackgroundColor: AppColors.insomnia,
       useMaterial3: true,
     );
   }

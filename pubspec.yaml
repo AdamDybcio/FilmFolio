@@ -29,8 +29,8 @@ dependencies:
   #Shimmer
   shimmer: ^3.0.0
 
-  #Widgets (experimental)
-  getwidget: ^4.0.0
+  #UI
+  carousel_slider: ^4.2.1
 
   #Animations
   animate_do: ^3.3.4

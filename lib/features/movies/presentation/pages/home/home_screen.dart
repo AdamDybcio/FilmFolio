@@ -12,12 +12,14 @@ class HomeScreen extends StatelessWidget {
       appbar: CustomAppBar(
         title: Text('Movie App'),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomMovieCarousel(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomMovieCarousel(),
+          ],
+        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ class CustomMovieCard extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16, left: 2, right: 2, bottom: 16),
       child: Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: MediaQuery.of(context).size.height * 0.4,
         margin: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -30,6 +30,7 @@ class CustomMovieCard extends StatelessWidget {
             ),
           ],
           image: DecorationImage(
+            fit: BoxFit.cover,
             image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.posterPath),
           ),
         ),

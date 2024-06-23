@@ -7,6 +7,8 @@ import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.da
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
 
+import '../../features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
+
 final sl = GetIt.I;
 
 Future init() async {
@@ -19,5 +21,6 @@ Future init() async {
   sl.registerLazySingleton<GetTrending>(() => GetTrending(sl()));
 
   //Blocs
-  sl.registerFactory(() => MovieCarouselBloc(getTrending: sl()));
+  sl.registerFactory(() => MovieCarouselBloc(getTrending: sl(), movieBackdropBloc: sl()));
+  sl.registerFactory(() => MovieBackdropBloc());
 }

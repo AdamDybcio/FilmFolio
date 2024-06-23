@@ -22,9 +22,10 @@ final class MovieCarouselError extends MovieCarouselState {
 
 final class MovieCarouselLoaded extends MovieCarouselState {
   final List<MovieEntity> movies;
+  final int currentIndex;
 
-  const MovieCarouselLoaded(this.movies);
+  const MovieCarouselLoaded({required this.movies, this.currentIndex = 0});
 
   @override
-  List<Object> get props => [movies];
+  List<Object> get props => [movies, currentIndex];
 }

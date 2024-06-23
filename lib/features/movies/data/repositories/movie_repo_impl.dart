@@ -16,7 +16,7 @@ class MovieRepoImpl extends MovieRepo {
       final movies = await tmdbDatasource.getTrending();
       return movies;
     } catch (e) {
-      return [];
+      throw Exception(e);
     }
   }
 }

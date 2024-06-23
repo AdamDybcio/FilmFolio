@@ -7,4 +7,11 @@ abstract class MovieCarouselEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class CarouselLoadEvent extends MovieCarouselEvent {}
+final class CarouselLoadEvent extends MovieCarouselEvent {
+  final int currentIndex;
+
+  const CarouselLoadEvent({this.currentIndex = 0});
+
+  @override
+  List<Object> get props => [currentIndex];
+}

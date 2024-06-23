@@ -9,7 +9,7 @@ class CustomTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: AppColors.diamondCut).copyWith(brightness: Brightness.light),
       textTheme: LightTextTheme.lightTextTheme,
-      scaffoldBackgroundColor: AppColors.diamondCut,
+      scaffoldBackgroundColor: AppColors.perfume,
       useMaterial3: true,
       fontFamily: GoogleFonts.poppinsTextTheme().headlineMedium!.fontFamily,
     );

@@ -7,6 +7,7 @@ import 'package:movie_bloc_app/core/dependency_injection/di.dart';
 import 'package:movie_bloc_app/features/movies/presentation/widgets/home/custom_movie_carousel.dart';
 
 import '../../blocs/home/carousel/movie_carousel_bloc.dart';
+import '../../widgets/home/movie_title.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -33,6 +34,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   CustomMovieBackdrop(),
                   CustomMovieCarousel(),
+                  MovieTitle(),
                 ],
               ),
             ],

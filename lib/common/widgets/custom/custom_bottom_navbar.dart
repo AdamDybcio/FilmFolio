@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
 
 class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget {
@@ -10,12 +11,13 @@ class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget 
 
   @override
   Widget build(BuildContext context) {
+    final dark = HelperFunctions.isDarkMode(context);
     return BlocBuilder<NavBarBloc, NavBarState>(
       builder: (_, state) {
         return BottomNavigationBar(
           elevation: 5,
-          backgroundColor: AppColors.blackHowl,
-          selectedItemColor: AppColors.perfume,
+          backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
+          selectedItemColor: dark ? AppColors.perfume : AppColors.blackHowl,
           iconSize: 20,
           selectedFontSize: 15,
           showUnselectedLabels: false,
@@ -34,22 +36,22 @@ class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget 
           },
           items: [
             BottomNavigationBarItem(
-              backgroundColor: AppColors.blackHowl,
+              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
               icon: const FaIcon(FontAwesomeIcons.house),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              backgroundColor: AppColors.blackHowl,
+              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
               icon: const FaIcon(FontAwesomeIcons.magnifyingGlass),
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              backgroundColor: AppColors.blackHowl,
+              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
               icon: const FaIcon(FontAwesomeIcons.solidHeart),
               label: 'Favorite',
             ),
             BottomNavigationBarItem(
-              backgroundColor: AppColors.blackHowl,
+              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
               icon: const FaIcon(FontAwesomeIcons.solidUser),
               label: 'Profile',
             ),

@@ -5,7 +5,7 @@ class CustomScaffold extends StatelessWidget {
 
   final Widget child;
   final PreferredSizeWidget? appbar;
-  final BottomNavigationBar? bottomNavigationBar;
+  final PreferredSizeWidget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {

@@ -22,27 +22,33 @@ class NavigationMenu extends StatelessWidget {
       ],
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: const CustomAppBar(
-          title: Text('Movie App'),
-        ),
         bottomNavigationBar: const CustomBottomNavbar(),
-        body: BlocBuilder<NavBarBloc, NavBarState>(
-          builder: (context, state) {
-            if (state is NavBarInitial) {
-              return const HomeScreen();
-            } else if (state is NavBarChanged) {
-              if (state.currentIndex == 0) {
-                return const HomeScreen();
-              } else if (state.currentIndex == 1) {
-                return Container();
-              } else if (state.currentIndex == 2) {
-                return Container();
-              } else if (state.currentIndex == 3) {
-                return Container();
-              }
-            }
-            return const HomeScreen();
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              const CustomAppBar(
+                title: Text('Movie App'),
+              ),
+            ];
           },
+          body: BlocBuilder<NavBarBloc, NavBarState>(
+            builder: (context, state) {
+              if (state is NavBarInitial) {
+                return const HomeScreen();
+              } else if (state is NavBarChanged) {
+                if (state.currentIndex == 0) {
+                  return const HomeScreen();
+                } else if (state.currentIndex == 1) {
+                  return Container();
+                } else if (state.currentIndex == 2) {
+                  return Container();
+                } else if (state.currentIndex == 3) {
+                  return Container();
+                }
+              }
+              return const HomeScreen();
+            },
+          ),
         ),
       ),
     );

@@ -13,7 +13,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
-    return AppBar(
+    return SliverAppBar(
+      pinned: false,
       title: title,
       centerTitle: true,
       titleTextStyle: Theme.of(context).textTheme.headlineSmall,

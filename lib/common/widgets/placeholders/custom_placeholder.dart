@@ -29,8 +29,8 @@ class CustomPlaceholder extends StatelessWidget {
         child: Shimmer(
           enabled: play,
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
             colors: darkMode
                 ? [
                     AppColors.coolFrost,

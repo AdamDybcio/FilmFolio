@@ -16,17 +16,21 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Stack(
-            children: [
-              CustomMovieBackdrop(),
-              CustomMovieCarousel(),
-              MovieTitle(),
-            ],
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.525,
+            child: const Stack(
+              children: [
+                CustomMovieBackdrop(),
+                CustomMovieCarousel(),
+                MovieTitle(),
+              ],
+            ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.075),
-          const Header(title: 'Browse Movies'),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+          const Header(title: 'Discover Movies'),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.005),
           const BrowseMovies(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
         ],
       ),
     );

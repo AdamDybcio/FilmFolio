@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../../../../core/utils/strings/api_strings.dart';
@@ -16,6 +17,39 @@ class TmdbDatasourceImpl implements TmdbDatasource {
       '${ApiStrings.baseUrl}trending/movie/day',
       queryParameters: {
         'api_key': ApiStrings.apiKey,
+      },
+    );
+
+    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
+
+    return movies;
+  }
+
+  @override
+  Future<List<GenreModel>> getGenres() async {
+    final response = await dio.get(
+      '${ApiStrings.baseUrl}genre/movie/list',
+      queryParameters: {
+        'api_key': ApiStrings.apiKey,
+      },
+    );
+
+    final genres = response.data['genres'].map<GenreModel>((genre) => GenreModel.fromJson(genre)).toList();
+
+    return genres;
+  }
+
+  @override
+  Future<List<MovieModel>> getDiscoverMovies({
+    required GenreModel genre,
+    required int year,
+  }) async {
+    final response = await dio.get(
+      '${ApiStrings.baseUrl}discover/movie',
+      queryParameters: {
+        'api_key': ApiStrings.apiKey,
+        'with_genres': genre.id,
+        'primary_release_year': year,
       },
     );
 

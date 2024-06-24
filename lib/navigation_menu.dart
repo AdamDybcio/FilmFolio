@@ -4,6 +4,8 @@ import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
 import 'package:movie_bloc_app/common/widgets/custom/custom_appbar.dart';
 import 'package:movie_bloc_app/core/dependency_injection/di.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_list_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/genres/genres_bloc.dart';
 
 import 'common/widgets/custom/custom_bottom_navbar.dart';
 import 'features/movies/presentation/pages/home/home_screen.dart';
@@ -19,6 +21,9 @@ class NavigationMenu extends StatelessWidget {
           create: (_) => sl<MovieCarouselBloc>()..add(const CarouselLoadEvent()),
         ),
         BlocProvider(create: (_) => sl<MovieCarouselBloc>().movieBackdropBloc),
+        BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>()..add(const DiscoverMoviesListLoadEvent())),
+        BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>().genresBloc..add(GenresLoadEvent())),
+        BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>().yearsBloc),
       ],
       child: Scaffold(
         resizeToAvoidBottomInset: false,

@@ -79,6 +79,7 @@ class CustomMovieCarousel extends StatelessWidget {
         return CustomPlaceholder(
           height: size.height * 0.5,
           width: size.width,
+          play: true,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -13,46 +13,45 @@ class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget 
     final dark = HelperFunctions.isDarkMode(context);
     return BlocBuilder<NavBarBloc, NavBarState>(
       builder: (_, state) {
-        return BottomNavigationBar(
-          elevation: 5,
-          backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
-          selectedItemColor: dark ? AppColors.perfume : AppColors.blackHowl,
-          iconSize: 20,
-          selectedFontSize: 15,
-          showUnselectedLabels: false,
-          currentIndex: state is NavBarChanged ? state.currentIndex : 0,
-          selectedIconTheme: const IconThemeData(size: 25),
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            context.read<NavBarBloc>().add(NavBarTapEvent(index));
-          },
-          items: [
-            BottomNavigationBarItem(
-              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
-              icon: const FaIcon(FontAwesomeIcons.house),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
-              icon: const FaIcon(FontAwesomeIcons.magnifyingGlass),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
-              icon: const FaIcon(FontAwesomeIcons.solidHeart),
-              label: 'Favorite',
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: dark ? AppColors.blackHowl : AppColors.diamondCut,
-              icon: const FaIcon(FontAwesomeIcons.solidUser),
-              label: 'Profile',
-            ),
-          ],
+        return SizedBox(
+          height: 70,
+          child: BottomNavigationBar(
+            elevation: 5,
+            backgroundColor: dark ? AppColors.magicWhale : AppColors.coolFrost,
+            selectedItemColor: dark ? AppColors.diamondCut : AppColors.magicWhale,
+            iconSize: 20,
+            selectedFontSize: 15,
+            showUnselectedLabels: false,
+            currentIndex: state is NavBarChanged ? state.currentIndex : 0,
+            selectedIconTheme: const IconThemeData(size: 25),
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {
+              context.read<NavBarBloc>().add(NavBarTapEvent(index));
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.house),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.solidHeart),
+                label: 'Favorite',
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.solidUser),
+                label: 'Profile',
+              ),
+            ],
+          ),
         );
       },
     );
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, 100);
+  Size get preferredSize => const Size(double.infinity, 150);
 }

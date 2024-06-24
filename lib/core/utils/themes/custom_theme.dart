@@ -9,7 +9,7 @@ class CustomTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: AppColors.diamondCut).copyWith(brightness: Brightness.light),
       textTheme: LightTextTheme.lightTextTheme,
-      scaffoldBackgroundColor: AppColors.perfume,
+      scaffoldBackgroundColor: AppColors.diamondCut,
       useMaterial3: true,
       fontFamily: GoogleFonts.poppinsTextTheme().headlineMedium!.fontFamily,
     );
@@ -17,7 +17,7 @@ class CustomTheme {
 
   static ThemeData get darkTheme {
     return ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: AppColors.insomnia).copyWith(brightness: Brightness.dark),
+      colorScheme: ColorScheme.fromSeed(seedColor: AppColors.insomnia, primary: AppColors.insomnia, secondary: AppColors.magicWhale).copyWith(brightness: Brightness.dark),
       textTheme: DarkTextTheme.darkTextTheme,
       scaffoldBackgroundColor: AppColors.insomnia,
       useMaterial3: true,

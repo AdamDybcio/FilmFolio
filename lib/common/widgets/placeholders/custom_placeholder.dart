@@ -20,7 +20,10 @@ class CustomPlaceholder extends StatelessWidget {
     final darkMode = HelperFunctions.isDarkMode(context);
     return Container(
       decoration: BoxDecoration(
-        color: darkMode ? AppColors.perfume : AppColors.blackHowl,
+        border: Border.all(
+          color: darkMode ? AppColors.coolFrost : AppColors.magicWhale,
+          width: 2,
+        ),
         borderRadius: BorderRadius.circular(10),
       ),
       height: height,

@@ -21,6 +21,7 @@ class NavigationMenu extends StatelessWidget {
         BlocProvider(create: (_) => sl<MovieCarouselBloc>().movieBackdropBloc),
       ],
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: const CustomAppBar(
           title: Text('Movie App'),
         ),

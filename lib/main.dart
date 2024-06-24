@@ -11,7 +11,9 @@ import 'common/blocs/bloc/nav_bar_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   unawaited(SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]));
+
   unawaited(init());
   runApp(const MyApp());
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
+import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
@@ -10,11 +12,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = HelperFunctions.isDarkMode(context);
     return AppBar(
       title: title,
       centerTitle: true,
       titleTextStyle: Theme.of(context).textTheme.headlineSmall,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: dark ? AppColors.magicWhale : AppColors.coolFrost,
       elevation: 0,
     );
   }

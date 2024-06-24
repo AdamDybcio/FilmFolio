@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/common/widgets/movie/custom_movie_card.dart';
 import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
@@ -54,23 +55,39 @@ class CustomMovieCarousel extends StatelessWidget {
           );
         } else if (state is MovieCarouselError) {
           return CustomPlaceholder(
-            height: size.height * 0.45,
+            height: size.height * 0.5,
             width: size.width,
             child: FadeIn(
-              child: Text(
-                state.message,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: darkMode ? AppColors.blackHowl : AppColors.diamondCut,
-                    ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50, color: darkMode ? AppColors.coolFrost : AppColors.magicWhale),
+                  SizedBox(height: size.height * 0.05),
+                  Text(
+                    state.message,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: darkMode ? AppColors.diamondCut : AppColors.magicWhale,
+                        ),
+                  ),
+                ],
               ),
             ),
           );
         }
         return CustomPlaceholder(
-          height: size.height * 0.45,
+          height: size.height * 0.5,
           width: size.width,
-          child: CircularProgressIndicator(color: darkMode ? AppColors.blackHowl : AppColors.diamondCut),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: darkMode ? AppColors.coolFrost : AppColors.magicWhale),
+              SizedBox(height: size.height * 0.05),
+              Text('Loading...', style: Theme.of(context).textTheme.bodyMedium),
+            ],
+          ),
         );
       },
     );

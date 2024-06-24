@@ -13,6 +13,7 @@ class BrowseMovies extends StatelessWidget {
       children: [
         GenresTabBar(),
         YearsTabBar(),
+        SizedBox(height: 20),
         DiscoverMoviesList(),
       ],
     );

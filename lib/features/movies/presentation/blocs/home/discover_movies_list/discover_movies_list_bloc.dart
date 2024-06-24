@@ -33,6 +33,10 @@ class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMovie
 
       try {
         final movies = await getDiscoverMovies(Params(genre: genre, year: year));
+        if (movies.isEmpty) {
+          emit(const DiscoverMoviesListError('No movies found.'));
+          return;
+        }
         emit(DiscoverMoviesListLoaded(movies));
       } catch (e) {
         emit(const DiscoverMoviesListError('An error occurred while loading movies.\nPlease try again.'));

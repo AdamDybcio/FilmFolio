@@ -21,7 +21,7 @@ class NavigationMenu extends StatelessWidget {
           create: (_) => sl<MovieCarouselBloc>()..add(const CarouselLoadEvent()),
         ),
         BlocProvider(create: (_) => sl<MovieCarouselBloc>().movieBackdropBloc),
-        BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>()..add(const DiscoverMoviesListLoadEvent())),
+        BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>()),
         BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>().genresBloc..add(GenresLoadEvent())),
         BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>().yearsBloc),
       ],

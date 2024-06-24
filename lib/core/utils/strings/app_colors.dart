@@ -9,4 +9,7 @@ class AppColors {
   //Light
   static Color diamondCut = const Color(0xFFebe9f1);
   static Color coolFrost = const Color(0xFFe8e6ef);
+
+  //Other
+  static Color autumnBlaze = const Color(0xFFda912b);
 }

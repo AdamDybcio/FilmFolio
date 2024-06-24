@@ -22,7 +22,7 @@ class DiscoverMoviesList extends StatelessWidget {
           context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent());
         } else if (state is DiscoverMoviesListError) {
           return CustomPlaceholder(
-            height: size.height * 0.5,
+            height: size.height * 0.55,
             width: size.width,
             child: FadeIn(
               child: Column(
@@ -46,7 +46,7 @@ class DiscoverMoviesList extends StatelessWidget {
           return MoviesList(movies: state.movies);
         }
         return CustomPlaceholder(
-          height: size.height * 0.5,
+          height: size.height * 0.55,
           width: size.width,
           play: true,
           child: Column(

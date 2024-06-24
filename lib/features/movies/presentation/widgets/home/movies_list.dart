@@ -18,7 +18,7 @@ class MoviesList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return FadeIn(
       child: Container(
-        height: size.height * 0.5,
+        height: size.height * 0.55,
         width: size.width,
         decoration: BoxDecoration(
           color: AppColors.magicWhale.withOpacity(0.5),

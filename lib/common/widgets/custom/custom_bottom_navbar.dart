@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
 import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
@@ -26,13 +25,6 @@ class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget 
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             context.read<NavBarBloc>().add(NavBarTapEvent(index));
-            context.go(index == 0
-                ? '/'
-                : index == 1
-                    ? '/search'
-                    : index == 2
-                        ? '/favorite'
-                        : '/profile');
           },
           items: [
             BottomNavigationBarItem(

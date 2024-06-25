@@ -37,7 +37,7 @@ class GenresTabBar extends StatelessWidget {
             );
           } else if (state is GenresError) {
             return CustomPlaceholder(
-              height: 50,
+              height: 100,
               width: MediaQuery.of(context).size.width,
               child: FadeIn(
                 child: Row(
@@ -59,7 +59,7 @@ class GenresTabBar extends StatelessWidget {
             );
           } else {
             return CustomPlaceholder(
-              height: 50,
+              height: 100,
               width: MediaQuery.of(context).size.width,
               play: true,
               child: const Text('Loading genres...'),

@@ -57,4 +57,46 @@ class TmdbDatasourceImpl implements TmdbDatasource {
 
     return movies;
   }
+
+  @override
+  Future<List<MovieModel>> getNowPlaying() async {
+    final response = await dio.get(
+      '${ApiStrings.baseUrl}movie/now_playing',
+      queryParameters: {
+        'api_key': ApiStrings.apiKey,
+      },
+    );
+
+    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
+
+    return movies;
+  }
+
+  @override
+  Future<List<MovieModel>> getTopRated() async {
+    final response = await dio.get(
+      '${ApiStrings.baseUrl}movie/top_rated',
+      queryParameters: {
+        'api_key': ApiStrings.apiKey,
+      },
+    );
+
+    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
+
+    return movies;
+  }
+
+  @override
+  Future<List<MovieModel>> getUpcoming() async {
+    final response = await dio.get(
+      '${ApiStrings.baseUrl}movie/upcoming',
+      queryParameters: {
+        'api_key': ApiStrings.apiKey,
+      },
+    );
+
+    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
+
+    return movies;
+  }
 }

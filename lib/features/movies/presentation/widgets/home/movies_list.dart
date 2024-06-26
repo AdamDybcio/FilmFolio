@@ -2,9 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/presentation/widgets/home/discover_movie_card.dart';
-
-import '../../../domain/entities/movie_entity.dart';
 
 class MoviesList extends StatelessWidget {
   const MoviesList({
@@ -12,7 +11,7 @@ class MoviesList extends StatelessWidget {
     required this.movies,
   });
 
-  final List<MovieEntity> movies;
+  final List<MovieModel> movies;
 
   @override
   Widget build(BuildContext context) {

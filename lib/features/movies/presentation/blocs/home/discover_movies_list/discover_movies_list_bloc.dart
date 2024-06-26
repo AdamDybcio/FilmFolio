@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_discover_movies.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/genres/genres_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/years/years_bloc.dart';

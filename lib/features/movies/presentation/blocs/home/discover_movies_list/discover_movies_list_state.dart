@@ -12,7 +12,7 @@ final class DiscoverMoviesListInitial extends DiscoverMoviesListState {}
 final class DiscoverMoviesListLoading extends DiscoverMoviesListState {}
 
 final class DiscoverMoviesListLoaded extends DiscoverMoviesListState {
-  final List<MovieEntity> movies;
+  final List<MovieModel> movies;
 
   const DiscoverMoviesListLoaded(this.movies);
 

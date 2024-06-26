@@ -5,12 +5,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
 import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/movie_entity.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 class DiscoverMovieCard extends StatelessWidget {
   const DiscoverMovieCard({super.key, required this.movie});
 
-  final MovieEntity movie;
+  final MovieModel movie;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,8 @@ class DiscoverMovieCard extends StatelessWidget {
                       softWrap: true,
                       overflow: TextOverflow.fade,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: dark ? AppColors.diamondCut : AppColors.insomnia,
+                            color: AppColors.diamondCut,
+                            fontWeight: FontWeight.bold,
                           ),
                     ),
                   ),
@@ -107,7 +108,8 @@ class DiscoverMovieCard extends StatelessWidget {
                               movie.voteAverage.toStringAsFixed(1),
                               overflow: TextOverflow.fade,
                               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: dark ? AppColors.diamondCut : AppColors.insomnia,
+                                    color: AppColors.diamondCut,
+                                    fontWeight: FontWeight.bold,
                                   ),
                             ),
                             const SizedBox(width: 10),

@@ -11,4 +11,10 @@ abstract class TmdbDatasource {
     required GenreModel genre,
     required int year,
   });
+
+  Future<List<MovieModel>> getNowPlaying();
+
+  Future<List<MovieModel>> getTopRated();
+
+  Future<List<MovieModel>> getUpcoming();
 }

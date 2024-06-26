@@ -12,17 +12,18 @@ class MoreMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
         const Header(title: 'Now Playing'),
         SizedBox(height: MediaQuery.of(context).size.height * 0.005),
         const NowPlayingMoviesList(),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
         const Header(title: 'Top Rated Movies'),
-        const TopRatedMoviesList(),
         SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+        const TopRatedMoviesList(),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
         const Header(title: 'Upcoming Movies'),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.005),
         const UpcomingMoviesList(),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
       ],
     );
   }

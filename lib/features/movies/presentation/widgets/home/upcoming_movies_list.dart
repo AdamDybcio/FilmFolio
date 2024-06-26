@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MoreMoviesList extends StatelessWidget {
-  const MoreMoviesList({super.key});
+class UpcomingMoviesList extends StatelessWidget {
+  const UpcomingMoviesList({super.key});
 
   @override
   Widget build(BuildContext context) {

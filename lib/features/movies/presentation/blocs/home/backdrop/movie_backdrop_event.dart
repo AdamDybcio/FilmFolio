@@ -15,3 +15,10 @@ class MovieBackdropChangedEvent extends MovieBackdropEvent {
   @override
   List<Object> get props => [movie];
 }
+
+class MovieBackdropRefreshEvent extends MovieBackdropEvent {
+  const MovieBackdropRefreshEvent();
+
+  @override
+  List<Object> get props => [];
+}

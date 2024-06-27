@@ -69,7 +69,7 @@ class DiscoverMovieCard extends StatelessWidget {
                         color: AppColors.autumnBlaze.withOpacity(0.75),
                         width: 2,
                       ),
-                      color: AppColors.autumnBlaze.withOpacity(0.6),
+                      color: AppColors.autumnBlaze.withOpacity(0.8),
                       borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(17.5), bottomRight: Radius.circular(17.5)),
                     ),
                     child: Center(
@@ -80,7 +80,7 @@ class DiscoverMovieCard extends StatelessWidget {
                         softWrap: true,
                         overflow: TextOverflow.fade,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: AppColors.diamondCut,
+                              color: dark ? AppColors.diamondCut : AppColors.insomnia,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -95,7 +95,7 @@ class DiscoverMovieCard extends StatelessWidget {
                       height: size.height * 0.075,
                       width: size.width * 0.3,
                       decoration: BoxDecoration(
-                        color: AppColors.autumnBlaze.withOpacity(0.6),
+                        color: AppColors.autumnBlaze.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                           color: AppColors.autumnBlaze,
@@ -112,12 +112,38 @@ class DiscoverMovieCard extends StatelessWidget {
                                 movie.voteAverage.toStringAsFixed(1),
                                 overflow: TextOverflow.fade,
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                      color: AppColors.diamondCut,
+                                      color: dark ? AppColors.diamondCut : AppColors.insomnia,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
                               const SizedBox(width: 10),
-                              FaIcon(FontAwesomeIcons.solidStar, size: 30, color: AppColors.autumnBlaze),
+                              FaIcon(
+                                FontAwesomeIcons.solidStar,
+                                size: 30,
+                                color: AppColors.autumnBlaze,
+                                shadows: [
+                                  Shadow(
+                                    color: AppColors.magicWhale,
+                                    offset: const Offset(1, 1),
+                                    blurRadius: 2,
+                                  ),
+                                  Shadow(
+                                    color: AppColors.magicWhale,
+                                    offset: const Offset(-1, -1),
+                                    blurRadius: 2,
+                                  ),
+                                  Shadow(
+                                    color: AppColors.magicWhale,
+                                    offset: const Offset(1, -1),
+                                    blurRadius: 2,
+                                  ),
+                                  Shadow(
+                                    color: AppColors.magicWhale,
+                                    offset: const Offset(-1, 1),
+                                    blurRadius: 2,
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),

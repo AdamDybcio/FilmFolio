@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/common/widgets/movie/custom_movie_card.dart';
-import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
-import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../../common/widgets/placeholders/custom_placeholder.dart';
 
@@ -16,7 +15,6 @@ class CustomMovieCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = HelperFunctions.isDarkMode(context);
     final size = MediaQuery.of(context).size;
     return BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
       builder: (_, state) {
@@ -45,11 +43,7 @@ class CustomMovieCarousel extends StatelessWidget {
                 },
               ),
               itemBuilder: (_, index, realIndex) {
-                return Stack(
-                  children: [
-                    CustomMovieCard(movie: state.movies[index]),
-                  ],
-                );
+                return CustomMovieCard(movie: state.movies[index]);
               },
             ),
           );
@@ -62,14 +56,13 @@ class CustomMovieCarousel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50, color: darkMode ? AppColors.coolFrost : AppColors.magicWhale),
+                  const FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50),
                   SizedBox(height: size.height * 0.05),
                   Text(
                     state.message,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: darkMode ? AppColors.diamondCut : AppColors.magicWhale,
-                        ),
+                    style: Theme.of(context).textTheme.headlineSmall,
+                    overflow: TextOverflow.clip,
                   ),
                 ],
               ),
@@ -84,9 +77,9 @@ class CustomMovieCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircularProgressIndicator(color: darkMode ? AppColors.coolFrost : AppColors.magicWhale),
+              LoadingAnimationWidget.beat(color: Theme.of(context).colorScheme.primary, size: 50),
               SizedBox(height: size.height * 0.05),
-              Text('Loading...', style: Theme.of(context).textTheme.bodyMedium),
+              Text('Loading...', style: Theme.of(context).textTheme.headlineSmall),
             ],
           ),
         );

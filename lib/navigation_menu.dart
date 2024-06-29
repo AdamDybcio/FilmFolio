@@ -37,9 +37,9 @@ class NavigationMenu extends StatelessWidget {
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
-              const CustomAppBar(
+              CustomAppBar(
                 hasBackButton: false,
-                title: Text('Movie App'),
+                title: Text('Movie App', style: Theme.of(context).textTheme.displaySmall),
               ),
             ];
           },

@@ -3,9 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
-import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 class DiscoverMovieCard extends StatelessWidget {
@@ -16,7 +14,6 @@ class DiscoverMovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
         context.push('/details/${movie.id}', extra: movie);
@@ -29,10 +26,14 @@ class DiscoverMovieCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: dark ? AppColors.diamondCut : AppColors.magicWhale,
                 width: 2,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                  BlendMode.srcOver,
+                ),
                 image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.backdropPath),
                 fit: BoxFit.cover,
               ),
@@ -46,8 +47,8 @@ class DiscoverMovieCard extends StatelessWidget {
                     width: size.width * 0.4,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: AppColors.autumnBlaze,
                         width: 5,
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                       borderRadius: BorderRadius.circular(17.5),
                     ),
@@ -67,23 +68,26 @@ class DiscoverMovieCard extends StatelessWidget {
                     width: size.width * 0.7,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: AppColors.autumnBlaze.withOpacity(0.75),
                         width: 2,
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
-                      color: AppColors.autumnBlaze.withOpacity(0.8),
+                      color: Theme.of(context).colorScheme.secondary,
                       borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(17.5), bottomRight: Radius.circular(17.5)),
                     ),
                     child: Center(
-                      child: Text(
-                        movie.title,
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        softWrap: true,
-                        overflow: TextOverflow.fade,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: dark ? AppColors.diamondCut : AppColors.insomnia,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          movie.title,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                        ),
                       ),
                     ),
                   ),
@@ -96,12 +100,12 @@ class DiscoverMovieCard extends StatelessWidget {
                       height: size.height * 0.075,
                       width: size.width * 0.3,
                       decoration: BoxDecoration(
-                        color: AppColors.autumnBlaze.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: AppColors.autumnBlaze,
                           width: 2,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       child: Center(
                         child: Padding(
@@ -112,35 +116,31 @@ class DiscoverMovieCard extends StatelessWidget {
                               Text(
                                 movie.voteAverage.toStringAsFixed(1),
                                 overflow: TextOverflow.fade,
-                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                      color: dark ? AppColors.diamondCut : AppColors.insomnia,
+                                style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
                               ),
                               const SizedBox(width: 10),
-                              FaIcon(
+                              const FaIcon(
                                 FontAwesomeIcons.solidStar,
                                 size: 30,
-                                color: AppColors.autumnBlaze,
+                                color: Colors.yellow,
                                 shadows: [
                                   Shadow(
-                                    color: AppColors.magicWhale,
-                                    offset: const Offset(1, 1),
+                                    offset: Offset(1, 1),
                                     blurRadius: 2,
                                   ),
                                   Shadow(
-                                    color: AppColors.magicWhale,
-                                    offset: const Offset(-1, -1),
+                                    offset: Offset(-1, -1),
                                     blurRadius: 2,
                                   ),
                                   Shadow(
-                                    color: AppColors.magicWhale,
-                                    offset: const Offset(1, -1),
+                                    offset: Offset(1, -1),
                                     blurRadius: 2,
                                   ),
                                   Shadow(
-                                    color: AppColors.magicWhale,
-                                    offset: const Offset(-1, 1),
+                                    offset: Offset(-1, 1),
                                     blurRadius: 2,
                                   ),
                                 ],

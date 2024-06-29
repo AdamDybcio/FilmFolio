@@ -17,7 +17,6 @@ dependencies:
 
   #State Management
   flutter_bloc: ^8.1.6
-  hydrated_bloc: ^9.1.5
   equatable: ^2.0.5
 
   #Routes
@@ -31,6 +30,10 @@ dependencies:
 
   #UI
   carousel_slider: ^4.2.1
+  blur: ^4.0.0
+
+  #Color Scheme
+  flex_color_scheme: ^7.3.1
 
   #Animations
   animate_do: ^3.3.4

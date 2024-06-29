@@ -20,7 +20,7 @@ class YearsTabBar extends StatelessWidget {
                   length: 50,
                   child: TabBar(
                     isScrollable: true,
-                    labelStyle: Theme.of(context).textTheme.bodyMedium,
+                    labelStyle: Theme.of(context).textTheme.titleMedium,
                     tabAlignment: TabAlignment.start,
                     onTap: (index) {
                       context.read<DiscoverMoviesListBloc>().yearsBloc.add(YearsChangeEvent(DateTime.now().year - index));

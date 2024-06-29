@@ -2,12 +2,11 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_list_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/widgets/home/movies_list.dart';
 
 import '../../../../../common/widgets/placeholders/custom_placeholder.dart';
-import '../../../../../core/utils/strings/app_colors.dart';
 
 class DiscoverMoviesList extends StatelessWidget {
   const DiscoverMoviesList({super.key});
@@ -15,7 +14,6 @@ class DiscoverMoviesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final darkMode = HelperFunctions.isDarkMode(context);
     return BlocBuilder<DiscoverMoviesListBloc, DiscoverMoviesListState>(
       builder: (_, state) {
         if (state is DiscoverMoviesListInitial) {
@@ -29,14 +27,13 @@ class DiscoverMoviesList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50, color: darkMode ? AppColors.coolFrost : AppColors.magicWhale),
+                  const FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50),
                   SizedBox(height: size.height * 0.05),
                   Text(
                     state.message,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: darkMode ? AppColors.diamondCut : AppColors.magicWhale,
-                        ),
+                    style: Theme.of(context).textTheme.headlineSmall,
+                    overflow: TextOverflow.clip,
                   ),
                 ],
               ),
@@ -53,9 +50,9 @@ class DiscoverMoviesList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircularProgressIndicator(color: darkMode ? AppColors.coolFrost : AppColors.magicWhale),
+              LoadingAnimationWidget.beat(color: Theme.of(context).colorScheme.primary, size: 50),
               SizedBox(height: size.height * 0.05),
-              Text('Loading...', style: Theme.of(context).textTheme.bodyMedium),
+              Text('Loading...', style: Theme.of(context).textTheme.headlineSmall),
             ],
           ),
         );

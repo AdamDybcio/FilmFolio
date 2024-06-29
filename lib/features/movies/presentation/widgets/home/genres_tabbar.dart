@@ -5,8 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/custom_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_list_bloc.dart';
 
-import '../../../../../core/utils/helpers/helper_functions.dart';
-import '../../../../../core/utils/strings/app_colors.dart';
 import '../../blocs/home/genres/genres_bloc.dart';
 
 class GenresTabBar extends StatelessWidget {
@@ -14,7 +12,6 @@ class GenresTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = HelperFunctions.isDarkMode(context);
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: BlocBuilder<GenresBloc, GenresState>(
@@ -29,7 +26,7 @@ class GenresTabBar extends StatelessWidget {
                     context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent());
                   },
                   tabs: state.genres.map((genre) => Tab(text: genre.name, height: 50)).toList(),
-                  labelStyle: Theme.of(context).textTheme.bodyMedium,
+                  labelStyle: Theme.of(context).textTheme.titleMedium,
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
                 ),
@@ -49,9 +46,8 @@ class GenresTabBar extends StatelessWidget {
                     Text(
                       state.message,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                            color: darkMode ? AppColors.diamondCut : AppColors.magicWhale,
-                          ),
+                      style: Theme.of(context).textTheme.headlineSmall,
+                      overflow: TextOverflow.clip,
                     ),
                   ],
                 ),

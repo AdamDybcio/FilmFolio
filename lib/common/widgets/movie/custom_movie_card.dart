@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
 import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
@@ -15,7 +16,7 @@ class CustomMovieCard extends StatelessWidget {
     final darkMode = HelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        //TODO: Navigate to movie details page
+        context.push('/details/${movie.id}', extra: movie);
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 16, left: 2, right: 2, bottom: 16),

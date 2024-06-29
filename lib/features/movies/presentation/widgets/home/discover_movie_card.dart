@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
 import 'package:movie_bloc_app/core/utils/strings/app_colors.dart';
@@ -18,7 +19,7 @@ class DiscoverMovieCard extends StatelessWidget {
     final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        //TODO: Navigate to movie details page
+        context.push('/details/${movie.id}', extra: movie);
       },
       child: FadeIn(
         child: Center(

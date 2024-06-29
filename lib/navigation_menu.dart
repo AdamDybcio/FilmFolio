@@ -38,6 +38,7 @@ class NavigationMenu extends StatelessWidget {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               const CustomAppBar(
+                hasBackButton: false,
                 title: Text('Movie App'),
               ),
             ];

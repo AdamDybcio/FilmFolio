@@ -31,6 +31,7 @@ class DetailsScreen extends StatelessWidget {
               MovieImage(movie: movie),
               const Header(title: 'Movie Info'),
               MovieInfo(movie: movie),
+              const Header(title: 'Overview'),
               // MovieOverview(movie: movie),
               // MovieCast(movie: movie),
               // MovieTrailer(movie: movie),

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';

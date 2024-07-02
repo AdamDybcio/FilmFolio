@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
-import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../../../../core/utils/strings/api_strings.dart';
 import '../../models/movies_result_model.dart';
@@ -12,17 +11,16 @@ class TmdbDatasourceImpl implements TmdbDatasource {
   TmdbDatasourceImpl(this.dio);
 
   @override
-  Future<List<MovieModel>> getTrending() async {
+  Future<MoviesResultModel> getTrending({int page = 1}) async {
     final response = await dio.get(
       '${ApiStrings.baseUrl}trending/movie/day',
       queryParameters: {
         'api_key': ApiStrings.apiKey,
+        'page': page,
       },
     );
 
-    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
-
-    return movies;
+    return MoviesResultModel.fromJson(response.data);
   }
 
   @override
@@ -40,63 +38,56 @@ class TmdbDatasourceImpl implements TmdbDatasource {
   }
 
   @override
-  Future<List<MovieModel>> getDiscoverMovies({
-    required GenreModel genre,
-    required int year,
-  }) async {
+  Future<MoviesResultModel> getDiscoverMovies({required GenreModel genre, required int year, int page = 1}) async {
     final response = await dio.get(
       '${ApiStrings.baseUrl}discover/movie',
       queryParameters: {
         'api_key': ApiStrings.apiKey,
         'with_genres': genre.id,
         'primary_release_year': year,
+        'page': page,
       },
     );
 
-    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
-
-    return movies;
+    return MoviesResultModel.fromJson(response.data);
   }
 
   @override
-  Future<List<MovieModel>> getNowPlaying() async {
+  Future<MoviesResultModel> getNowPlaying({int page = 1}) async {
     final response = await dio.get(
       '${ApiStrings.baseUrl}movie/now_playing',
       queryParameters: {
         'api_key': ApiStrings.apiKey,
+        'page': page,
       },
     );
 
-    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
-
-    return movies;
+    return MoviesResultModel.fromJson(response.data);
   }
 
   @override
-  Future<List<MovieModel>> getTopRated() async {
+  Future<MoviesResultModel> getTopRated({int page = 1}) async {
     final response = await dio.get(
       '${ApiStrings.baseUrl}movie/top_rated',
       queryParameters: {
         'api_key': ApiStrings.apiKey,
+        'page': page,
       },
     );
 
-    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
-
-    return movies;
+    return MoviesResultModel.fromJson(response.data);
   }
 
   @override
-  Future<List<MovieModel>> getUpcoming() async {
+  Future<MoviesResultModel> getUpcoming({int page = 1}) async {
     final response = await dio.get(
       '${ApiStrings.baseUrl}movie/upcoming',
       queryParameters: {
         'api_key': ApiStrings.apiKey,
+        'page': page,
       },
     );
 
-    final movies = MoviesResultModel.fromJson(response.data).movies ?? [];
-
-    return movies;
+    return MoviesResultModel.fromJson(response.data);
   }
 }

@@ -8,8 +8,12 @@ sealed class DiscoverMoviesListEvent extends Equatable {
 }
 
 class DiscoverMoviesListLoadEvent extends DiscoverMoviesListEvent {
-  const DiscoverMoviesListLoadEvent();
+  const DiscoverMoviesListLoadEvent({required this.page});
+
+  final int page;
 
   @override
   List<Object> get props => [];
 }
+
+class DiscoverMoviesListFetchNextPage extends DiscoverMoviesListEvent {}

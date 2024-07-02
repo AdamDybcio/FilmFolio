@@ -24,7 +24,7 @@ class YearsTabBar extends StatelessWidget {
                     tabAlignment: TabAlignment.start,
                     onTap: (index) {
                       context.read<DiscoverMoviesListBloc>().yearsBloc.add(YearsChangeEvent(DateTime.now().year - index));
-                      context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent());
+                      context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent(page: 1));
                     },
                     tabs: List.generate(50, (index) {
                       final year = DateTime.now().year - index;

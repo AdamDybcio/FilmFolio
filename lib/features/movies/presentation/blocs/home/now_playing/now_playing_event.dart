@@ -7,4 +7,6 @@ sealed class NowPlayingEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class FetchNowPlaying extends NowPlayingEvent {}
+class FetchNowPlaying extends NowPlayingEvent {}
+
+class FetchNowPlayingNextPage extends NowPlayingEvent {}

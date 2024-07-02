@@ -7,4 +7,6 @@ sealed class TopRatedEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class FetchTopRated extends TopRatedEvent {}
+class FetchTopRated extends TopRatedEvent {}
+
+class FetchTopRatedNextPage extends TopRatedEvent {}

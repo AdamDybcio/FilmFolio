@@ -39,7 +39,7 @@ class TopRatedMoviesList extends StatelessWidget {
           ),
         );
       } else if (state is TopRatedSuccess) {
-        return MoviesList(movies: state.movies);
+        return MoviesList(movies: state.movies, type: 3, hasReachedMax: state.hasReachedMax);
       }
       return CustomPlaceholder(
         height: size.height * 0.55,

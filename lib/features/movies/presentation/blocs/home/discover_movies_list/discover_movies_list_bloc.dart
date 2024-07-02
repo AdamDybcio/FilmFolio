@@ -15,12 +15,20 @@ class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMovie
   GetDiscoverMovies getDiscoverMovies;
   GenresBloc genresBloc;
   YearsBloc yearsBloc;
+  final List<MovieModel> allMovies = [];
+  int currentPage = 1;
+  int year = DateTime.now().year;
+  GenreModel genre = const GenreModel(id: 28, name: 'Action');
+  int maxPages = 0;
 
   DiscoverMoviesListBloc({required this.getDiscoverMovies, required this.genresBloc, required this.yearsBloc}) : super(DiscoverMoviesListInitial()) {
     on<DiscoverMoviesListLoadEvent>((event, emit) async {
       emit(DiscoverMoviesListLoading());
-      int year = DateTime.now().year;
-      GenreModel genre = const GenreModel(id: 28, name: 'Action');
+      allMovies.clear();
+      currentPage = 1;
+      maxPages = 0;
+      year = DateTime.now().year;
+      genre = const GenreModel(id: 28, name: 'Action');
 
       if (yearsBloc.state.props.isNotEmpty) {
         year = yearsBloc.state.props.first as int;
@@ -32,14 +40,42 @@ class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMovie
       }
 
       try {
-        final movies = await getDiscoverMovies(Params(genre: genre, year: year));
-        if (movies.isEmpty) {
+        final movies = await getDiscoverMovies(Params(genre: genre, year: year, page: currentPage));
+
+        if (movies.movies!.isEmpty) {
           emit(const DiscoverMoviesListError('No movies found.'));
           return;
         }
-        emit(DiscoverMoviesListLoaded(movies));
+
+        allMovies.addAll(movies.movies!);
+        maxPages = movies.totalPages!;
+        if (allMovies.isEmpty) {
+          emit(const DiscoverMoviesListError('No movies found.'));
+          return;
+        }
+        if (currentPage < maxPages) {
+          emit(DiscoverMoviesListLoaded(allMovies, false));
+        } else {
+          emit(DiscoverMoviesListLoaded(allMovies, true));
+        }
       } catch (e) {
         emit(const DiscoverMoviesListError('An error occurred while loading movies.\nPlease try again.'));
+      }
+    });
+    on<DiscoverMoviesListFetchNextPage>((event, emit) async {
+      currentPage++;
+      if (currentPage > maxPages) return;
+      try {
+        final movies = await getDiscoverMovies(Params(genre: genre, year: year, page: currentPage));
+        allMovies.addAll(movies.movies!);
+        emit(DiscoverMoviesListLoading());
+        if (currentPage < maxPages) {
+          emit(DiscoverMoviesListLoaded(allMovies, false));
+        } else {
+          emit(DiscoverMoviesListLoaded(allMovies, true));
+        }
+      } catch (e) {
+        emit(const DiscoverMoviesListError('There was an error.\nPlease try again later.'));
       }
     });
   }

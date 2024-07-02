@@ -13,8 +13,9 @@ final class UpcomingLoading extends UpcomingState {}
 
 final class UpcomingSuccess extends UpcomingState {
   final List<MovieModel> movies;
+  final bool hasReachedMax;
 
-  const UpcomingSuccess(this.movies);
+  const UpcomingSuccess(this.movies, this.hasReachedMax);
 
   @override
   List<Object> get props => [movies];

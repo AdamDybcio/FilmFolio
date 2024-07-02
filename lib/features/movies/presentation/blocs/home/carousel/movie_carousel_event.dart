@@ -9,9 +9,12 @@ abstract class MovieCarouselEvent extends Equatable {
 
 final class CarouselLoadEvent extends MovieCarouselEvent {
   final int currentIndex;
+  final int currentPage;
 
-  const CarouselLoadEvent({this.currentIndex = 0});
+  const CarouselLoadEvent({this.currentIndex = 0, this.currentPage = 1});
 
   @override
-  List<Object> get props => [currentIndex];
+  List<Object> get props => [currentIndex, currentPage];
 }
+
+class CarouselFetchNextPage extends MovieCarouselEvent {}

@@ -39,7 +39,7 @@ class UpcomingMoviesList extends StatelessWidget {
           ),
         );
       } else if (state is UpcomingSuccess) {
-        return MoviesList(movies: state.movies);
+        return MoviesList(movies: state.movies, type: 4, hasReachedMax: state.hasReachedMax);
       }
       return CustomPlaceholder(
         height: size.height * 0.55,

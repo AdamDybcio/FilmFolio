@@ -23,7 +23,7 @@ class GenresTabBar extends StatelessWidget {
                 child: TabBar(
                   onTap: (index) {
                     context.read<DiscoverMoviesListBloc>().genresBloc.add(GenresSelectEvent(genres: state.genres, selectedGenreIndex: index));
-                    context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent());
+                    context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent(page: 1));
                   },
                   tabs: state.genres.map((genre) => Tab(text: genre.name, height: 50)).toList(),
                   labelStyle: Theme.of(context).textTheme.titleMedium,

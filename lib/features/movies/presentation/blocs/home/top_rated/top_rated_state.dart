@@ -13,8 +13,9 @@ final class TopRatedLoading extends TopRatedState {}
 
 final class TopRatedSuccess extends TopRatedState {
   final List<MovieModel> movies;
+  final bool hasReachedMax;
 
-  const TopRatedSuccess(this.movies);
+  const TopRatedSuccess(this.movies, this.hasReachedMax);
 
   @override
   List<Object> get props => [movies];

@@ -7,4 +7,6 @@ sealed class UpcomingEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class FetchUpcoming extends UpcomingEvent {}
+class FetchUpcoming extends UpcomingEvent {}
+
+class FetchUpcomingNextPage extends UpcomingEvent {}

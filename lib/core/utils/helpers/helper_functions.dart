@@ -18,10 +18,29 @@ class HelperFunctions {
     context.read<MovieBackdropBloc>().add(const MovieBackdropRefreshEvent());
     context.read<MovieCarouselBloc>().add(const CarouselLoadEvent());
     context.read<GenresBloc>().add(GenresLoadEvent());
-    context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent());
+    context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent(page: 1));
     context.read<UpcomingBloc>().add(FetchUpcoming());
     context.read<TopRatedBloc>().add(FetchTopRated());
     context.read<NowPlayingBloc>().add(FetchNowPlaying());
     return Future.delayed(const Duration(seconds: 1));
+  }
+
+  static void loadMoreMovies(BuildContext context, int type) {
+    switch (type) {
+      case 1:
+        context.read<DiscoverMoviesListBloc>().add(DiscoverMoviesListFetchNextPage());
+        break;
+      case 2:
+        context.read<NowPlayingBloc>().add(FetchNowPlayingNextPage());
+        break;
+      case 3:
+        context.read<TopRatedBloc>().add(FetchTopRatedNextPage());
+        break;
+      case 4:
+        context.read<UpcomingBloc>().add(FetchUpcomingNextPage());
+        break;
+      default:
+        break;
+    }
   }
 }

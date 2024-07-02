@@ -1,8 +1,8 @@
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
-import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../domain/repositories/movie_repo.dart';
 import '../datasources/remote/tmdb_datasource.dart';
+import '../models/movies_result_model.dart';
 
 class MovieRepoImpl extends MovieRepo {
   final TmdbDatasource tmdbDatasource;
@@ -12,9 +12,9 @@ class MovieRepoImpl extends MovieRepo {
   });
 
   @override
-  Future<List<MovieModel>> getTrending() async {
+  Future<MoviesResultModel> getTrending({int page = 1}) async {
     try {
-      final movies = await tmdbDatasource.getTrending();
+      final movies = await tmdbDatasource.getTrending(page: page);
       return movies;
     } catch (e) {
       throw Exception(e);
@@ -32,9 +32,9 @@ class MovieRepoImpl extends MovieRepo {
   }
 
   @override
-  Future<List<MovieModel>> getDiscoverMovies({required GenreModel genre, required int year}) {
+  Future<MoviesResultModel> getDiscoverMovies({required GenreModel genre, required int year, int page = 1}) {
     try {
-      final movies = tmdbDatasource.getDiscoverMovies(genre: genre, year: year);
+      final movies = tmdbDatasource.getDiscoverMovies(genre: genre, year: year, page: page);
       return movies;
     } catch (e) {
       throw Exception(e);
@@ -42,9 +42,9 @@ class MovieRepoImpl extends MovieRepo {
   }
 
   @override
-  Future<List<MovieModel>> getNowPlaying() {
+  Future<MoviesResultModel> getNowPlaying({int page = 1}) {
     try {
-      final movies = tmdbDatasource.getNowPlaying();
+      final movies = tmdbDatasource.getNowPlaying(page: page);
       return movies;
     } catch (e) {
       throw Exception(e);
@@ -52,9 +52,9 @@ class MovieRepoImpl extends MovieRepo {
   }
 
   @override
-  Future<List<MovieModel>> getTopRated() {
+  Future<MoviesResultModel> getTopRated({int page = 1}) {
     try {
-      final movies = tmdbDatasource.getTopRated();
+      final movies = tmdbDatasource.getTopRated(page: page);
       return movies;
     } catch (e) {
       throw Exception(e);
@@ -62,9 +62,9 @@ class MovieRepoImpl extends MovieRepo {
   }
 
   @override
-  Future<List<MovieModel>> getUpcoming() {
+  Future<MoviesResultModel> getUpcoming({int page = 1}) {
     try {
-      final movies = tmdbDatasource.getUpcoming();
+      final movies = tmdbDatasource.getUpcoming(page: page);
       return movies;
     } catch (e) {
       throw Exception(e);

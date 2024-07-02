@@ -15,6 +15,12 @@ class GenresBloc extends Bloc<GenresEvent, GenresState> {
       emit(GenresLoading());
       try {
         final genres = await getGenres(NoParams());
+
+        if (genres.isEmpty) {
+          emit(const GenresError('No genres found.'));
+          return;
+        }
+
         emit(GenresLoaded(genres: genres));
       } catch (e) {
         emit(const GenresError('There was an error.\nPlease try again later.'));

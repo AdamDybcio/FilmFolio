@@ -23,8 +23,9 @@ final class MovieCarouselError extends MovieCarouselState {
 final class MovieCarouselLoaded extends MovieCarouselState {
   final List<MovieEntity> movies;
   final int currentIndex;
+  final bool hasReachedMax;
 
-  const MovieCarouselLoaded({required this.movies, this.currentIndex = 0});
+  const MovieCarouselLoaded(this.hasReachedMax, {required this.movies, this.currentIndex = 0});
 
   @override
   List<Object> get props => [movies, currentIndex];

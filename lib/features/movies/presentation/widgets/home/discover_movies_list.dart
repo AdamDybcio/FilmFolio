@@ -17,7 +17,7 @@ class DiscoverMoviesList extends StatelessWidget {
     return BlocBuilder<DiscoverMoviesListBloc, DiscoverMoviesListState>(
       builder: (_, state) {
         if (state is DiscoverMoviesListInitial) {
-          context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent());
+          context.read<DiscoverMoviesListBloc>().add(const DiscoverMoviesListLoadEvent(page: 1));
         } else if (state is DiscoverMoviesListError) {
           return CustomPlaceholder(
             height: size.height * 0.55,
@@ -40,7 +40,7 @@ class DiscoverMoviesList extends StatelessWidget {
             ),
           );
         } else if (state is DiscoverMoviesListLoaded) {
-          return MoviesList(movies: state.movies);
+          return MoviesList(movies: state.movies, type: 1, hasReachedMax: state.hasReachedMax);
         }
         return CustomPlaceholder(
           height: size.height * 0.55,

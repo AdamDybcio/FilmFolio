@@ -1,20 +1,21 @@
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
 
-import '../../data/models/movie_model.dart';
+import '../../data/models/movies_result_model.dart';
 
 abstract class MovieRepo {
-  Future<List<MovieModel>> getTrending();
+  Future<MoviesResultModel> getTrending({int page = 1});
 
   Future<List<GenreModel>> getGenres();
 
-  Future<List<MovieModel>> getDiscoverMovies({
+  Future<MoviesResultModel> getDiscoverMovies({
     required GenreModel genre,
     required int year,
+    int page = 1,
   });
 
-  Future<List<MovieModel>> getNowPlaying();
+  Future<MoviesResultModel> getNowPlaying({int page = 1});
 
-  Future<List<MovieModel>> getTopRated();
+  Future<MoviesResultModel> getTopRated({int page = 1});
 
-  Future<List<MovieModel>> getUpcoming();
+  Future<MoviesResultModel> getUpcoming({int page = 1});
 }

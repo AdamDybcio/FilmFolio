@@ -37,7 +37,7 @@ class NowPlayingMoviesList extends StatelessWidget {
           ),
         );
       } else if (state is NowPlayingSuccess) {
-        return MoviesList(movies: state.movies);
+        return MoviesList(movies: state.movies, type: 2, hasReachedMax: state.hasReachedMax);
       }
       return CustomPlaceholder(
         height: size.height * 0.55,

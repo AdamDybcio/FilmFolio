@@ -13,8 +13,9 @@ final class NowPlayingLoading extends NowPlayingState {}
 
 final class NowPlayingSuccess extends NowPlayingState {
   final List<MovieModel> movies;
+  final bool hasReachedMax;
 
-  const NowPlayingSuccess(this.movies);
+  const NowPlayingSuccess(this.movies, this.hasReachedMax);
 
   @override
   List<Object> get props => [movies];

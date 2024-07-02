@@ -13,8 +13,9 @@ final class DiscoverMoviesListLoading extends DiscoverMoviesListState {}
 
 final class DiscoverMoviesListLoaded extends DiscoverMoviesListState {
   final List<MovieModel> movies;
+  final bool hasReachedMax;
 
-  const DiscoverMoviesListLoaded(this.movies);
+  const DiscoverMoviesListLoaded(this.movies, this.hasReachedMax);
 
   @override
   List<Object> get props => [movies];

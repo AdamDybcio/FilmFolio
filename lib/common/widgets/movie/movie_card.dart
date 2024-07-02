@@ -39,7 +39,9 @@ class MovieCard extends StatelessWidget {
             color: Theme.of(context).scaffoldBackgroundColor,
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.posterPath),
+              image: CachedNetworkImageProvider(
+                movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
+              ),
             ),
           ),
         ),

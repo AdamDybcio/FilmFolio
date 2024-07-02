@@ -35,7 +35,9 @@ class DiscoverMovieCard extends StatelessWidget {
                   Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                   BlendMode.srcOver,
                 ),
-                image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.backdropPath),
+                image: CachedNetworkImageProvider(
+                  movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
+                ),
                 fit: BoxFit.cover,
               ),
             ),

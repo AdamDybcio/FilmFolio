@@ -4,6 +4,8 @@ import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
 
+import 'adult_only.dart';
+
 class MovieImage extends StatelessWidget {
   const MovieImage({super.key, required this.movie});
 
@@ -18,7 +20,9 @@ class MovieImage extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.backdropPath),
+              image: CachedNetworkImageProvider(
+                movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
+              ),
               fit: BoxFit.cover,
             ),
             border: Border.all(
@@ -47,6 +51,7 @@ class MovieImage extends StatelessWidget {
             height: 250,
           ),
         ),
+        if (movie.adult) const AdultOnly(),
       ],
     );
   }

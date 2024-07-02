@@ -4,8 +4,8 @@ import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
 import 'package:movie_bloc_app/features/movies/domain/entities/movie_entity.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class CustomMovieCard extends StatelessWidget {
-  const CustomMovieCard({super.key, required this.movie});
+class MovieCard extends StatelessWidget {
+  const MovieCard({super.key, required this.movie});
 
   final MovieEntity movie;
 
@@ -31,6 +31,7 @@ class CustomMovieCard extends StatelessWidget {
                 color: Theme.of(context).colorScheme.secondary,
               ),
             ],
+            color: Theme.of(context).scaffoldBackgroundColor,
             image: DecorationImage(
               fit: BoxFit.cover,
               image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.posterPath),

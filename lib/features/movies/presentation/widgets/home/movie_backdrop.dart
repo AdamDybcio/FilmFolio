@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 
-class CustomMovieBackdrop extends StatelessWidget {
-  const CustomMovieBackdrop({super.key});
+class MovieBackdrop extends StatelessWidget {
+  const MovieBackdrop({super.key});
 
   @override
   Widget build(BuildContext context) {

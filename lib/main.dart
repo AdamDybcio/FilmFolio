@@ -13,8 +13,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   unawaited(SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]));
-
   unawaited(init());
+
   runApp(const MyApp());
 }
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: CustomGoRouterConfig().config,
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Movies',
+        title: 'FilmFolio',
         theme: CustomTheme.lightTheme,
         darkTheme: CustomTheme.darkTheme,
         themeMode: ThemeMode.system,

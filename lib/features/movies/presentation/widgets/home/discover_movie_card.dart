@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
@@ -51,12 +52,16 @@ class DiscoverMovieCard extends StatelessWidget {
                         color: Theme.of(context).colorScheme.tertiary,
                       ),
                       borderRadius: BorderRadius.circular(17.5),
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: CachedNetworkImage(
                         imageUrl: ApiStrings.imageUrl + movie.posterPath,
                         fit: BoxFit.cover,
+                        placeholder: (context, url) => Center(
+                          child: LoadingAnimationWidget.beat(color: Theme.of(context).colorScheme.primary, size: 50),
+                        ),
                       ),
                     ),
                   ),

@@ -39,7 +39,7 @@ class NavigationMenu extends StatelessWidget {
             return [
               CustomAppBar(
                 hasBackButton: false,
-                title: Text('Movie App', style: Theme.of(context).textTheme.displaySmall),
+                title: Text('FilmFolio', style: Theme.of(context).textTheme.displaySmall),
               ),
             ];
           },

@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movie_bloc_app/features/movies/presentation/widgets/home/movie_card.dart';
+import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
 import 'package:animate_do/animate_do.dart';
@@ -43,7 +43,7 @@ class MovieCarousel extends StatelessWidget {
                 },
               ),
               itemBuilder: (_, index, realIndex) {
-                return MovieCard(movie: state.movies[index]);
+                return MovieCard(movie: state.movies[index], height: MediaQuery.of(context).size.height * 0.4);
               },
             ),
           );

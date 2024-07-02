@@ -5,6 +5,7 @@ import 'package:movie_bloc_app/common/widgets/texts/header.dart';
 import '../../../data/models/movie_model.dart';
 import '../../widgets/details/movie_image.dart';
 import '../../widgets/details/movie_info.dart';
+import '../../widgets/details/movie_overview.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.movie, required this.id});
@@ -31,8 +32,9 @@ class DetailsScreen extends StatelessWidget {
               MovieImage(movie: movie),
               const Header(title: 'Movie Info'),
               MovieInfo(movie: movie),
-              const Header(title: 'Overview'),
-              // MovieOverview(movie: movie),
+              const Header(title: 'Overview', delay: Duration(seconds: 1)),
+              MovieOverview(movie: movie),
+              const Header(title: 'Cast', delay: Duration(milliseconds: 1500)),
               // MovieCast(movie: movie),
               // MovieTrailer(movie: movie),
               // MovieReviews(movie: movie),

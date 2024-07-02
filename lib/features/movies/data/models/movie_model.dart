@@ -1,24 +1,7 @@
 import '../../domain/entities/movie_entity.dart';
 
 class MovieModel extends MovieEntity {
-  final String originalTitle;
-  final String? mediaType;
-  final bool adult;
-  final String originalLanguage;
-  final List<int> genreIds;
-  final double popularity;
-  final bool video;
-  final int? voteCount;
-
   const MovieModel({
-    required this.originalTitle,
-    required this.mediaType,
-    required this.adult,
-    required this.originalLanguage,
-    required this.genreIds,
-    required this.popularity,
-    required this.video,
-    required this.voteCount,
     required super.id,
     required super.title,
     required super.overview,
@@ -26,6 +9,8 @@ class MovieModel extends MovieEntity {
     required super.backdropPath,
     required super.voteAverage,
     required super.releaseDate,
+    required super.video,
+    required super.adult,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
@@ -37,14 +22,8 @@ class MovieModel extends MovieEntity {
       posterPath: json['poster_path'] ?? '',
       backdropPath: json['backdrop_path'] ?? '',
       voteAverage: json['vote_average'].toDouble(),
-      originalTitle: json['original_title'] ?? '',
-      mediaType: json['media_type'] ?? '',
       adult: json['adult'] ?? false,
-      originalLanguage: json['original_language'] ?? '',
-      genreIds: List<int>.from(json['genre_ids']),
-      popularity: json['popularity'].toDouble() ?? 0.0,
       video: json['video'] ?? false,
-      voteCount: json['vote_count'] ?? 0,
     );
   }
 }

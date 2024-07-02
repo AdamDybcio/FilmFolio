@@ -8,6 +8,8 @@ abstract class MovieEntity extends Equatable {
   final String backdropPath;
   final double voteAverage;
   final String releaseDate;
+  final bool video;
+  final bool adult;
 
   const MovieEntity({
     required this.id,
@@ -17,6 +19,8 @@ abstract class MovieEntity extends Equatable {
     required this.backdropPath,
     required this.voteAverage,
     required this.releaseDate,
+    required this.video,
+    required this.adult,
   });
 
   @override

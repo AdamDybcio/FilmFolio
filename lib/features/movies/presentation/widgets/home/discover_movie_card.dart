@@ -52,7 +52,7 @@ class DiscoverMovieCard extends StatelessWidget {
                         color: Theme.of(context).colorScheme.tertiary,
                       ),
                       borderRadius: BorderRadius.circular(17.5),
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),

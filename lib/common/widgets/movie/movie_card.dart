@@ -5,21 +5,26 @@ import 'package:movie_bloc_app/features/movies/domain/entities/movie_entity.dart
 import 'package:cached_network_image/cached_network_image.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({super.key, required this.movie});
+  const MovieCard({super.key, required this.movie, this.touchable = true, this.width = double.infinity, this.height = 300});
 
   final MovieEntity movie;
+  final double width;
+  final double height;
+  final bool touchable;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        context.push('/details/${movie.id}', extra: movie);
-      },
+      onTap: touchable
+          ? () {
+              context.push('/details/${movie.id}', extra: movie);
+            }
+          : null,
       child: Padding(
         padding: const EdgeInsets.only(top: 16, left: 2, right: 2, bottom: 16),
         child: Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.4,
+          width: width,
+          height: height,
           margin: const EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),

@@ -14,6 +14,7 @@ class MovieBackdrop extends StatelessWidget {
     return BlocBuilder<MovieBackdropBloc, MovieBackdropState>(
       builder: (_, state) {
         if (state is MovieBackdropChanged) {
+          final movie = state.movie.backdropPath != '' ? state.movie.backdropPath : state.movie.posterPath;
           return FadeIn(
             child: Blur(
               blur: 2,
@@ -28,7 +29,7 @@ class MovieBackdrop extends StatelessWidget {
                   ),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                      ApiStrings.imageUrl + state.movie.backdropPath,
+                      ApiStrings.imageUrl + movie,
                     ),
                     fit: BoxFit.cover,
                   ),

@@ -40,7 +40,7 @@ class MovieCard extends StatelessWidget {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: CachedNetworkImageProvider(
-                movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
+                movie.posterPath != '' ? ApiStrings.imageUrl + movie.posterPath : ApiStrings.imageUrl + movie.backdropPath,
               ),
             ),
           ),

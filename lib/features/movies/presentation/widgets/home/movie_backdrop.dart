@@ -23,16 +23,19 @@ class MovieBackdrop extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.5,
                 width: double.infinity,
                 decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                   ),
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      ApiStrings.imageUrl + movie,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+                  image: state.movie.backdropPath != '' || state.movie.posterPath != ''
+                      ? DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            ApiStrings.imageUrl + movie,
+                          ),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
                 ),
               ),
             ),

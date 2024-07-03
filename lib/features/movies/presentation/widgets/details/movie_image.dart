@@ -19,12 +19,14 @@ class MovieImage extends StatelessWidget {
           height: 300,
           width: double.infinity,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: CachedNetworkImageProvider(
-                movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
-              ),
-              fit: BoxFit.cover,
-            ),
+            image: movie.backdropPath != '' || movie.posterPath != ''
+                ? DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
+                    ),
+                    fit: BoxFit.cover,
+                  )
+                : null,
             border: Border.all(
               color: Theme.of(context).colorScheme.primary,
               width: 2,
@@ -33,6 +35,7 @@ class MovieImage extends StatelessWidget {
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
             ),
+            color: Theme.of(context).scaffoldBackgroundColor,
             boxShadow: [
               BoxShadow(
                 color: Theme.of(context).colorScheme.secondary,

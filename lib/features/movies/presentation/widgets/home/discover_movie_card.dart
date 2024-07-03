@@ -30,16 +30,19 @@ class DiscoverMovieCard extends StatelessWidget {
                 width: 2,
                 color: Theme.of(context).colorScheme.secondary,
               ),
-              image: DecorationImage(
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-                  BlendMode.srcOver,
-                ),
-                image: CachedNetworkImageProvider(
-                  movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
-                ),
-                fit: BoxFit.cover,
-              ),
+              color: Theme.of(context).scaffoldBackgroundColor,
+              image: movie.backdropPath != '' || movie.posterPath != ''
+                  ? DecorationImage(
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                        BlendMode.srcOver,
+                      ),
+                      image: CachedNetworkImageProvider(
+                        movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
+                      ),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
             ),
             child: Stack(
               children: [

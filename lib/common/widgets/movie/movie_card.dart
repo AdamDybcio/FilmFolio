@@ -14,33 +14,36 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: touchable
-          ? () {
-              context.push('/details/${movie.id}', extra: movie);
-            }
-          : null,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 2, right: 2, bottom: 16),
-        child: Container(
-          width: width,
-          height: height,
-          margin: const EdgeInsets.symmetric(horizontal: 8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                spreadRadius: 2,
-                blurRadius: 6,
-                offset: const Offset(0, 3),
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-            ],
-            color: Theme.of(context).scaffoldBackgroundColor,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: CachedNetworkImageProvider(
-                movie.posterPath != '' ? ApiStrings.imageUrl + movie.posterPath : ApiStrings.imageUrl + movie.backdropPath,
+    return Hero(
+      tag: movie.id.toString(),
+      child: GestureDetector(
+        onTap: touchable
+            ? () {
+                context.push('/details/${movie.id}', extra: movie);
+              }
+            : null,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 16, left: 2, right: 2, bottom: 16),
+          child: Container(
+            width: width,
+            height: height,
+            margin: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: 2,
+                  blurRadius: 6,
+                  offset: const Offset(0, 3),
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ],
+              color: Theme.of(context).scaffoldBackgroundColor,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: CachedNetworkImageProvider(
+                  movie.posterPath != '' ? ApiStrings.imageUrl + movie.posterPath : ApiStrings.imageUrl + movie.backdropPath,
+                ),
               ),
             ),
           ),

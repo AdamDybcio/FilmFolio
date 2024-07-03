@@ -20,7 +20,7 @@ class MovieOverview extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Theme.of(context).colorScheme.secondary,
               spreadRadius: 5,
               blurRadius: 7,
               offset: const Offset(0, 3),

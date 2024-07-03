@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
 
 import '../../../../../core/utils/strings/api_strings.dart';
 import '../../models/movies_result_model.dart';
@@ -89,5 +90,17 @@ class TmdbDatasourceImpl implements TmdbDatasource {
     );
 
     return MoviesResultModel.fromJson(response.data);
+  }
+
+  @override
+  Future<MovieDetailsModel> getMovieDetails({required int id}) async {
+    final response = await dio.get(
+      '${ApiStrings.baseUrl}movie/$id',
+      queryParameters: {
+        'api_key': ApiStrings.apiKey,
+      },
+    );
+
+    return MovieDetailsModel.fromJson(response.data);
   }
 }

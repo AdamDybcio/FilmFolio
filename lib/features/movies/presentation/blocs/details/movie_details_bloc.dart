@@ -1,0 +1,22 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/features/movies/domain/entities/params.dart';
+import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details.dart';
+
+import '../../../data/models/movie_details_model.dart';
+
+part 'movie_details_event.dart';
+part 'movie_details_state.dart';
+
+class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
+  final GetMovieDetails getMovieDetails;
+
+  MovieDetailsBloc({required this.getMovieDetails}) : super(MovieDetailsInitial()) {
+    on<GetMovieDetailsEvent>((event, emit) async {
+      emit(MovieDetailsLoading());
+      final result = await getMovieDetails(Params(id: event.movieId));
+
+      emit(MovieDetailsLoaded(result));
+    });
+  }
+}

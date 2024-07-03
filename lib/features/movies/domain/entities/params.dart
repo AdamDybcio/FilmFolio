@@ -4,6 +4,7 @@ class Params {
   final GenreModel genre;
   final int year;
   final int page;
+  final int id;
 
-  Params({required this.genre, required this.year, required this.page});
+  Params({this.genre = const GenreModel(id: 28, name: 'Action'), this.year = 2024, this.page = 1, this.id = 0});
 }

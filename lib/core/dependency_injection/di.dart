@@ -6,10 +6,12 @@ import 'package:movie_bloc_app/features/movies/data/datasources/remote/tmdb_data
 import 'package:movie_bloc_app/features/movies/data/repositories/movie_repo_impl.dart';
 import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_genres.dart';
+import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_now_playing.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_top_rated.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_details_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_list_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/now_playing/now_playing_bloc.dart';
@@ -36,6 +38,7 @@ Future init() async {
   sl.registerLazySingleton<GetNowPlaying>(() => GetNowPlaying(sl()));
   sl.registerLazySingleton<GetUpcoming>(() => GetUpcoming(sl()));
   sl.registerLazySingleton<GetTopRated>(() => GetTopRated(sl()));
+  sl.registerLazySingleton<GetMovieDetails>(() => GetMovieDetails(sl()));
 
   //Blocs
   sl.registerFactory(() => MovieCarouselBloc(getTrending: sl(), movieBackdropBloc: sl()));
@@ -47,4 +50,5 @@ Future init() async {
   sl.registerFactory(() => NowPlayingBloc(getNowPlaying: sl()));
   sl.registerFactory(() => UpcomingBloc(getUpcoming: sl()));
   sl.registerFactory(() => TopRatedBloc(getTopRated: sl()));
+  sl.registerFactory(() => MovieDetailsBloc(getMovieDetails: sl()));
 }

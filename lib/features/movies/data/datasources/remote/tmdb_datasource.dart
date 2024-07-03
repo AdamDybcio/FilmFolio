@@ -1,4 +1,5 @@
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movies_result_model.dart';
 
 abstract class TmdbDatasource {
@@ -18,5 +19,5 @@ abstract class TmdbDatasource {
 
   Future<MoviesResultModel> getUpcoming({int page = 1});
 
-  //Future<MovieModel> getMovieDetails(String id);
+  Future<MovieDetailsModel> getMovieDetails({required int id});
 }

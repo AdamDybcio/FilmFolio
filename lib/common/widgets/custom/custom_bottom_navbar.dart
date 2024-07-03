@@ -13,7 +13,7 @@ class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget 
         return SizedBox(
           height: 70,
           child: BottomNavigationBar(
-            elevation: 5,
+            elevation: 10,
             iconSize: 20,
             selectedFontSize: 15,
             showUnselectedLabels: false,

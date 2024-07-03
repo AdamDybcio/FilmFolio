@@ -26,6 +26,7 @@ class HomeScreen extends StatelessWidget {
             MainMovies(),
             BrowseMovies(),
             MoreMovies(),
+            SizedBox(height: 50),
           ],
         ),
       ),

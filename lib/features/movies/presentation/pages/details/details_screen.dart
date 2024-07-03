@@ -43,7 +43,7 @@ class DetailsScreen extends StatelessWidget {
                 MovieOverview(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 const Header(title: 'Movie Details', delay: Duration(milliseconds: 1000)),
-                const MovieDetails(),
+                MovieDetails(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 const Header(title: 'Cast', delay: Duration(milliseconds: 1000)),
                 // MovieCast(movie: movie),

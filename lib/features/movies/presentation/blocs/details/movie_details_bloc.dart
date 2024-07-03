@@ -14,9 +14,13 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   MovieDetailsBloc({required this.getMovieDetails}) : super(MovieDetailsInitial()) {
     on<GetMovieDetailsEvent>((event, emit) async {
       emit(MovieDetailsLoading());
-      final result = await getMovieDetails(Params(id: event.movieId));
-
-      emit(MovieDetailsLoaded(result));
+      try {
+        final result = await getMovieDetails(Params(id: event.movieId));
+        emit(MovieDetailsLoaded(result));
+      } catch (e) {
+        emit(const MovieDetailsError('Cannot load movie details.'));
+        return;
+      }
     });
   }
 }

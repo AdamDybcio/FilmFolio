@@ -37,7 +37,7 @@ class MovieOverview extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
               overflow: TextOverflow.ellipsis,
               softWrap: true,
-              maxLines: 15,
+              maxLines: 100,
             ),
           ),
         ),

@@ -19,23 +19,25 @@ class MovieBackdrop extends StatelessWidget {
             child: Blur(
               blur: 2,
               colorOpacity: 0,
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                    image: state.movie.backdropPath != '' || state.movie.posterPath != ''
+                        ? DecorationImage(
+                            image: CachedNetworkImageProvider(
+                              ApiStrings.imageUrl + movie,
+                            ),
+                            fit: BoxFit.cover,
+                          )
+                        : null,
                   ),
-                  image: state.movie.backdropPath != '' || state.movie.posterPath != ''
-                      ? DecorationImage(
-                          image: CachedNetworkImageProvider(
-                            ApiStrings.imageUrl + movie,
-                          ),
-                          fit: BoxFit.cover,
-                        )
-                      : null,
                 ),
               ),
             ),

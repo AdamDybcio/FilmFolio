@@ -13,9 +13,9 @@ class MovieRepoImpl extends MovieRepo {
   });
 
   @override
-  Future<MoviesResultModel> getTrending({int page = 1}) async {
+  Future<MoviesResultModel> getTrending({int page = 1}) {
     try {
-      final movies = await tmdbDatasource.getTrending(page: page);
+      final movies = tmdbDatasource.getTrending(page: page);
       return movies;
     } catch (e) {
       throw Exception(e);

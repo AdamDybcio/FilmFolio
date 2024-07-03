@@ -47,6 +47,8 @@ class TmdbDatasourceImpl implements TmdbDatasource {
         'with_genres': genre.id,
         'primary_release_year': year,
         'page': page,
+        'include_adult': 'true',
+        'include_video': 'true',
       },
     );
 

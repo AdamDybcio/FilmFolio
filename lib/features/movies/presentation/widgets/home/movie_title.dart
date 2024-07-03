@@ -25,7 +25,15 @@ class MovieTitle extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.8),
+                      color: Colors.black.withOpacity(0.8),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 5,
+                          spreadRadius: 5,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
                     ),
                     child: Text(
                       state.movie.title,

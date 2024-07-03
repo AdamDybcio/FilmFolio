@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       titleTextStyle: Theme.of(context).textTheme.headlineSmall,
-      elevation: 0,
+      elevation: 10,
     );
   }
 }

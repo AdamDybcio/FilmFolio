@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 
 class AdultOnly extends StatelessWidget {
   const AdultOnly({
@@ -7,6 +8,8 @@ class AdultOnly extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = HelperFunctions.isDarkMode(context);
+    final color = dark ? Colors.black : Colors.white;
     return Align(
       alignment: Alignment.topRight,
       child: Padding(
@@ -18,24 +21,36 @@ class AdultOnly extends StatelessWidget {
             color: Theme.of(context).colorScheme.error,
             borderRadius: BorderRadius.circular(75),
             border: Border.all(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Colors.red,
               width: 2,
             ),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                color: Theme.of(context).colorScheme.tertiary,
+                color: Colors.red,
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: const Offset(0, 0),
+                offset: Offset(0, 0),
               ),
             ],
           ),
-          child: const FittedBox(
+          child: FittedBox(
             fit: BoxFit.contain,
             child: Center(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('18+'),
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  '18+',
+                  style: TextStyle(
+                    color: color,
+                    shadows: [
+                      Shadow(
+                        color: color,
+                        blurRadius: 5,
+                        offset: const Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

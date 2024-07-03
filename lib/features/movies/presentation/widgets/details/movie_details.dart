@@ -1,15 +1,19 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/custom_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import '../../blocs/details/movie_details_bloc.dart';
 import 'genre_details.dart';
 import 'simple_details.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({super.key});
+  const MovieDetails({super.key, required this.movie});
+
+  final MovieModel movie;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +58,8 @@ class MovieDetails extends StatelessWidget {
               ),
             ),
           );
-        }
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: CustomPlaceholder(
+        } else if (state is MovieDetailsLoading) {
+          return CustomPlaceholder(
             width: size.width,
             height: size.height * 0.4,
             play: true,
@@ -70,8 +72,41 @@ class MovieDetails extends StatelessWidget {
                 Text('Loading...', style: Theme.of(context).textTheme.headlineSmall),
               ],
             ),
-          ),
-        );
+          );
+        } else {
+          return CustomPlaceholder(
+            width: size.width,
+            height: size.height * 0.4,
+            play: false,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50),
+                SizedBox(height: size.height * 0.05),
+                Text(
+                  'Cannot load movie details.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                  overflow: TextOverflow.clip,
+                ),
+                SizedBox(height: size.height * 0.025),
+                OutlinedButton(
+                  onPressed: () {
+                    context.read<MovieDetailsBloc>().add(GetMovieDetailsEvent(movie.id));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                  ),
+                  child: const Text(
+                    'Retry',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
       },
     );
   }

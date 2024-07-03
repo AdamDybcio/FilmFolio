@@ -28,12 +28,20 @@ class MoviesList extends StatelessWidget {
         height: size.height * 0.55,
         width: size.width,
         decoration: BoxDecoration(
-          border: Border.symmetric(
-            horizontal: BorderSide(
+          border: Border(
+            bottom: BorderSide(
               width: 2,
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).colorScheme.tertiary,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: ListView.separated(
           controller: controller
@@ -44,13 +52,18 @@ class MoviesList extends StatelessWidget {
             }),
           itemCount: !hasReachedMax ? movies.length + 1 : movies.length,
           separatorBuilder: (context, index) {
-            return const SizedBox(width: 10);
+            return const SizedBox(width: 15);
           },
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index) {
             if (index < movies.length) {
               final movie = movies[index];
-              return DiscoverMovieCard(movie: movie);
+              return Row(
+                children: [
+                  if (index == 0) const SizedBox(width: 15),
+                  DiscoverMovieCard(movie: movie),
+                ],
+              );
             } else {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),

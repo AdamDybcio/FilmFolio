@@ -67,13 +67,27 @@ class MovieInfo extends StatelessWidget {
                           child: Text(
                             movie.releaseDate.replaceAll('-', '.'),
                             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              fontStyle: FontStyle.italic,
                               color: Colors.orange,
                               shadows: [
                                 const Shadow(
                                   color: Colors.orange,
-                                  offset: Offset(1, 1),
-                                  blurRadius: 2,
+                                  offset: Offset(0.5, 0.5),
+                                  blurRadius: 1,
+                                ),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(-0.5, 0.5),
+                                  blurRadius: 1,
+                                ),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(0.5, -0.5),
+                                  blurRadius: 1,
+                                ),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(-0.5, -0.5),
+                                  blurRadius: 1,
                                 ),
                               ],
                             ),
@@ -124,13 +138,27 @@ class MovieInfo extends StatelessWidget {
                           child: Text(
                             movie.voteAverage.toStringAsFixed(2),
                             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              fontStyle: FontStyle.italic,
                               color: Colors.orange,
                               shadows: [
                                 const Shadow(
                                   color: Colors.orange,
-                                  offset: Offset(1, 1),
-                                  blurRadius: 2,
+                                  offset: Offset(0.5, 0.5),
+                                  blurRadius: 1,
+                                ),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(-0.5, 0.5),
+                                  blurRadius: 1,
+                                ),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(0.5, -0.5),
+                                  blurRadius: 1,
+                                ),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(-0.5, -0.5),
+                                  blurRadius: 1,
                                 ),
                               ],
                             ),

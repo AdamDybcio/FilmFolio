@@ -15,11 +15,12 @@ class GenreDetails extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.4,
-      height: size.height * 0.4,
+      height: size.height * 0.35,
       child: Center(
         child: ListView.separated(
           itemCount: details.genres.length,
-          separatorBuilder: (context, index) => SizedBox(height: size.height * 0.01),
+          padding: EdgeInsets.zero,
+          separatorBuilder: (context, index) => SizedBox(height: size.height * 0.015),
           itemBuilder: (_, index) {
             return Center(
               child: Container(
@@ -34,8 +35,8 @@ class GenreDetails extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Theme.of(context).colorScheme.primary,
-                      spreadRadius: 5,
-                      blurRadius: 7,
+                      spreadRadius: 3,
+                      blurRadius: 3,
                       offset: const Offset(0, 3),
                     ),
                   ],

@@ -68,11 +68,11 @@ class MovieInfo extends StatelessWidget {
                             movie.releaseDate.replaceAll('-', '.'),
                             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               fontStyle: FontStyle.italic,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Colors.orange,
                               shadows: [
-                                Shadow(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  offset: const Offset(1, 1),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(1, 1),
                                   blurRadius: 2,
                                 ),
                               ],
@@ -125,11 +125,11 @@ class MovieInfo extends StatelessWidget {
                             movie.voteAverage.toStringAsFixed(2),
                             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               fontStyle: FontStyle.italic,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Colors.orange,
                               shadows: [
-                                Shadow(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  offset: const Offset(1, 1),
+                                const Shadow(
+                                  color: Colors.orange,
+                                  offset: Offset(1, 1),
                                   blurRadius: 2,
                                 ),
                               ],

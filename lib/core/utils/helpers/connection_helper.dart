@@ -33,3 +33,7 @@ Future<void> updateConnectionStatus(List<ConnectivityResult> result) async {
   connectionStatus = result;
   if (kDebugMode) print('Connectivity changed: $connectionStatus');
 }
+
+bool isConnected() {
+  return connectionStatus[0] != ConnectivityResult.none;
+}

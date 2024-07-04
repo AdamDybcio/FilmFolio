@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
@@ -21,8 +20,7 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
 
   MovieCarouselBloc({required this.getTrending, required this.movieBackdropBloc}) : super(MovieCarouselInitial()) {
     on<CarouselLoadEvent>((event, emit) async {
-      await start();
-      if (connectionStatus[0] == ConnectivityResult.none) {
+      if (!isConnected()) {
         emit(const MovieCarouselError('No internet connection.'));
         return;
       }
@@ -62,8 +60,8 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
       }
     });
     on<CarouselFetchNextPage>((event, emit) async {
-      await start();
-      if (connectionStatus[0] == ConnectivityResult.none) {
+      if (!isConnected()) {
+        emit(const MovieCarouselError('No internet connection.'));
         return;
       }
       currentPage++;

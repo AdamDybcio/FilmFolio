@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
@@ -18,8 +17,7 @@ class NowPlayingBloc extends Bloc<NowPlayingEvent, NowPlayingState> {
 
   NowPlayingBloc({required this.getNowPlaying}) : super(NowPlayingInitial()) {
     on<FetchNowPlaying>((event, emit) async {
-      await start();
-      if (connectionStatus[0] == ConnectivityResult.none) {
+      if (!isConnected()) {
         emit(const NowPlayingError('No internet connection.'));
         return;
       }
@@ -51,8 +49,8 @@ class NowPlayingBloc extends Bloc<NowPlayingEvent, NowPlayingState> {
       }
     });
     on<FetchNowPlayingNextPage>((event, emit) async {
-      await start();
-      if (connectionStatus[0] == ConnectivityResult.none) {
+      if (!isConnected()) {
+        emit(const NowPlayingError('No internet connection.'));
         return;
       }
 

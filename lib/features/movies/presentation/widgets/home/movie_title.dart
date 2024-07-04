@@ -39,7 +39,7 @@ class MovieTitle extends StatelessWidget {
                       state.movie.title,
                       style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                             fontWeight: FontWeight.bold,
-                            overflow: TextOverflow.clip,
+                            overflow: TextOverflow.ellipsis,
                             color: Colors.white,
                           ),
                       textAlign: TextAlign.center,

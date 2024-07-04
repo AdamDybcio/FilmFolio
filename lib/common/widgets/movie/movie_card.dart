@@ -38,7 +38,7 @@ class MovieCard extends StatelessWidget {
                 ),
               ],
               color: Theme.of(context).scaffoldBackgroundColor,
-              image: UiHelpers().decorationImage(movie: movie, isBackdrop: false),
+              image: UiHelpers().decorationImage(movie: movie, isPoster: true),
             ),
           ),
         ),

@@ -39,12 +39,12 @@ class UiHelpers {
     );
   }
 
-  DecorationImage? decorationImage({required MovieModel movie, required bool isBackdrop}) {
+  DecorationImage? decorationImage({required MovieModel movie, required bool isPoster}) {
     return movie.backdropPath != '' || movie.posterPath != ''
         ? DecorationImage(
             fit: BoxFit.cover,
             image: CachedNetworkImageProvider(
-              isBackdrop
+              isPoster
                   ? (movie.posterPath != '' ? ApiStrings.imageUrl + movie.posterPath : ApiStrings.imageUrl + movie.backdropPath)
                   : (movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath),
             ),

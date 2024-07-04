@@ -44,7 +44,7 @@ class DiscoverMovieCardTitle extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 softWrap: true,
-                overflow: TextOverflow.clip,
+                overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

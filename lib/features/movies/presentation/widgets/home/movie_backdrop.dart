@@ -27,7 +27,7 @@ class MovieBackdrop extends StatelessWidget {
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30),
                     ),
-                    image: UiHelpers().decorationImage(movie: state.movie, isBackdrop: true),
+                    image: UiHelpers().decorationImage(movie: state.movie, isPoster: false),
                   ),
                 ),
               ),

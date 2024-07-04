@@ -18,7 +18,7 @@ class MovieImage extends StatelessWidget {
         Container(
           height: 300,
           width: double.infinity,
-          decoration: UiHelpers().displayImageDecoration(context, movie, false),
+          decoration: UiHelpers().displayImageDecoration(context, movie, true),
         ),
         Center(
           child: MovieCard(

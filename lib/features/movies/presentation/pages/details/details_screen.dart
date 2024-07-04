@@ -28,7 +28,7 @@ class DetailsScreen extends StatelessWidget {
             return [
               CustomAppBar(
                 hasBackButton: true,
-                title: FittedBox(fit: BoxFit.fitWidth, child: Text(movie.title)),
+                title: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Text(movie.title)),
               ),
             ];
           },
@@ -39,8 +39,8 @@ class DetailsScreen extends StatelessWidget {
                 const Header(title: 'Movie Info'),
                 MovieInfo(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                const Header(title: 'Overview', delay: Duration(milliseconds: 1000)),
-                MovieOverview(movie: movie),
+                if (movie.overview.isNotEmpty) const Header(title: 'Overview', delay: Duration(milliseconds: 1000)),
+                if (movie.overview.isNotEmpty) MovieOverview(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 const Header(title: 'Movie Details', delay: Duration(milliseconds: 1000)),
                 MovieDetails(movie: movie),

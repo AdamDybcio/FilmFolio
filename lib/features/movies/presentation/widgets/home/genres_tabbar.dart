@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movie_bloc_app/common/widgets/placeholders/custom_placeholder.dart';
+import 'package:movie_bloc_app/common/widgets/placeholders/error_placeholder.dart';
+import 'package:movie_bloc_app/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_list_bloc.dart';
 
 import '../../blocs/home/genres/genres_bloc.dart';
@@ -33,32 +33,17 @@ class GenresTabBar extends StatelessWidget {
               ),
             );
           } else if (state is GenresError) {
-            return CustomPlaceholder(
+            return ErrorPlaceholder(
+              message: state.message,
+              isSpecialHeight: true,
               height: 100,
-              width: MediaQuery.of(context).size.width,
-              child: FadeIn(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 30),
-                    const SizedBox(width: 20),
-                    Text(
-                      state.message,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                      overflow: TextOverflow.clip,
-                    ),
-                  ],
-                ),
-              ),
+              child: Text('You are offline.', style: Theme.of(context).textTheme.titleMedium),
             );
           } else {
-            return CustomPlaceholder(
+            return LoadingPlaceholder(
               height: 100,
-              width: MediaQuery.of(context).size.width,
-              play: true,
-              child: const Text('Loading genres...'),
+              isSpecialHeight: true,
+              child: Text('Loading...', style: Theme.of(context).textTheme.titleMedium),
             );
           }
         },

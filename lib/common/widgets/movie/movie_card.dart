@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/movie_entity.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:movie_bloc_app/core/utils/helpers/ui_helpers.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({super.key, required this.movie, this.touchable = true, this.width = double.infinity, this.height = 300});
 
-  final MovieEntity movie;
+  final MovieModel movie;
   final double width;
   final double height;
   final bool touchable;
@@ -39,14 +38,7 @@ class MovieCard extends StatelessWidget {
                 ),
               ],
               color: Theme.of(context).scaffoldBackgroundColor,
-              image: movie.backdropPath != '' || movie.posterPath != ''
-                  ? DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                        movie.posterPath != '' ? ApiStrings.imageUrl + movie.posterPath : ApiStrings.imageUrl + movie.backdropPath,
-                      ),
-                    )
-                  : null,
+              image: UiHelpers().decorationImage(movie: movie, isBackdrop: false),
             ),
           ),
         ),

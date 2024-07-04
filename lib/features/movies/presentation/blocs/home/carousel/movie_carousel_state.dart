@@ -21,7 +21,7 @@ final class MovieCarouselError extends MovieCarouselState {
 }
 
 final class MovieCarouselLoaded extends MovieCarouselState {
-  final List<MovieEntity> movies;
+  final List<MovieModel> movies;
   final int currentIndex;
   final bool hasReachedMax;
 

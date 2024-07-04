@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
           width: double.infinity,
           child: Row(
             children: [
-              Text(title, style: Theme.of(context).textTheme.headlineMedium),
+              Text(title, style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.fade),
             ],
           ),
         ),

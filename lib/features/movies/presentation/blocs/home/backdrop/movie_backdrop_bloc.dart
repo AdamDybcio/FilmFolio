@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-
-import '../../../../domain/entities/movie_entity.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 part 'movie_backdrop_event.dart';
 part 'movie_backdrop_state.dart';

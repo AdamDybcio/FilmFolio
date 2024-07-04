@@ -33,13 +33,7 @@ class CustomPlaceholder extends StatelessWidget {
               Theme.of(context).colorScheme.tertiary,
             ],
           ),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
+          child: SizedBox(
             height: height,
             width: width,
             child: Center(

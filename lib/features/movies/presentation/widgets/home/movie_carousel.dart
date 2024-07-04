@@ -1,21 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
+import 'package:movie_bloc_app/common/widgets/placeholders/error_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import '../../../../../common/widgets/placeholders/custom_placeholder.dart';
+import '../../../../../common/widgets/placeholders/loading_placeholder.dart';
 
 class MovieCarousel extends StatelessWidget {
   const MovieCarousel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
       builder: (_, state) {
         if (state is MovieCarouselLoaded) {
@@ -48,41 +46,13 @@ class MovieCarousel extends StatelessWidget {
             ),
           );
         } else if (state is MovieCarouselError) {
-          return CustomPlaceholder(
-            height: size.height * 0.5,
-            width: size.width,
-            child: FadeIn(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50),
-                  SizedBox(height: size.height * 0.05),
-                  Text(
-                    state.message,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                    overflow: TextOverflow.clip,
-                  ),
-                ],
-              ),
-            ),
+          return ErrorPlaceholder(
+            height: 0.5,
+            width: 1,
+            message: state.message,
           );
         }
-        return CustomPlaceholder(
-          height: size.height * 0.5,
-          width: size.width,
-          play: true,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              LoadingAnimationWidget.beat(color: Theme.of(context).colorScheme.primary, size: 50),
-              SizedBox(height: size.height * 0.05),
-              Text('Loading...', style: Theme.of(context).textTheme.headlineSmall),
-            ],
-          ),
-        );
+        return const LoadingPlaceholder();
       },
     );
   }

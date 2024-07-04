@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+
+import 'package:movie_bloc_app/core/utils/helpers/ui_helpers.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
 
@@ -18,33 +18,7 @@ class MovieImage extends StatelessWidget {
         Container(
           height: 300,
           width: double.infinity,
-          decoration: BoxDecoration(
-            image: movie.backdropPath != '' || movie.posterPath != ''
-                ? DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath,
-                    ),
-                    fit: BoxFit.cover,
-                  )
-                : null,
-            border: Border.all(
-              color: Theme.of(context).colorScheme.primary,
-              width: 2,
-            ),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-            color: Theme.of(context).scaffoldBackgroundColor,
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).colorScheme.secondary,
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
+          decoration: UiHelpers().displayImageDecoration(context, movie, false),
         ),
         Center(
           child: MovieCard(

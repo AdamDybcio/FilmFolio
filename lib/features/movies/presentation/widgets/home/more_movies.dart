@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_bloc_app/common/widgets/texts/header.dart';
 
-import '../../../../../common/widgets/texts/header.dart';
-import 'now_playing_movies_list.dart';
-import 'top_rated_movies_list.dart';
-import 'upcoming_movies_list.dart';
+import 'movies_list_now_playing.dart';
+import 'movies_list_top_rated.dart';
+import 'movies_list_upcoming.dart';
 
 class MoreMovies extends StatelessWidget {
   const MoreMovies({super.key});
@@ -14,13 +14,13 @@ class MoreMovies extends StatelessWidget {
       children: [
         SizedBox(height: MediaQuery.of(context).size.height * 0.02),
         const Header(title: 'Now Playing'),
-        const NowPlayingMoviesList(),
+        const MoviesListNowPlaying(),
         SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        const Header(title: 'Top Rated Movies'),
-        const TopRatedMoviesList(),
+        const Header(title: 'Top Rated'),
+        const MoviesListTopRated(),
         SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        const Header(title: 'Upcoming Movies'),
-        const UpcomingMoviesList(),
+        const Header(title: 'Upcoming'),
+        const MoviesListUpcoming(),
       ],
     );
   }

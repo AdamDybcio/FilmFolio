@@ -10,7 +10,7 @@ sealed class MovieBackdropState extends Equatable {
 final class MovieBackdropInitial extends MovieBackdropState {}
 
 class MovieBackdropChanged extends MovieBackdropState {
-  final MovieEntity movie;
+  final MovieModel movie;
 
   const MovieBackdropChanged(this.movie);
 

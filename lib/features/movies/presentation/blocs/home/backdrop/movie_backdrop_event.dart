@@ -8,7 +8,7 @@ sealed class MovieBackdropEvent extends Equatable {
 }
 
 class MovieBackdropChangedEvent extends MovieBackdropEvent {
-  final MovieEntity movie;
+  final MovieModel movie;
 
   const MovieBackdropChangedEvent(this.movie);
 

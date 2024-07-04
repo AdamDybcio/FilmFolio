@@ -1,9 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:blur/blur.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+import 'package:movie_bloc_app/core/utils/helpers/ui_helpers.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 
 class MovieBackdrop extends StatelessWidget {
@@ -14,7 +13,6 @@ class MovieBackdrop extends StatelessWidget {
     return BlocBuilder<MovieBackdropBloc, MovieBackdropState>(
       builder: (_, state) {
         if (state is MovieBackdropChanged) {
-          final movie = state.movie.backdropPath != '' ? state.movie.backdropPath : state.movie.posterPath;
           return FadeIn(
             child: Blur(
               blur: 2,
@@ -29,14 +27,7 @@ class MovieBackdrop extends StatelessWidget {
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30),
                     ),
-                    image: state.movie.backdropPath != '' || state.movie.posterPath != ''
-                        ? DecorationImage(
-                            image: CachedNetworkImageProvider(
-                              ApiStrings.imageUrl + movie,
-                            ),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
+                    image: UiHelpers().decorationImage(movie: state.movie, isBackdrop: true),
                   ),
                 ),
               ),

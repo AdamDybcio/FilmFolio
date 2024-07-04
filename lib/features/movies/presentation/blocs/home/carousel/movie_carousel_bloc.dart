@@ -1,8 +1,10 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 
-import '../../../../domain/entities/movie_entity.dart';
 import '../../../../domain/entities/page_param.dart';
 import '../backdrop/movie_backdrop_bloc.dart';
 
@@ -12,13 +14,18 @@ part 'movie_carousel_state.dart';
 class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
   final GetTrending getTrending;
   final MovieBackdropBloc movieBackdropBloc;
-  final List<MovieEntity> allMovies = [];
+  final List<MovieModel> allMovies = [];
   int currentPage = 1;
   int currentIndex = 0;
   int maxPages = 0;
 
   MovieCarouselBloc({required this.getTrending, required this.movieBackdropBloc}) : super(MovieCarouselInitial()) {
     on<CarouselLoadEvent>((event, emit) async {
+      await start();
+      if (connectionStatus[0] == ConnectivityResult.none) {
+        emit(const MovieCarouselError('No internet connection.'));
+        return;
+      }
       emit(MovieCarouselLoading());
       allMovies.clear();
       currentIndex = 0;
@@ -55,6 +62,10 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
       }
     });
     on<CarouselFetchNextPage>((event, emit) async {
+      await start();
+      if (connectionStatus[0] == ConnectivityResult.none) {
+        return;
+      }
       currentPage++;
       if (currentPage > maxPages) return;
       try {

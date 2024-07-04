@@ -50,7 +50,7 @@ class MoviesList extends StatelessWidget {
                 HelperFunctions.loadMoreMovies(context, type);
               }
             }),
-          itemCount: !hasReachedMax ? movies.length + 1 : movies.length,
+          itemCount: (!hasReachedMax ? movies.length + 1 : movies.length),
           separatorBuilder: (context, index) {
             return const SizedBox(width: 15);
           },

@@ -22,6 +22,7 @@ class HelperFunctions {
     context.read<UpcomingBloc>().add(FetchUpcoming());
     context.read<TopRatedBloc>().add(FetchTopRated());
     context.read<NowPlayingBloc>().add(FetchNowPlaying());
+
     return Future.delayed(const Duration(seconds: 1));
   }
 

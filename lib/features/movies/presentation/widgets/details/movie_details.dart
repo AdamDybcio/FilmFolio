@@ -1,11 +1,9 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/custom_placeholder.dart';
-import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import '../../blocs/details/movie_details_bloc.dart';
@@ -94,12 +92,8 @@ class MovieDetails extends StatelessWidget {
                 ),
                 SizedBox(height: size.height * 0.025),
                 OutlinedButton(
-                  onPressed: () async {
-                    await start();
-                    if (connectionStatus[0] != ConnectivityResult.none) {
-                      // ignore: use_build_context_synchronously
-                      context.read<MovieDetailsBloc>().add(GetMovieDetailsEvent(movie.id));
-                    }
+                  onPressed: () {
+                    context.read<MovieDetailsBloc>().add(GetMovieDetailsEvent(movie.id));
                   },
                   style: ElevatedButton.styleFrom(
                     textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),

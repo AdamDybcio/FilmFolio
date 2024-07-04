@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/core/dependency_injection/di.dart';
 import 'package:movie_bloc_app/core/router/router_config.dart';
-import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
 import 'package:movie_bloc_app/core/utils/themes/custom_theme.dart';
 
 import 'common/blocs/bloc/nav_bar_bloc.dart';
@@ -15,7 +14,6 @@ Future<void> main() async {
 
   unawaited(SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]));
   unawaited(init());
-  unawaited(initConnectivity());
 
   runApp(const MyApp());
 }

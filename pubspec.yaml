@@ -43,8 +43,6 @@ dependencies:
   #Splash Screen
   flutter_native_splash: ^2.4.0
 
-  #Internet Connection
-  connectivity_plus: ^6.0.3
 
   #Icons
   font_awesome_flutter: ^10.7.0

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_discover_movies.dart';
@@ -24,10 +23,6 @@ class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMovie
 
   DiscoverMoviesListBloc({required this.getDiscoverMovies, required this.genresBloc, required this.yearsBloc}) : super(DiscoverMoviesListInitial()) {
     on<DiscoverMoviesListLoadEvent>((event, emit) async {
-      if (!isConnected()) {
-        emit(const DiscoverMoviesListError('No internet connection.'));
-        return;
-      }
       emit(DiscoverMoviesListLoading());
       allMovies.clear();
       currentPage = 1;
@@ -68,11 +63,6 @@ class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMovie
       }
     });
     on<DiscoverMoviesListFetchNextPage>((event, emit) async {
-      if (!isConnected()) {
-        emit(const DiscoverMoviesListError('No internet connection.'));
-        return;
-      }
-
       currentPage++;
       if (currentPage > maxPages) return;
       try {

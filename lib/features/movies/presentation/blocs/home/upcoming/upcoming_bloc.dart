@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
 import 'package:movie_bloc_app/features/movies/domain/entities/page_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
 
@@ -17,10 +16,6 @@ class UpcomingBloc extends Bloc<UpcomingEvent, UpcomingState> {
 
   UpcomingBloc({required this.getUpcoming}) : super(UpcomingInitial()) {
     on<FetchUpcoming>((event, emit) async {
-      if (!isConnected()) {
-        emit(const UpcomingError('No internet connection.'));
-        return;
-      }
       emit(UpcomingLoading());
       allMovies.clear();
       currentPage = 1;
@@ -49,11 +44,6 @@ class UpcomingBloc extends Bloc<UpcomingEvent, UpcomingState> {
       }
     });
     on<FetchUpcomingNextPage>((event, emit) async {
-      if (!isConnected()) {
-        emit(const UpcomingError('No internet connection.'));
-        return;
-      }
-
       currentPage++;
       if (currentPage > maxPages) return;
       try {

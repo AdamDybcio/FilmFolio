@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 
@@ -20,10 +19,6 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
 
   MovieCarouselBloc({required this.getTrending, required this.movieBackdropBloc}) : super(MovieCarouselInitial()) {
     on<CarouselLoadEvent>((event, emit) async {
-      if (!isConnected()) {
-        emit(const MovieCarouselError('No internet connection.'));
-        return;
-      }
       emit(MovieCarouselLoading());
       allMovies.clear();
       currentIndex = 0;
@@ -60,10 +55,6 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
       }
     });
     on<CarouselFetchNextPage>((event, emit) async {
-      if (!isConnected()) {
-        emit(const MovieCarouselError('No internet connection.'));
-        return;
-      }
       currentPage++;
       if (currentPage > maxPages) return;
       try {

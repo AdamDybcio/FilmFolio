@@ -1,8 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movie_bloc_app/core/utils/helpers/connection_helper.dart';
 
 import 'custom_placeholder.dart';
 
@@ -37,7 +35,7 @@ class ErrorPlaceholder extends StatelessWidget {
                   const FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50),
                   SizedBox(height: size.height * 0.05),
                   Text(
-                    connectionStatus.first != ConnectivityResult.none ? message : 'You are offline.\nPlease check your connection and try again.',
+                    message,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineSmall,
                     overflow: TextOverflow.clip,

@@ -1,11 +1,13 @@
 abstract class ActorEntity {
+  int id;
   String name;
-  String? profilePath;
+  String profilePath;
   String character;
 
   ActorEntity({
     required this.name,
-    this.profilePath,
+    required this.profilePath,
     required this.character,
+    required this.id,
   });
 }

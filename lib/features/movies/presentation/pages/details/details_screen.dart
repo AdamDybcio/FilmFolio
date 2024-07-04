@@ -6,7 +6,7 @@ import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_
 
 import '../../../../../core/dependency_injection/di.dart';
 import '../../../data/models/movie_model.dart';
-import '../../widgets/details/movie_details.dart';
+import '../../widgets/details/movie_details_section.dart';
 import '../../widgets/details/movie_image.dart';
 import '../../widgets/details/movie_info.dart';
 import '../../widgets/details/movie_overview.dart';
@@ -43,12 +43,7 @@ class DetailsScreen extends StatelessWidget {
                 if (movie.overview.isNotEmpty) MovieOverview(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 const Header(title: 'Movie Details', delay: Duration(milliseconds: 1000)),
-                MovieDetails(movie: movie),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                const Header(title: 'Cast', delay: Duration(milliseconds: 1000)),
-                // MovieCast(movie: movie),
-                // MovieTrailer(movie: movie),
-                // MovieReviews(movie: movie),
+                MovieDetailsSection(movie: movie),
               ],
             ),
           ),

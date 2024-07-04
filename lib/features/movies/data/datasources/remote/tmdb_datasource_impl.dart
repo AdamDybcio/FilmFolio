@@ -100,6 +100,7 @@ class TmdbDatasourceImpl implements TmdbDatasource {
       '${ApiStrings.baseUrl}movie/$id',
       queryParameters: {
         'api_key': ApiStrings.apiKey,
+        'append_to_response': 'credits,videos,reviews',
       },
     );
 

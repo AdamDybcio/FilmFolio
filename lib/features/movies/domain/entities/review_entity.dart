@@ -1,7 +1,7 @@
 abstract class ReviewEntity {
   final String author;
   final String avatarPath;
-  final int? rating;
+  final double rating;
   final String content;
   final String createdAt;
 
@@ -10,6 +10,6 @@ abstract class ReviewEntity {
     required this.content,
     required this.createdAt,
     required this.avatarPath,
-    this.rating,
+    required this.rating,
   });
 }

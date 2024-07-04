@@ -34,11 +34,14 @@ class ErrorPlaceholder extends StatelessWidget {
                 children: [
                   const FaIcon(FontAwesomeIcons.solidFaceSadTear, size: 50),
                   SizedBox(height: size.height * 0.05),
-                  Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                    overflow: TextOverflow.clip,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ],
               )

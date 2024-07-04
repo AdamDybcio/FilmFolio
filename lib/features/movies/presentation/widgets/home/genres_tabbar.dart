@@ -37,13 +37,13 @@ class GenresTabBar extends StatelessWidget {
               message: state.message,
               isSpecialHeight: true,
               height: 100,
-              child: Text('You are offline.', style: Theme.of(context).textTheme.titleMedium),
+              child: Text(state.message, style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center, overflow: TextOverflow.fade),
             );
           } else {
             return LoadingPlaceholder(
               height: 100,
               isSpecialHeight: true,
-              child: Text('Loading...', style: Theme.of(context).textTheme.titleMedium),
+              child: Text('Loading...', style: Theme.of(context).textTheme.titleMedium, textAlign: TextAlign.center, overflow: TextOverflow.fade),
             );
           }
         },

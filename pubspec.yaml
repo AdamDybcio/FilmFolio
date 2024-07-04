@@ -19,6 +19,9 @@ dependencies:
   flutter_bloc: ^8.1.6
   equatable: ^2.0.5
 
+  #Internet Connection
+  internet_connection_checker: ^1.0.0+1
+
   #Routes
   go_router: ^14.2.0
 

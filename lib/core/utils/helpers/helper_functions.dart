@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../../features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 import '../../../features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
@@ -43,5 +44,10 @@ class HelperFunctions {
       default:
         break;
     }
+  }
+
+  static Future<bool> hasConnection() async {
+    final result = await InternetConnectionChecker().hasConnection;
+    return result;
   }
 }

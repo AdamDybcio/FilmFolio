@@ -45,9 +45,12 @@ class MoviesList extends StatelessWidget {
         ),
         child: ListView.separated(
           controller: controller
-            ..addListener(() {
+            ..addListener(() async {
               if (controller.position.maxScrollExtent == controller.offset && !hasReachedMax) {
-                HelperFunctions.loadMoreMovies(context, type);
+                if (await HelperFunctions.hasConnection()) {
+                  // ignore: use_build_context_synchronously
+                  HelperFunctions.loadMoreMovies(context, type);
+                }
               }
             }),
           itemCount: (!hasReachedMax ? movies.length + 1 : movies.length),

@@ -19,7 +19,9 @@ class HomeScreen extends StatelessWidget {
           size: 50,
         );
       },
-      onRefresh: () => HelperFunctions.refreshHomePage(context),
+      onRefresh: () {
+        return HelperFunctions.refreshHomePage(context);
+      },
       child: const SingleChildScrollView(
         child: Column(
           children: [

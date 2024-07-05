@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_bloc_app/common/widgets/custom/custom_appbar.dart';
+import 'package:movie_bloc_app/common/widgets/appbars_navbars/custom_appbar.dart';
 import 'package:movie_bloc_app/common/widgets/texts/header.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_details_bloc.dart';
 
@@ -42,7 +42,6 @@ class DetailsScreen extends StatelessWidget {
                 if (movie.overview.isNotEmpty) const Header(title: 'Overview', delay: Duration(milliseconds: 1000)),
                 if (movie.overview.isNotEmpty) MovieOverview(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                const Header(title: 'Movie Details', delay: Duration(milliseconds: 1000)),
                 MovieDetailsSection(movie: movie),
               ],
             ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
-import 'package:movie_bloc_app/common/widgets/custom/custom_appbar.dart';
+import 'package:movie_bloc_app/common/widgets/appbars_navbars/custom_appbar.dart';
 import 'package:movie_bloc_app/core/dependency_injection/di.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_list_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/genres/genres_bloc.dart';
@@ -10,7 +11,7 @@ import 'package:movie_bloc_app/features/movies/presentation/blocs/home/now_playi
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/top_rated/top_rated_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/upcoming/upcoming_bloc.dart';
 
-import 'common/widgets/custom/custom_bottom_navbar.dart';
+import 'common/widgets/appbars_navbars/custom_bottom_navbar.dart';
 import 'features/movies/presentation/pages/home/home_screen.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -23,7 +24,7 @@ class NavigationMenu extends StatelessWidget {
         BlocProvider(
           create: (_) => sl<MovieCarouselBloc>()..add(const CarouselLoadEvent()),
         ),
-        BlocProvider(create: (_) => sl<MovieCarouselBloc>().movieBackdropBloc),
+        BlocProvider(create: (_) => sl<MovieBackdropBloc>()),
         BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>()),
         BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>().genresBloc..add(GenresLoadEvent())),
         BlocProvider(create: (_) => sl<DiscoverMoviesListBloc>().yearsBloc),

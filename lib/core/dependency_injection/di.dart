@@ -41,7 +41,7 @@ Future init() async {
   sl.registerLazySingleton<GetMovieDetails>(() => GetMovieDetails(sl()));
 
   //Blocs
-  sl.registerFactory(() => MovieCarouselBloc(getTrending: sl(), movieBackdropBloc: sl()));
+  sl.registerFactory(() => MovieCarouselBloc(getTrending: sl()));
   sl.registerFactory(() => MovieBackdropBloc());
   sl.registerFactory(() => NavBarBloc());
   sl.registerFactory(() => GenresBloc(getGenres: sl()));

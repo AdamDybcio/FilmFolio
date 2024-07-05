@@ -4,20 +4,18 @@ import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 
 import '../../../../domain/entities/page_param.dart';
-import '../backdrop/movie_backdrop_bloc.dart';
 
 part 'movie_carousel_event.dart';
 part 'movie_carousel_state.dart';
 
 class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
   final GetTrending getTrending;
-  final MovieBackdropBloc movieBackdropBloc;
   final List<MovieModel> allMovies = [];
   int currentPage = 1;
   int currentIndex = 0;
   int maxPages = 0;
 
-  MovieCarouselBloc({required this.getTrending, required this.movieBackdropBloc}) : super(MovieCarouselInitial()) {
+  MovieCarouselBloc({required this.getTrending}) : super(MovieCarouselInitial()) {
     on<CarouselLoadEvent>((event, emit) async {
       emit(MovieCarouselLoading());
       allMovies.clear();

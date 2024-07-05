@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:movie_bloc_app/common/widgets/dividers/custom_divider.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 class MovieInfo extends StatelessWidget {
@@ -102,11 +103,7 @@ class MovieInfo extends StatelessWidget {
                 ),
               ],
             ),
-            VerticalDivider(
-              color: Theme.of(context).colorScheme.primary,
-              thickness: 2,
-              width: size.width * 0.05,
-            ),
+            const CustomDivider(isVertical: true),
             Stack(
               children: [
                 SizedBox(

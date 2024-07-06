@@ -14,9 +14,13 @@ class MovieDetails extends StatelessWidget {
       children: [
         const Header(title: 'General Info', delay: Duration(seconds: 1)),
         GeneralInfo(details: details),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         const Header(title: 'Cast', delay: Duration(seconds: 1)),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         const Header(title: 'Production Companies', delay: Duration(seconds: 1)),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         const Header(title: 'Videos', delay: Duration(seconds: 1)),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         const Header(title: 'Reviews', delay: Duration(seconds: 1)),
       ],
     );

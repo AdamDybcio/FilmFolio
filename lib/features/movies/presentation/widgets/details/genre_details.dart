@@ -20,33 +20,36 @@ class GenreDetails extends StatelessWidget {
         child: ListView.separated(
           itemCount: details.genres.length,
           padding: EdgeInsets.zero,
-          separatorBuilder: (context, index) => SizedBox(height: size.height * 0.015),
+          separatorBuilder: (context, index) => SizedBox(height: size.height * 0.001),
           itemBuilder: (_, index) {
-            return Center(
-              child: Container(
-                height: size.height * 0.075,
-                width: size.width * 0.35,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.primary,
-                    width: 2,
-                  ),
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  boxShadow: [
-                    BoxShadow(
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
+              child: Center(
+                child: Container(
+                  height: size.height * 0.075,
+                  width: size.width * 0.35,
+                  decoration: BoxDecoration(
+                    border: Border.all(
                       color: Theme.of(context).colorScheme.primary,
-                      spreadRadius: 3,
-                      blurRadius: 3,
-                      offset: const Offset(0, 3),
+                      width: 2,
                     ),
-                  ],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: Text(
-                    details.genres[index].name,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).colorScheme.primary,
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Center(
+                    child: Text(
+                      details.genres[index].name,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ),

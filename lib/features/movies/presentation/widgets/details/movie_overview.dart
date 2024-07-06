@@ -31,6 +31,7 @@ class MovieOverview extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: FadeIn(
+            delay: const Duration(seconds: 1),
             child: Text(
               movie.overview,
               style: Theme.of(context).textTheme.titleMedium,

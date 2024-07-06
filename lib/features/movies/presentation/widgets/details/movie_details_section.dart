@@ -19,7 +19,7 @@ class MovieDetailsSection extends StatelessWidget {
     return BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
       builder: (context, state) {
         if (state is MovieDetailsLoading) {
-          return const LoadingPlaceholder();
+          return const LoadingPlaceholder(height: 0.4);
         } else if (state is MovieDetailsError) {
           return ErrorPlaceholder(
             message: state.message,

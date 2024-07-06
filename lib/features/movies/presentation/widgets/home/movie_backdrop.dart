@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/core/utils/helpers/ui_helpers.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
 
 class MovieBackdrop extends StatelessWidget {
   const MovieBackdrop({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieBackdropBloc, MovieBackdropState>(
+    return BlocBuilder(
+      bloc: context.read<HomeMoviesBloc>().movieBackdropBloc,
       builder: (_, state) {
         if (state is MovieBackdropChanged) {
           return FadeIn(

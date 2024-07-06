@@ -8,10 +8,10 @@ import 'package:movie_bloc_app/features/movies/presentation/blocs/home/years/yea
 
 import '../../../../domain/entities/params.dart';
 
-part 'discover_movies_list_event.dart';
-part 'discover_movies_list_state.dart';
+part 'discover_movies_event.dart';
+part 'discover_movies_state.dart';
 
-class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMoviesListState> {
+class DiscoverMoviesBloc extends Bloc<DiscoverMoviesEvent, DiscoverMoviesState> {
   GetDiscoverMovies getDiscoverMovies;
   GenresBloc genresBloc;
   YearsBloc yearsBloc;
@@ -21,9 +21,9 @@ class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMovie
   GenreModel genre = const GenreModel(id: 28, name: 'Action');
   int maxPages = 0;
 
-  DiscoverMoviesListBloc({required this.getDiscoverMovies, required this.genresBloc, required this.yearsBloc}) : super(DiscoverMoviesListInitial()) {
-    on<DiscoverMoviesListLoadEvent>((event, emit) async {
-      emit(DiscoverMoviesListLoading());
+  DiscoverMoviesBloc({required this.getDiscoverMovies, required this.genresBloc, required this.yearsBloc}) : super(DiscoverMoviesInitial()) {
+    on<FetchDiscoverMovies>((event, emit) async {
+      emit(DiscoverMoviesLoading());
       allMovies.clear();
       currentPage = 1;
       maxPages = 0;
@@ -43,39 +43,39 @@ class DiscoverMoviesListBloc extends Bloc<DiscoverMoviesListEvent, DiscoverMovie
         final movies = await getDiscoverMovies(Params(genre: genre, year: year, page: currentPage));
 
         if (movies.movies!.isEmpty) {
-          emit(const DiscoverMoviesListError('No movies found.'));
+          emit(const DiscoverMoviesError('No movies found.'));
           return;
         }
 
         allMovies.addAll(movies.movies!);
         maxPages = movies.totalPages!;
         if (allMovies.isEmpty) {
-          emit(const DiscoverMoviesListError('No movies found.'));
+          emit(const DiscoverMoviesError('No movies found.'));
           return;
         }
         if (currentPage < maxPages) {
-          emit(DiscoverMoviesListLoaded(allMovies, false));
+          emit(DiscoverMoviesLoaded(allMovies, false));
         } else {
-          emit(DiscoverMoviesListLoaded(allMovies, true));
+          emit(DiscoverMoviesLoaded(allMovies, true));
         }
       } catch (e) {
-        emit(const DiscoverMoviesListError('An error occurred while loading movies.\nPlease try again.'));
+        emit(const DiscoverMoviesError('An error occurred while loading movies.\nPlease try again.'));
       }
     });
-    on<DiscoverMoviesListFetchNextPage>((event, emit) async {
+    on<FetchNextPageDiscoverMovies>((event, emit) async {
       currentPage++;
       if (currentPage > maxPages) return;
       try {
         final movies = await getDiscoverMovies(Params(genre: genre, year: year, page: currentPage));
         allMovies.addAll(movies.movies!);
-        emit(DiscoverMoviesListLoading());
+        emit(DiscoverMoviesLoading());
         if (currentPage < maxPages) {
-          emit(DiscoverMoviesListLoaded(allMovies, false));
+          emit(DiscoverMoviesLoaded(allMovies, false));
         } else {
-          emit(DiscoverMoviesListLoaded(allMovies, true));
+          emit(DiscoverMoviesLoaded(allMovies, true));
         }
       } catch (e) {
-        emit(const DiscoverMoviesListError('There was an error.\nPlease try again later.'));
+        emit(const DiscoverMoviesError('There was an error.\nPlease try again later.'));
       }
     });
   }

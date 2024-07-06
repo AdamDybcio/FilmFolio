@@ -11,7 +11,7 @@ class GenresBloc extends Bloc<GenresEvent, GenresState> {
   final GetGenres getGenres;
 
   GenresBloc({required this.getGenres}) : super(GenresInitial()) {
-    on<GenresLoadEvent>((event, emit) async {
+    on<FetchGenres>((event, emit) async {
       emit(GenresLoading());
       try {
         final genres = await getGenres(NoParams());
@@ -26,7 +26,7 @@ class GenresBloc extends Bloc<GenresEvent, GenresState> {
         emit(const GenresError('There was an error.\nPlease try again later.'));
       }
     });
-    on<GenresSelectEvent>((event, emit) {
+    on<SelectGenre>((event, emit) {
       emit(GenresLoaded(genres: event.genres, selectedGenreIndex: event.selectedGenreIndex));
     });
   }

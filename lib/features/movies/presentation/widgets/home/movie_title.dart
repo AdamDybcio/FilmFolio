@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
 
 class MovieTitle extends StatelessWidget {
   const MovieTitle({super.key});
@@ -9,7 +10,8 @@ class MovieTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return BlocBuilder<MovieBackdropBloc, MovieBackdropState>(
+    return BlocBuilder(
+      bloc: context.read<HomeMoviesBloc>().movieBackdropBloc,
       builder: (_, state) {
         if (state is MovieBackdropChanged) {
           return FadeIn(

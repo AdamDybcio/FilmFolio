@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/error_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
-import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/trending/trending_bloc.dart';
 import 'package:animate_do/animate_do.dart';
 
 import '../../../../../common/widgets/placeholders/loading_placeholder.dart';
@@ -14,10 +15,11 @@ class MovieCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
+    return BlocBuilder(
+      bloc: context.read<HomeMoviesBloc>().trendingBloc,
       builder: (_, state) {
-        if (state is MovieCarouselLoaded) {
-          context.read<MovieBackdropBloc>().add(MovieBackdropChangedEvent(state.movies[0]));
+        if (state is TrendingLoaded) {
+          context.read<HomeMoviesBloc>().movieBackdropBloc.add(MovieBackdropChangedEvent(state.movies[0]));
           return FadeIn(
             duration: const Duration(seconds: 1),
             curve: Curves.easeOut,
@@ -37,7 +39,7 @@ class MovieCarousel extends StatelessWidget {
                 enlargeCenterPage: true,
                 scrollDirection: Axis.horizontal,
                 onPageChanged: (index, reason) {
-                  context.read<MovieBackdropBloc>().add(MovieBackdropChangedEvent(state.movies[index]));
+                  context.read<HomeMoviesBloc>().movieBackdropBloc.add(MovieBackdropChangedEvent(state.movies[index]));
                 },
               ),
               itemBuilder: (_, index, realIndex) {
@@ -45,7 +47,7 @@ class MovieCarousel extends StatelessWidget {
               },
             ),
           );
-        } else if (state is MovieCarouselError) {
+        } else if (state is TrendingError) {
           return ErrorPlaceholder(
             height: 0.5,
             width: 1,

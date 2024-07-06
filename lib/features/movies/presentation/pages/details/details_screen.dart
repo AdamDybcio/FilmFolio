@@ -20,7 +20,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => MovieDetailsBloc(getMovieDetails: sl())..add(GetMovieDetailsEvent(movie.id)),
+      create: (_) => sl<MovieDetailsBloc>()..add(GetMovieDetailsEvent(movie.id)),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: NestedScrollView(

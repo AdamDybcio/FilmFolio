@@ -5,19 +5,19 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart
 
 import '../../../../domain/entities/page_param.dart';
 
-part 'movie_carousel_event.dart';
-part 'movie_carousel_state.dart';
+part 'trending_event.dart';
+part 'trending_state.dart';
 
-class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
+class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
   final GetTrending getTrending;
   final List<MovieModel> allMovies = [];
   int currentPage = 1;
   int currentIndex = 0;
   int maxPages = 0;
 
-  MovieCarouselBloc({required this.getTrending}) : super(MovieCarouselInitial()) {
-    on<CarouselLoadEvent>((event, emit) async {
-      emit(MovieCarouselLoading());
+  TrendingBloc({required this.getTrending}) : super(TrendingInitial()) {
+    on<FetchTrending>((event, emit) async {
+      emit(TrendingLoading());
       allMovies.clear();
       currentIndex = 0;
       currentPage = 1;
@@ -28,7 +28,7 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
         currentIndex = event.currentIndex;
 
         if (movies.movies!.isEmpty) {
-          emit(const MovieCarouselError('No movies found.'));
+          emit(const TrendingError('No movies found.'));
           return;
         }
 
@@ -36,20 +36,20 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
         maxPages = movies.totalPages!;
 
         if (currentPage < maxPages) {
-          emit(MovieCarouselLoaded(
+          emit(TrendingLoaded(
             movies: allMovies,
             currentIndex: currentIndex,
             false,
           ));
         } else {
-          emit(MovieCarouselLoaded(
+          emit(TrendingLoaded(
             movies: allMovies,
             currentIndex: currentIndex,
             true,
           ));
         }
       } catch (e) {
-        emit(const MovieCarouselError('There was an error.\nPlease try again later.'));
+        emit(const TrendingError('There was an error.\nPlease try again later.'));
       }
     });
     on<CarouselFetchNextPage>((event, emit) async {
@@ -58,22 +58,22 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
       try {
         final movies = await getTrending(PageParam(page: currentPage));
         allMovies.addAll(movies.movies!);
-        emit(MovieCarouselLoading());
+        emit(TrendingLoading());
         if (currentPage < maxPages) {
-          emit(MovieCarouselLoaded(
+          emit(TrendingLoaded(
             movies: allMovies,
             currentIndex: currentIndex,
             false,
           ));
         } else {
-          emit(MovieCarouselLoaded(
+          emit(TrendingLoaded(
             movies: allMovies,
             currentIndex: currentIndex,
             true,
           ));
         }
       } catch (e) {
-        emit(const MovieCarouselError('There was an error.\nPlease try again later.'));
+        emit(const TrendingError('There was an error.\nPlease try again later.'));
       }
     });
   }

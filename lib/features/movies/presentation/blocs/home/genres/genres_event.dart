@@ -7,13 +7,13 @@ sealed class GenresEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class GenresLoadEvent extends GenresEvent {}
+final class FetchGenres extends GenresEvent {}
 
-final class GenresSelectEvent extends GenresEvent {
+final class SelectGenre extends GenresEvent {
   final List<GenreModel> genres;
   final int selectedGenreIndex;
 
-  const GenresSelectEvent({required this.genres, required this.selectedGenreIndex});
+  const SelectGenre({required this.genres, required this.selectedGenreIndex});
 
   @override
   List<Object> get props => [genres, selectedGenreIndex];

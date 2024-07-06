@@ -12,8 +12,9 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_top_rated.dar
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_details_bloc.dart';
-import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/movie_carousel_bloc.dart';
-import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_list_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/trending/trending_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/now_playing/now_playing_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/top_rated/top_rated_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/upcoming/upcoming_bloc.dart';
@@ -41,14 +42,27 @@ Future init() async {
   sl.registerLazySingleton<GetMovieDetails>(() => GetMovieDetails(sl()));
 
   //Blocs
-  sl.registerFactory(() => MovieCarouselBloc(getTrending: sl()));
-  sl.registerFactory(() => MovieBackdropBloc());
   sl.registerFactory(() => NavBarBloc());
+
+  sl.registerFactory(() => TrendingBloc(getTrending: sl()));
+  sl.registerFactory(() => MovieBackdropBloc());
   sl.registerFactory(() => GenresBloc(getGenres: sl()));
   sl.registerFactory(() => YearsBloc());
-  sl.registerFactory(() => DiscoverMoviesListBloc(getDiscoverMovies: sl(), genresBloc: sl(), yearsBloc: sl()));
+  sl.registerFactory(() => DiscoverMoviesBloc(getDiscoverMovies: sl(), genresBloc: sl(), yearsBloc: sl()));
   sl.registerFactory(() => NowPlayingBloc(getNowPlaying: sl()));
   sl.registerFactory(() => UpcomingBloc(getUpcoming: sl()));
   sl.registerFactory(() => TopRatedBloc(getTopRated: sl()));
+
+  //Pages Blocs
+  sl.registerFactory(
+    () => HomeMoviesBloc(
+      upcomingBloc: sl(),
+      topRatedBloc: sl(),
+      nowPlayingBloc: sl(),
+      discoverMoviesBloc: sl(),
+      trendingBloc: sl(),
+      movieBackdropBloc: sl(),
+    ),
+  );
   sl.registerFactory(() => MovieDetailsBloc(getMovieDetails: sl()));
 }

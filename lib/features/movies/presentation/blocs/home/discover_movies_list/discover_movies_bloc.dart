@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_discover_movies.dart';
@@ -23,6 +24,12 @@ class DiscoverMoviesBloc extends Bloc<DiscoverMoviesEvent, DiscoverMoviesState> 
 
   DiscoverMoviesBloc({required this.getDiscoverMovies, required this.genresBloc, required this.yearsBloc}) : super(DiscoverMoviesInitial()) {
     on<FetchDiscoverMovies>((event, emit) async {
+      final hasConnection = await HelperFunctions.hasConnection();
+      if (!hasConnection) {
+        emit(const DiscoverMoviesError('No internet connection.'));
+        return;
+      }
+
       emit(DiscoverMoviesLoading());
       allMovies.clear();
       currentPage = 1;

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/trending/trending_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_movies_list/discover_movies_bloc.dart';
@@ -29,6 +30,12 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
     required this.movieBackdropBloc,
   }) : super(HomeMoviesInitial()) {
     on<LoadHomeMovies>((event, emit) async {
+      final hasConnection = await HelperFunctions.hasConnection();
+      if (!hasConnection) {
+        emit(const HomeMoviesError('No internet connection'));
+        return;
+      }
+
       emit(HomeMoviesLoading());
       upcomingBloc.add(FetchUpcoming());
       topRatedBloc.add(FetchTopRated());

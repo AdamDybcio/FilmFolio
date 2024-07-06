@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/entities/page_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_now_playing.dart';
@@ -15,6 +16,12 @@ class NowPlayingBloc extends Bloc<NowPlayingEvent, NowPlayingState> {
 
   NowPlayingBloc({required this.getNowPlaying}) : super(NowPlayingInitial()) {
     on<FetchNowPlaying>((event, emit) async {
+      final hasConnection = await HelperFunctions.hasConnection();
+      if (!hasConnection) {
+        emit(const NowPlayingError('No internet connection.'));
+        return;
+      }
+
       emit(NowPlayingLoading());
       allMovies.clear();
       currentPage = 1;

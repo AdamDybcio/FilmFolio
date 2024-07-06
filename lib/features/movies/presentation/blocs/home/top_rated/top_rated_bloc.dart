@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 
 import 'package:movie_bloc_app/features/movies/domain/entities/page_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_top_rated.dart';
@@ -17,6 +18,12 @@ class TopRatedBloc extends Bloc<TopRatedEvent, TopRatedState> {
 
   TopRatedBloc({required this.getTopRated}) : super(TopRatedInitial()) {
     on<FetchTopRated>((event, emit) async {
+      final hasConnection = await HelperFunctions.hasConnection();
+      if (!hasConnection) {
+        emit(const TopRatedError('No internet connection.'));
+        return;
+      }
+
       emit(TopRatedLoading());
       allMovies.clear();
       currentPage = 1;

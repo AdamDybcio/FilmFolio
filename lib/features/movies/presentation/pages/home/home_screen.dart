@@ -3,6 +3,7 @@ import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:movie_bloc_app/common/widgets/placeholders/error_placeholder.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
 
@@ -29,8 +30,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           );
-        } else if (state is HomeMoviesLoading) {
-          return FadeIn(child: const Center(child: LoadingPlaceholder()));
         } else {
           return FadeIn(
             child: CustomMaterialIndicator(
@@ -44,14 +43,18 @@ class HomeScreen extends StatelessWidget {
                 context.read<HomeMoviesBloc>().add(LoadHomeMovies());
                 return Future.delayed(const Duration(seconds: 1));
               },
-              child: const SingleChildScrollView(
+              child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    MainMovies(),
-                    BrowseMovies(),
-                    MoreMovies(),
-                    SizedBox(height: 50),
-                  ],
+                  children: state is HomeMoviesError
+                      ? [FadeIn(child: Center(child: ErrorPlaceholder(message: state.message)))]
+                      : state is HomeMoviesLoading
+                          ? [FadeIn(child: const Center(child: LoadingPlaceholder()))]
+                          : const [
+                              MainMovies(),
+                              BrowseMovies(),
+                              MoreMovies(),
+                              SizedBox(height: 50),
+                            ],
                 ),
               ),
             ),

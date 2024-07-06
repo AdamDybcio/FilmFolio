@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/features/movies/domain/entities/params.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details.dart';
 
@@ -13,6 +14,12 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
 
   MovieDetailsBloc({required this.getMovieDetails}) : super(MovieDetailsInitial()) {
     on<GetMovieDetailsEvent>((event, emit) async {
+      final hasConnection = await HelperFunctions.hasConnection();
+      if (!hasConnection) {
+        emit(const MovieDetailsError('No internet connection.'));
+        return;
+      }
+
       emit(MovieDetailsLoading());
       try {
         final result = await getMovieDetails(Params(id: event.movieId));

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 
@@ -17,6 +18,12 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
 
   TrendingBloc({required this.getTrending}) : super(TrendingInitial()) {
     on<FetchTrending>((event, emit) async {
+      final hasConnection = await HelperFunctions.hasConnection();
+      if (!hasConnection) {
+        emit(const TrendingError('No internet connection.'));
+        return;
+      }
+
       emit(TrendingLoading());
       allMovies.clear();
       currentIndex = 0;

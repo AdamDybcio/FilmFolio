@@ -50,7 +50,6 @@ class MovieInfo extends StatelessWidget {
                   ),
                 ),
                 FadeIn(
-                  delay: const Duration(milliseconds: 250),
                   child: SizedBox(
                     width: size.width * 0.35,
                     child: Column(
@@ -117,7 +116,6 @@ class MovieInfo extends StatelessWidget {
                   ),
                 ),
                 FadeIn(
-                  delay: const Duration(milliseconds: 500),
                   child: SizedBox(
                     width: size.width * 0.35,
                     child: Column(

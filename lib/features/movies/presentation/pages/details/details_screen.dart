@@ -39,7 +39,7 @@ class DetailsScreen extends StatelessWidget {
                 const Header(title: 'Movie Info'),
                 MovieInfo(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                if (movie.overview.isNotEmpty) const Header(title: 'Overview', delay: Duration(milliseconds: 1000)),
+                if (movie.overview.isNotEmpty) const Header(title: 'Overview'),
                 if (movie.overview.isNotEmpty) MovieOverview(movie: movie),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 MovieDetailsSection(movie: movie),

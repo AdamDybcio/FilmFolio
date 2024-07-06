@@ -16,7 +16,8 @@ class MovieDetailsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+    return BlocBuilder(
+      bloc: context.read<MovieDetailsBloc>(),
       builder: (context, state) {
         if (state is MovieDetailsLoading) {
           return const LoadingPlaceholder(height: 0.4);

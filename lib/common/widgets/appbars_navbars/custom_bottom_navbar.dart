@@ -10,37 +10,34 @@ class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget 
   Widget build(BuildContext context) {
     return BlocBuilder<NavBarBloc, NavBarState>(
       builder: (_, state) {
-        return SizedBox(
-          height: 70,
-          child: BottomNavigationBar(
-            elevation: 10,
-            iconSize: 20,
-            selectedFontSize: 15,
-            showUnselectedLabels: false,
-            currentIndex: state is NavBarChanged ? state.currentIndex : 0,
-            type: BottomNavigationBarType.fixed,
-            onTap: (index) {
-              context.read<NavBarBloc>().add(NavBarTapEvent(index));
-            },
-            items: const [
-              BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.house),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.solidHeart),
-                label: 'Favorite',
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.solidUser),
-                label: 'Profile',
-              ),
-            ],
-          ),
+        return BottomNavigationBar(
+          elevation: 10,
+          iconSize: 20,
+          selectedFontSize: 15,
+          showUnselectedLabels: false,
+          currentIndex: state is NavBarChanged ? state.currentIndex : 0,
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            context.read<NavBarBloc>().add(NavBarTapEvent(index));
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.house),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.solidHeart),
+              label: 'Favorite',
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.solidUser),
+              label: 'Profile',
+            ),
+          ],
         );
       },
     );

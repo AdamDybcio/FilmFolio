@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,14 @@ Future<void> main() async {
 
   unawaited(SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]));
   unawaited(init());
+
+  //Used only for testing on different devices
+  // runApp(
+  //   DevicePreview(
+  //     enabled: true,
+  //     builder: (context) => const MyApp(),
+  //   ),
+  // );
 
   runApp(const MyApp());
 }
@@ -30,6 +39,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'FilmFolio',
         theme: CustomTheme.lightTheme,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         darkTheme: CustomTheme.darkTheme,
         themeMode: ThemeMode.system,
       ),

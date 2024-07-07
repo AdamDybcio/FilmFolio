@@ -63,6 +63,9 @@ dev_dependencies:
 
   flutter_lints: ^3.0.0
 
+  #Preview on other devices
+  device_preview: ^1.2.0
+
 flutter:
   uses-material-design: true
 

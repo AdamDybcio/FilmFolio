@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
@@ -37,29 +38,32 @@ class MovieTrailer extends StatelessWidget {
         mute: false,
         hideControls: false,
         controlsVisibleAtStart: false,
-        hideThumbnail: true,
+        hideThumbnail: false,
         disableDragSeek: true,
       ),
     );
 
-    return SizedBox(
-      width: double.infinity,
-      child: Center(
-        child: FittedBox(
-          fit: BoxFit.fitWidth,
-          child: YoutubePlayer(
-            controller: controller,
-            showVideoProgressIndicator: true,
-            progressIndicatorColor: Theme.of(context).colorScheme.tertiary,
-            progressColors: ProgressBarColors(
-              playedColor: Theme.of(context).colorScheme.tertiary,
-              handleColor: Theme.of(context).colorScheme.tertiary,
+    return FadeIn(
+      child: SizedBox(
+        width: double.infinity,
+        child: Center(
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: YoutubePlayer(
+              controller: controller,
+              showVideoProgressIndicator: true,
+              progressIndicatorColor: Theme.of(context).colorScheme.tertiary,
+              progressColors: ProgressBarColors(
+                playedColor: Theme.of(context).colorScheme.tertiary,
+                handleColor: Theme.of(context).colorScheme.tertiary,
+              ),
+              bottomActions: [
+                CurrentPosition(),
+                ProgressBar(isExpanded: true),
+                RemainingDuration(),
+              ],
+              aspectRatio: 16 / 9,
             ),
-            bottomActions: [
-              CurrentPosition(),
-              ProgressBar(isExpanded: true),
-              RemainingDuration(),
-            ],
           ),
         ),
       ),

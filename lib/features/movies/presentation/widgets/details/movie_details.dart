@@ -29,6 +29,7 @@ class MovieDetails extends StatelessWidget {
         const Header(title: 'Trailer', delay: Duration(seconds: 1)),
         MovieTrailer(details: details),
         SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+        const Header(title: 'Reviews', delay: Duration(seconds: 1)),
         MovieReviews(details: details),
         SizedBox(height: MediaQuery.of(context).size.height * 0.05),
       ],

@@ -4,6 +4,7 @@ import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.d
 
 import '../../../../../core/utils/strings/api_strings.dart';
 import '../../models/movies_result_model.dart';
+import '../../models/reviews_result_model.dart';
 import 'tmdb_datasource.dart';
 
 class TmdbDatasourceImpl implements TmdbDatasource {
@@ -103,6 +104,24 @@ class TmdbDatasourceImpl implements TmdbDatasource {
         'append_to_response': 'credits,videos,reviews',
       },
     );
+
+    final details = MovieDetailsModel.fromJson(response.data);
+
+    final int totalPages = details.reviews.totalPages;
+
+    if (totalPages > 1) {
+      for (int i = 2; i <= totalPages; i++) {
+        final reviewsNextPage = await dio.get(
+          '${ApiStrings.baseUrl}movie/$id',
+          queryParameters: {
+            'api_key': ApiStrings.apiKey,
+            'page': i,
+          },
+        );
+
+        details.reviews.reviews.addAll(ReviewsResultModel.fromJson(reviewsNextPage.data).reviews);
+      }
+    }
 
     return MovieDetailsModel.fromJson(response.data);
   }

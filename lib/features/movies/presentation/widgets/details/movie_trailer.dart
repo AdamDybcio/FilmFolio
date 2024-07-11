@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../../../../../common/widgets/youtube_player/yt_player_widget.dart';
 
 class MovieTrailer extends StatelessWidget {
   const MovieTrailer({super.key, required this.details});
@@ -31,39 +34,15 @@ class MovieTrailer extends StatelessWidget {
       );
     }
 
-    YoutubePlayerController controller = YoutubePlayerController(
-      initialVideoId: trailerId,
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-        mute: false,
-        hideControls: false,
-        controlsVisibleAtStart: false,
-        hideThumbnail: false,
-        disableDragSeek: true,
-      ),
-    );
-
     return FadeIn(
-      child: SizedBox(
-        width: double.infinity,
-        child: Center(
+      delay: const Duration(seconds: 1),
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: SizedBox(
+          width: double.infinity,
           child: FittedBox(
             fit: BoxFit.fitWidth,
-            child: YoutubePlayer(
-              controller: controller,
-              showVideoProgressIndicator: true,
-              progressIndicatorColor: Theme.of(context).colorScheme.tertiary,
-              progressColors: ProgressBarColors(
-                playedColor: Theme.of(context).colorScheme.tertiary,
-                handleColor: Theme.of(context).colorScheme.tertiary,
-              ),
-              bottomActions: [
-                CurrentPosition(),
-                ProgressBar(isExpanded: true),
-                RemainingDuration(),
-              ],
-              aspectRatio: 16 / 9,
-            ),
+            child: YtPlayerWidget(trailerId: trailerId),
           ),
         ),
       ),

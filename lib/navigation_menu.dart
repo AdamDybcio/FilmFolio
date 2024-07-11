@@ -4,6 +4,7 @@ import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
 import 'package:movie_bloc_app/common/widgets/appbars_navbars/custom_appbar.dart';
 import 'package:movie_bloc_app/core/dependency_injection/di.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/pages/search/search_screen.dart';
 
 import 'common/widgets/appbars_navbars/custom_bottom_navbar.dart';
 import 'features/movies/presentation/pages/home/home_screen.dart';
@@ -39,7 +40,7 @@ class NavigationMenu extends StatelessWidget {
                 if (state.currentIndex == 0) {
                   return const HomeScreen();
                 } else if (state.currentIndex == 1) {
-                  return Container();
+                  return const SearchScreen();
                 } else if (state.currentIndex == 2) {
                   return Container();
                 } else if (state.currentIndex == 3) {

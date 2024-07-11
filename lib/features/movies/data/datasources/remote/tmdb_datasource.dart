@@ -20,4 +20,6 @@ abstract class TmdbDatasource {
   Future<MoviesResultModel> getUpcoming({int page = 1});
 
   Future<MovieDetailsModel> getMovieDetails({required int id});
+
+  Future<MoviesResultModel> searchMovies({required String query});
 }

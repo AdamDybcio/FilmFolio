@@ -81,4 +81,14 @@ class MovieRepoImpl extends MovieRepo {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<MoviesResultModel> searchMovies({required String query}) {
+    try {
+      final movies = tmdbDatasource.searchMovies(query: query);
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

@@ -125,4 +125,18 @@ class TmdbDatasourceImpl implements TmdbDatasource {
 
     return MovieDetailsModel.fromJson(response.data);
   }
+
+  @override
+  Future<MoviesResultModel> searchMovies({required String query}) async {
+    final response = await dio.get(
+      '${ApiStrings.baseUrl}search/movie',
+      queryParameters: {
+        'api_key': ApiStrings.apiKey,
+        'query': query,
+        'include_adult': 'true',
+      },
+    );
+
+    return MoviesResultModel.fromJson(response.data);
+  }
 }

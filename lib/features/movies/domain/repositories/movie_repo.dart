@@ -21,4 +21,6 @@ abstract class MovieRepo {
   Future<MoviesResultModel> getUpcoming({int page = 1});
 
   Future<MovieDetailsModel> getMovieDetails({required int movieId});
+
+  Future<MoviesResultModel> searchMovies({required String query});
 }

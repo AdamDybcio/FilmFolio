@@ -8,6 +8,7 @@ import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.da
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_genres.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_now_playing.dart';
+import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_top_rated.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
@@ -18,6 +19,7 @@ import 'package:movie_bloc_app/features/movies/presentation/blocs/home/discover_
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/now_playing/now_playing_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/top_rated/top_rated_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/upcoming/upcoming_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/search/search/search_bloc.dart';
 
 import '../../features/movies/domain/usecases/get_discover_movies.dart';
 import '../../features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
@@ -40,6 +42,7 @@ Future init() async {
   sl.registerLazySingleton<GetUpcoming>(() => GetUpcoming(sl()));
   sl.registerLazySingleton<GetTopRated>(() => GetTopRated(sl()));
   sl.registerLazySingleton<GetMovieDetails>(() => GetMovieDetails(sl()));
+  sl.registerLazySingleton<GetSearchMovies>(() => GetSearchMovies(sl()));
 
   //Blocs
   sl.registerFactory(() => NavBarBloc());
@@ -65,4 +68,5 @@ Future init() async {
     ),
   );
   sl.registerFactory(() => MovieDetailsBloc(getMovieDetails: sl()));
+  sl.registerFactory(() => SearchBloc(getSearchMovies: sl()));
 }

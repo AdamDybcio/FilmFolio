@@ -12,7 +12,7 @@ final class SearchInitial extends SearchState {}
 final class SearchLoading extends SearchState {}
 
 final class SearchLoaded extends SearchState {
-  final MoviesResultModel movies;
+  final List<MovieModel> movies;
 
   const SearchLoaded(this.movies);
 

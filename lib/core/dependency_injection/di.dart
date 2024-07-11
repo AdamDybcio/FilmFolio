@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
 import 'package:movie_bloc_app/features/movies/data/datasources/remote/tmdb_datasource.dart';
 import 'package:movie_bloc_app/features/movies/data/datasources/remote/tmdb_datasource_impl.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/data/repositories/movie_repo_impl.dart';
 import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_genres.dart';
@@ -33,6 +35,10 @@ Future init() async {
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton<TmdbDatasource>(() => TmdbDatasourceImpl(sl()));
   sl.registerLazySingleton<MovieRepo>(() => MovieRepoImpl(tmdbDatasource: sl()));
+
+  //Others
+  sl.registerSingleton<TextEditingController>(TextEditingController(), instanceName: 'search_controller');
+  sl.registerSingleton<List<MovieModel>>([], instanceName: 'search_movies');
 
   //Use cases
   sl.registerLazySingleton<GetTrending>(() => GetTrending(sl()));
@@ -68,5 +74,11 @@ Future init() async {
     ),
   );
   sl.registerFactory(() => MovieDetailsBloc(getMovieDetails: sl()));
-  sl.registerFactory(() => SearchBloc(getSearchMovies: sl()));
+  sl.registerFactory(
+    () => SearchBloc(
+      getSearchMovies: sl(),
+      controller: sl(instanceName: 'search_controller'),
+      movies: sl(instanceName: 'search_movies'),
+    ),
+  );
 }

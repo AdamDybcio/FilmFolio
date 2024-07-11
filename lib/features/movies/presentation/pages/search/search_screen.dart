@@ -19,6 +19,7 @@ class SearchScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomSearchBar(),
+              SizedBox(height: 20),
               SearchResults(),
             ],
           ),

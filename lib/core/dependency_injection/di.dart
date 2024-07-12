@@ -13,6 +13,7 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_popular.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_details_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/carousel_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home/home_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/search/search/search_bloc.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/bloc/bookmarks_bloc.dart';
@@ -40,6 +41,7 @@ Future init() async {
 
   //Blocs
   sl.registerFactory(() => NavBarBloc());
+  sl.registerFactory(() => CarouselBloc());
 
   sl.registerFactory(() => BookmarksBloc(bookmarks: sl(instanceName: 'bookmarks')));
 

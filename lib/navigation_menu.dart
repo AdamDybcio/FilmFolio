@@ -8,18 +8,15 @@ import 'package:movie_bloc_app/features/movies/presentation/pages/search/search_
 
 import 'common/widgets/appbars_navbars/custom_bottom_navbar.dart';
 import 'features/movies/presentation/pages/home/home_screen.dart';
+import 'features/personalization/presentation/pages/bookmarks/bookmarks_screen.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => sl<HomeMoviesBloc>(),
-        ),
-      ],
+    return BlocProvider(
+      create: (_) => sl<HomeMoviesBloc>(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         bottomNavigationBar: const CustomBottomNavbar(),
@@ -42,7 +39,7 @@ class NavigationMenu extends StatelessWidget {
                 } else if (state.currentIndex == 1) {
                   return const SearchScreen();
                 } else if (state.currentIndex == 2) {
-                  return Container();
+                  return const BookmarksScreen();
                 } else if (state.currentIndex == 3) {
                   return Container();
                 }

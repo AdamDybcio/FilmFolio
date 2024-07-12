@@ -31,6 +31,9 @@ dependencies:
   #Shimmer
   shimmer: ^3.0.0
 
+  #Local Storage
+  hive_flutter: ^1.1.0
+
   #Youtube Player
   youtube_player_flutter: ^9.0.1
 
@@ -66,6 +69,10 @@ dev_dependencies:
 
   #Preview on other devices
   device_preview: ^1.2.0
+
+  #Code Generator
+  build_runner: ^2.4.11
+  hive_generator: ^2.0.1
 
 flutter:
   uses-material-design: true

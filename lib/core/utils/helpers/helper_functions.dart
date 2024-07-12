@@ -36,4 +36,18 @@ class HelperFunctions {
     final result = await InternetConnectionChecker().hasConnection;
     return result;
   }
+
+  static void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        dismissDirection: DismissDirection.horizontal,
+        content: Text(
+          message,
+          overflow: TextOverflow.ellipsis,
+        ),
+        duration: const Duration(seconds: 1),
+      ),
+    );
+  }
 }

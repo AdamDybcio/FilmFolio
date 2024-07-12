@@ -5,6 +5,7 @@ import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
 
 import 'adult_only.dart';
+import 'bookmark_details.dart';
 
 class MovieImage extends StatelessWidget {
   const MovieImage({super.key, required this.movie});
@@ -29,6 +30,7 @@ class MovieImage extends StatelessWidget {
           ),
         ),
         if (movie.adult) const AdultOnly(),
+        BookmarkDetails(movie: movie),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import '../../../personalization/data/models/bookmarked_movie_hive.dart';
 import '../../domain/entities/movie_entity.dart';
 
 class MovieModel extends MovieEntity {
@@ -24,6 +25,34 @@ class MovieModel extends MovieEntity {
       voteAverage: json['vote_average'].toDouble(),
       adult: json['adult'] ?? false,
       video: json['video'] ?? false,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'overview': overview,
+      'release_date': releaseDate,
+      'poster_path': posterPath,
+      'backdrop_path': backdropPath,
+      'vote_average': voteAverage,
+      'adult': adult,
+      'video': video,
+    };
+  }
+
+  BookmarkedMovie toBookmarkedMovie() {
+    return BookmarkedMovie(
+      id: id,
+      title: title,
+      overview: overview,
+      releaseDate: releaseDate,
+      posterPath: posterPath,
+      backdropPath: backdropPath,
+      voteAverage: voteAverage,
+      adult: adult,
+      video: video,
     );
   }
 }

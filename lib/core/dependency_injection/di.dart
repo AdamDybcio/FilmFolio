@@ -22,6 +22,7 @@ import 'package:movie_bloc_app/features/movies/presentation/blocs/home/now_playi
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/top_rated/top_rated_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/upcoming/upcoming_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/search/search/search_bloc.dart';
+import 'package:movie_bloc_app/features/personalization/presentation/blocs/bloc/bookmarks_bloc.dart';
 
 import '../../features/movies/domain/usecases/get_discover_movies.dart';
 import '../../features/movies/presentation/blocs/home/backdrop/movie_backdrop_bloc.dart';
@@ -39,6 +40,8 @@ Future init() async {
   //Others
   sl.registerSingleton<TextEditingController>(TextEditingController(), instanceName: 'search_controller');
   sl.registerSingleton<List<MovieModel>>([], instanceName: 'search_movies');
+
+  sl.registerSingleton<List<MovieModel>>([], instanceName: 'bookmarks');
 
   //Use cases
   sl.registerLazySingleton<GetTrending>(() => GetTrending(sl()));
@@ -61,6 +64,8 @@ Future init() async {
   sl.registerFactory(() => NowPlayingBloc(getNowPlaying: sl()));
   sl.registerFactory(() => UpcomingBloc(getUpcoming: sl()));
   sl.registerFactory(() => TopRatedBloc(getTopRated: sl()));
+
+  sl.registerFactory(() => BookmarksBloc(bookmarks: sl(instanceName: 'bookmarks')));
 
   //Pages Blocs
   sl.registerFactory(

@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/error_placeholder.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
+import 'package:movie_bloc_app/features/personalization/presentation/blocs/bloc/bookmarks_bloc.dart';
 
 import '../../widgets/home/browse_movies.dart';
 import '../../widgets/home/main_movies.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         if (state is HomeMoviesInitial) {
           context.read<HomeMoviesBloc>().add(LoadHomeMovies());
+          context.read<BookmarksBloc>().add(LoadBookmarks());
           return FadeIn(
             child: Center(
               child: Text(

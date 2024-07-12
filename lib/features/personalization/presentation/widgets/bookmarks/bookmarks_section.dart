@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../../../movies/data/models/movie_model.dart';
+import 'bookmark_card.dart';
 
 class BookmarksSection extends StatelessWidget {
   const BookmarksSection({super.key, required this.bookmarks});
@@ -9,6 +10,20 @@ class BookmarksSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SafeArea(
+        child: GridView.count(
+          childAspectRatio: 9 / 16,
+          padding: const EdgeInsets.all(8),
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          crossAxisCount: 2,
+          children: [
+            for (final bookmark in bookmarks) BookmarkCard(movie: bookmark),
+          ],
+        ),
+      ),
+    );
   }
 }

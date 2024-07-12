@@ -11,8 +11,9 @@ part 'bookmarks_state.dart';
 class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
   List<MovieModel> bookmarks;
 
-  BookmarksBloc({required this.bookmarks}) : super(const BookmarksInitial([])) {
-    on<LoadBookmarks>((event, emit) async {
+  BookmarksBloc({required this.bookmarks}) : super(BookmarksInitial(bookmarks)) {
+    on<LoadBookmarks>((event, emit) {
+      bookmarks.clear();
       emit(const BookmarksChanging());
 
       var box = Hive.box<BookmarkedMovie>('bookmarks');
@@ -23,7 +24,7 @@ class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
 
       emit(BookmarksChanged(bookmarks));
     });
-    on<AddBookmark>((event, emit) async {
+    on<AddBookmark>((event, emit) {
       emit(const BookmarksChanging());
 
       var box = Hive.box<BookmarkedMovie>('bookmarks');
@@ -33,17 +34,31 @@ class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
 
       emit(BookmarksChanged(bookmarks));
     });
-    on<RemoveBookmark>((event, emit) async {
+    on<RemoveBookmark>((event, emit) {
       emit(const BookmarksChanging());
 
       var box = Hive.box<BookmarkedMovie>('bookmarks');
 
+      List<int> keyList = [];
+      List<BookmarkedMovie> valueList = [];
+      int indexToRemove = -1;
+
+      for (var key in box.keys) {
+        keyList.add(key);
+      }
+
       for (var element in box.values) {
-        if (element.id == event.movie.id) {
-          box.delete(element.id);
+        valueList.add(element);
+      }
+
+      for (int i = 0; i < valueList.length; i++) {
+        if (valueList[i].id == event.movie.id) {
+          indexToRemove = i;
           break;
         }
       }
+
+      box.delete(indexToRemove);
       bookmarks.removeWhere((element) => element.id == event.movie.id);
 
       emit(BookmarksChanged(bookmarks));

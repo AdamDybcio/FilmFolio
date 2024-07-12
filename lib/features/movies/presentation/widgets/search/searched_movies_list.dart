@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/common/widgets/movie/adult_widget.dart';
 import 'package:movie_bloc_app/common/widgets/movie/mark_widget.dart';
+import 'package:movie_bloc_app/common/widgets/movie/vote_avg_widget.dart';
 
 import '../../../data/models/movie_model.dart';
 import 'search_card_image.dart';
@@ -55,6 +56,7 @@ class SearchedMoviesList extends StatelessWidget {
                               ),
                             ),
                             MarkWidget(movie: movie),
+                            VoteAvgWidget(voteAvg: movie.voteAverage, alignment: Alignment.bottomRight),
                             if (movie.adult)
                               const AdultWidget(
                                 alignment: Alignment.topRight,

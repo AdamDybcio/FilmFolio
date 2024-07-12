@@ -11,6 +11,6 @@ class GetUpcoming extends Usecase<MoviesResultModel, PageParam> {
 
   @override
   Future<MoviesResultModel> call(PageParam params) async {
-    return await repository.getUpcoming(page: params.page);
+    return await repository.getUpcomingMovies(page: params.page);
   }
 }

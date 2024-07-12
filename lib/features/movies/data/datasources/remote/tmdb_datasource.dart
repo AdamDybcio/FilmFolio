@@ -3,21 +3,11 @@ import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.d
 import 'package:movie_bloc_app/features/movies/data/models/movies_result_model.dart';
 
 abstract class TmdbDatasource {
-  Future<MoviesResultModel> getTrending({int page = 1});
+  Future<MoviesResultModel> getPopularMovies({int page = 1});
 
-  Future<List<GenreModel>> getGenres();
+  Future<MoviesResultModel> getUpcomingMovies({int page = 1});
 
-  Future<MoviesResultModel> getDiscoverMovies({
-    required GenreModel genre,
-    required int year,
-    int page = 1,
-  });
-
-  Future<MoviesResultModel> getNowPlaying({int page = 1});
-
-  Future<MoviesResultModel> getTopRated({int page = 1});
-
-  Future<MoviesResultModel> getUpcoming({int page = 1});
+  Future<List<GenreModel>> getMovieGenres();
 
   Future<MovieDetailsModel> getMovieDetails({required int id});
 

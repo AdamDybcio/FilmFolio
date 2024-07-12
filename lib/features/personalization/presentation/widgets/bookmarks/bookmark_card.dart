@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
+import 'package:movie_bloc_app/common/widgets/movie/vote_avg_widget.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../../../../common/widgets/movie/adult_widget.dart';
@@ -26,6 +27,7 @@ class BookmarkCard extends StatelessWidget {
             ),
           ),
           MarkWidget(movie: movie),
+          VoteAvgWidget(voteAvg: movie.voteAverage, alignment: Alignment.bottomRight),
           if (movie.adult) const AdultWidget(),
         ],
       ),

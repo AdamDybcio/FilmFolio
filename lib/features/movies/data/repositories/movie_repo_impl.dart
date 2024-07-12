@@ -13,9 +13,9 @@ class MovieRepoImpl extends MovieRepo {
   });
 
   @override
-  Future<MoviesResultModel> getTrending({int page = 1}) {
+  Future<MoviesResultModel> getPopularMovies({int page = 1}) {
     try {
-      final movies = tmdbDatasource.getTrending(page: page);
+      final movies = tmdbDatasource.getPopularMovies(page: page);
       return movies;
     } catch (e) {
       throw Exception(e);
@@ -23,50 +23,20 @@ class MovieRepoImpl extends MovieRepo {
   }
 
   @override
-  Future<List<GenreModel>> getGenres() {
+  Future<MoviesResultModel> getUpcomingMovies({int page = 1}) {
     try {
-      final genres = tmdbDatasource.getGenres();
+      final movies = tmdbDatasource.getUpcomingMovies(page: page);
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<List<GenreModel>> getMovieGenres() {
+    try {
+      final genres = tmdbDatasource.getMovieGenres();
       return genres;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  @override
-  Future<MoviesResultModel> getDiscoverMovies({required GenreModel genre, required int year, int page = 1}) {
-    try {
-      final movies = tmdbDatasource.getDiscoverMovies(genre: genre, year: year, page: page);
-      return movies;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  @override
-  Future<MoviesResultModel> getNowPlaying({int page = 1}) {
-    try {
-      final movies = tmdbDatasource.getNowPlaying(page: page);
-      return movies;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  @override
-  Future<MoviesResultModel> getTopRated({int page = 1}) {
-    try {
-      final movies = tmdbDatasource.getTopRated(page: page);
-      return movies;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  @override
-  Future<MoviesResultModel> getUpcoming({int page = 1}) {
-    try {
-      final movies = tmdbDatasource.getUpcoming(page: page);
-      return movies;
     } catch (e) {
       throw Exception(e);
     }

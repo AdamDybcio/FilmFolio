@@ -3,14 +3,11 @@ import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:movie_bloc_app/common/widgets/placeholders/error_placeholder.dart';
-import 'package:movie_bloc_app/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home_movies/home_movies_bloc.dart';
+import 'package:movie_bloc_app/common/widgets/texts/centered_message.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home/home_bloc.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/bloc/bookmarks_bloc.dart';
 
-import '../../widgets/home/browse_movies.dart';
-import '../../widgets/home/main_movies.dart';
-import '../../widgets/home/more_movies.dart';
+import '../../widgets/home/movie_carousel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,21 +15,17 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: context.read<HomeMoviesBloc>(),
+      bloc: context.read<HomeBloc>(),
       builder: (context, state) {
-        if (state is HomeMoviesInitial) {
-          context.read<HomeMoviesBloc>().add(LoadHomeMovies());
+        if (state is HomeInitial) {
+          context.read<HomeBloc>().add(LoadHome());
           context.read<BookmarksBloc>().add(LoadBookmarks());
-          return FadeIn(
-            child: Center(
-              child: Text(
-                'Please wait...',
-                style: Theme.of(context).textTheme.titleLarge,
-                overflow: TextOverflow.fade,
-              ),
-            ),
-          );
-        } else {
+          return const CenteredMessage(message: 'Please wait...');
+        } else if (state is HomeLoading) {
+          return const CenteredMessage(message: 'Loading...');
+        } else if (state is HomeError) {
+          return CenteredMessage(message: state.message);
+        } else if (state is HomeLoaded) {
           return FadeIn(
             child: CustomMaterialIndicator(
               indicatorBuilder: (context, _) {
@@ -42,26 +35,22 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               onRefresh: () {
-                context.read<HomeMoviesBloc>().add(LoadHomeMovies());
+                context.read<HomeBloc>().add(LoadHome());
                 return Future.delayed(const Duration(seconds: 1));
               },
-              child: SingleChildScrollView(
-                child: Column(
-                  children: state is HomeMoviesError
-                      ? [FadeIn(child: Center(child: ErrorPlaceholder(message: state.message)))]
-                      : state is HomeMoviesLoading
-                          ? [FadeIn(child: const Center(child: LoadingPlaceholder()))]
-                          : const [
-                              MainMovies(),
-                              BrowseMovies(),
-                              MoreMovies(),
-                              SizedBox(height: 50),
-                            ],
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      MovieCarousel(movies: state.popularMovies.movies!),
+                    ],
+                  ),
                 ),
               ),
             ),
           );
         }
+        return const SizedBox.shrink();
       },
     );
   }

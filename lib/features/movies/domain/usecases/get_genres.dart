@@ -11,6 +11,6 @@ class GetGenres extends Usecase<List<GenreModel>, NoParams> {
 
   @override
   Future<List<GenreModel>> call(NoParams params) async {
-    return await repository.getGenres();
+    return await repository.getMovieGenres();
   }
 }

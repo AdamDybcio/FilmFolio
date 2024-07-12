@@ -10,6 +10,7 @@ class Styles {
   String imagePath;
   late List<Shadow> iconShadows;
   late List<BoxShadow>? containerShadows;
+  late List<Shadow> textShadows;
 
   Styles({required this.context, this.imagePath = ''}) {
     final isDark = HelperFunctions.isDarkMode(context);
@@ -53,6 +54,14 @@ class Styles {
         color: Colors.black,
         offset: Offset(0, 0),
         spreadRadius: 2,
+        blurRadius: 5,
+      ),
+    ];
+
+    textShadows = [
+      Shadow(
+        color: !isDark ? Colors.white : Colors.black,
+        offset: const Offset(0, 0),
         blurRadius: 5,
       ),
     ];

@@ -12,26 +12,35 @@ class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-      child: TextField(
-        controller: context.read<SearchBloc>().controller,
-        decoration: InputDecoration(
-          hintText: 'Search',
-          prefixIcon: const Icon(
-            Icons.search,
-          ),
-          suffixIcon: IconButton(
-            onPressed: () {
-              context.read<SearchBloc>().controller.clear();
+      child: BlocBuilder(
+        bloc: context.read<SearchBloc>(),
+        builder: (context, state) {
+          return TextField(
+            controller: context.read<SearchBloc>().controller,
+            decoration: InputDecoration(
+              hintText: 'Search',
+              prefixIcon: const Icon(
+                Icons.search,
+              ),
+              suffixIcon: context.read<SearchBloc>().controller.text.trim().isNotEmpty
+                  ? FadeIn(
+                      child: IconButton(
+                        onPressed: () {
+                          context.read<SearchBloc>().controller.clear();
+                          context.read<SearchBloc>().add(SearchMovies(context.read<SearchBloc>().controller.text));
+                        },
+                        icon: const Icon(Icons.clear),
+                      ),
+                    )
+                  : null,
+            ),
+            onChanged: (_) {
               context.read<SearchBloc>().add(SearchMovies(context.read<SearchBloc>().controller.text));
             },
-            icon: const Icon(Icons.clear),
-          ),
-        ),
-        onChanged: (_) {
-          context.read<SearchBloc>().add(SearchMovies(context.read<SearchBloc>().controller.text));
-        },
-        onTapOutside: (_) {
-          FocusManager.instance.primaryFocus?.unfocus();
+            onTapOutside: (_) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+          );
         },
       ),
     );

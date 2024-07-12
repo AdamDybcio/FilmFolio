@@ -33,6 +33,9 @@ class Styles {
           ? DecorationImage(
               image: CachedNetworkImageProvider(ApiStrings.imageUrl + imagePath),
               fit: BoxFit.cover,
+              onError: (_, __) {
+                null;
+              },
             )
           : null,
     );

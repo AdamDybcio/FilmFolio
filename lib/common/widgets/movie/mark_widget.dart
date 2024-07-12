@@ -57,7 +57,7 @@ class MarkWidget extends StatelessWidget {
                   },
                   icon: FaIcon(
                     FontAwesomeIcons.solidBookmark,
-                    color: Colors.yellow,
+                    color: isBookmarked ? Colors.yellow : Colors.white,
                     size: 30,
                     shadows: Styles(context: context).iconShadows,
                   ),

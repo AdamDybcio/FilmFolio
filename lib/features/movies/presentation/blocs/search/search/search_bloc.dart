@@ -17,6 +17,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   SearchBloc({required this.getSearchMovies, required this.controller, required this.movies}) : super(SearchInitial()) {
     on<SearchMovies>((event, emit) async {
+      final String initialValue = controller.text;
+
       if (event.query.trim().isEmpty) {
         movies.clear();
         emit(SearchInitial());
@@ -31,6 +33,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(SearchLoading());
       try {
         final movieResult = await getSearchMovies(SearchParam(query: event.query));
+
+        if (controller.text != initialValue) {
+          return;
+        }
 
         if (movieResult.movies!.isEmpty) {
           emit(SearchEmpty());

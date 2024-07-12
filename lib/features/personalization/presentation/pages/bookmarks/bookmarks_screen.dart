@@ -20,10 +20,10 @@ class BookmarksScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is BookmarksChanged) {
               if (state.bookmarks.isEmpty) {
-                return const CenteredMessage(message: 'You have no bookmarks yet.');
+                return const CenteredMessage(message: 'You have no bookmarks yet');
               }
               return BookmarksSection(
-                bookmarks: state.bookmarks,
+                bookmarks: state.bookmarks.reversed.toList(),
               );
             }
             return const CenteredMessage(message: 'Error');

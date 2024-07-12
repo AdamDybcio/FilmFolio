@@ -25,7 +25,13 @@ class NavigationMenu extends StatelessWidget {
             return [
               CustomAppBar(
                 hasBackButton: false,
-                title: Text('FilmFolio', style: Theme.of(context).textTheme.displaySmall),
+                title: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    'FilmFolio',
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                ),
               ),
             ];
           },

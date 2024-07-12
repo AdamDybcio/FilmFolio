@@ -1,11 +1,14 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+import 'package:movie_bloc_app/common/styles/styles.dart';
+import 'package:movie_bloc_app/common/widgets/movie/adult_widget.dart';
+import 'package:movie_bloc_app/common/widgets/movie/mark_widget.dart';
 
 import '../../../data/models/movie_model.dart';
+import 'search_card_image.dart';
+import 'search_card_overview.dart';
+import 'search_card_title.dart';
 
 class SearchedMoviesList extends StatelessWidget {
   const SearchedMoviesList({
@@ -30,57 +33,36 @@ class SearchedMoviesList extends StatelessWidget {
             },
             child: FadeIn(
               child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
+                decoration: Styles(context: context).cardBoxDecoration,
                 child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: AspectRatio(
-                          aspectRatio: 9 / 16,
-                          child: CachedNetworkImage(
-                            imageUrl: '${ApiStrings.imageUrl}${movie.posterPath}',
-                            fit: BoxFit.cover,
-                            errorWidget: (context, url, error) => const FaIcon(FontAwesomeIcons.film),
-                          ),
-                        ),
-                      ),
+                      SearchCardImage(movie: movie),
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Text(
-                                  movie.title,
-                                  style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SearchCardTitle(movie: movie),
+                                  const SizedBox(height: 20),
+                                  SearchCardOverview(movie: movie),
+                                ],
+                              ),
+                            ),
+                            MarkWidget(movie: movie),
+                            if (movie.adult)
+                              const AdultWidget(
+                                alignment: Alignment.topRight,
+                                padding: EdgeInsets.only(
+                                  top: 50,
                                 ),
                               ),
-                              const SizedBox(height: 8),
-                              SingleChildScrollView(
-                                child: Text(
-                                  movie.overview,
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                  maxLines: 7,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
+                          ],
                         ),
                       ),
                     ],

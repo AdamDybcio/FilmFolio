@@ -58,7 +58,7 @@ class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
         }
       }
 
-      box.delete(indexToRemove);
+      box.deleteAt(indexToRemove);
       bookmarks.removeWhere((element) => element.id == event.movie.id);
 
       emit(BookmarksChanged(bookmarks));

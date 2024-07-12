@@ -1,9 +1,11 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
+
+import '../../../../../common/widgets/movie/adult_widget.dart';
+import '../../../../../common/widgets/movie/mark_widget.dart';
 
 class BookmarkCard extends StatelessWidget {
   const BookmarkCard({super.key, required this.movie});
@@ -13,34 +15,19 @@ class BookmarkCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-      child: GestureDetector(
-        onTap: () {
-          context.push('/details/${movie.id}', extra: movie);
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.primary,
-              width: 1,
+      child: Stack(
+        children: [
+          GestureDetector(
+            onTap: () {
+              context.push('/details/${movie.id}', extra: movie);
+            },
+            child: Container(
+              decoration: Styles(context: context, imagePath: movie.posterPath).cardBoxDecoration,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).colorScheme.secondary,
-                blurRadius: 1,
-                spreadRadius: 1,
-                offset: const Offset(0, 0),
-              ),
-            ],
-            color: Theme.of(context).scaffoldBackgroundColor,
-            image: movie.posterPath != ''
-                ? DecorationImage(
-                    image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.posterPath),
-                    fit: BoxFit.cover,
-                  )
-                : null,
           ),
-        ),
+          MarkWidget(movie: movie),
+          if (movie.adult) const AdultWidget(),
+        ],
       ),
     );
   }

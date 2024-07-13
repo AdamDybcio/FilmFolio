@@ -6,6 +6,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import '../../../../../core/dependency_injection/di.dart';
 import '../../../data/models/movie_model.dart';
+import 'movie_backdrop.dart';
 import 'movie_carousel_card.dart';
 
 class MovieCarousel extends StatelessWidget {
@@ -21,21 +22,28 @@ class MovieCarousel extends StatelessWidget {
         bloc: sl<CarouselBloc>(),
         builder: (context, state) {
           return FadeIn(
-            child: CarouselSlider.builder(
-              itemCount: movies.length,
-              options: CarouselOptions(
-                height: MediaQuery.of(context).size.height * 0.4,
-                viewportFraction: 0.6,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 3),
-                enlargeCenterPage: true,
-                onPageChanged: (index, reason) {
-                  context.read<CarouselBloc>().add(ChangeCarouselMovie(index: index));
-                },
-              ),
-              itemBuilder: (_, index, realIndex) {
-                return MovieCarouselCard(movie: movies[index]);
-              },
+            child: Stack(
+              children: [
+                MovieBackdrop(
+                  movies: movies,
+                ),
+                CarouselSlider.builder(
+                  itemCount: movies.length,
+                  options: CarouselOptions(
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    viewportFraction: 0.6,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 3),
+                    enlargeCenterPage: true,
+                    onPageChanged: (index, reason) {
+                      context.read<CarouselBloc>().add(ChangeCarouselMovie(index: index));
+                    },
+                  ),
+                  itemBuilder: (_, index, realIndex) {
+                    return MovieCarouselCard(movie: movies[index]);
+                  },
+                ),
+              ],
             ),
           );
         },

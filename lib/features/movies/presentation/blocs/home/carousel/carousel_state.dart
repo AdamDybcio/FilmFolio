@@ -7,8 +7,6 @@ sealed class CarouselState extends Equatable {
   List<Object> get props => [];
 }
 
-final class CarouselInitial extends CarouselState {}
-
 final class CarouselChanged extends CarouselState {
   final int index;
 

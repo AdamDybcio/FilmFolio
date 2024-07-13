@@ -5,7 +5,7 @@ part 'carousel_event.dart';
 part 'carousel_state.dart';
 
 class CarouselBloc extends Bloc<CarouselEvent, CarouselState> {
-  CarouselBloc() : super(CarouselInitial()) {
+  CarouselBloc() : super(const CarouselChanged(0)) {
     on<ChangeCarouselMovie>((event, emit) {
       emit(CarouselChanged(event.index));
     });

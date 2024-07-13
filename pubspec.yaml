@@ -79,6 +79,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/placeholders/
 
   
   

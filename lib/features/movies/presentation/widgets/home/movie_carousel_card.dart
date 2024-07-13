@@ -24,7 +24,7 @@ class MovieCarouselCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 16, left: 12, right: 12, bottom: 16),
         child: Container(
-          height: size.height * 0.4,
+          height: size.height * 0.35,
           decoration: Styles(context: context).cardBoxDecoration.copyWith(
                 image: movie.posterPath != ''
                     ? DecorationImage(
@@ -37,7 +37,7 @@ class MovieCarouselCard extends StatelessWidget {
             children: [
               if (movie.posterPath == '')
                 SizedBox(
-                  height: size.height * 0.4,
+                  height: size.height * 0.35,
                   child: const FittedBox(
                     fit: BoxFit.cover,
                     child: Padding(

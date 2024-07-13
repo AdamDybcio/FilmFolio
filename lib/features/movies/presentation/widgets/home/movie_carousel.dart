@@ -8,6 +8,7 @@ import '../../../../../core/dependency_injection/di.dart';
 import '../../../data/models/movie_model.dart';
 import 'movie_backdrop.dart';
 import 'movie_carousel_card.dart';
+import 'movie_title.dart';
 
 class MovieCarousel extends StatelessWidget {
   const MovieCarousel({super.key, required this.movies});
@@ -21,31 +22,40 @@ class MovieCarousel extends StatelessWidget {
       child: BlocBuilder(
         bloc: sl<CarouselBloc>(),
         builder: (context, state) {
-          return FadeIn(
-            child: Stack(
-              children: [
-                MovieBackdrop(
-                  movies: movies,
+          if (state is CarouselChanged) {
+            return FadeIn(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: Stack(
+                  children: [
+                    MovieBackdrop(
+                      movies: movies,
+                    ),
+                    CarouselSlider.builder(
+                      itemCount: movies.length,
+                      options: CarouselOptions(
+                        height: MediaQuery.of(context).size.height * 0.35,
+                        viewportFraction: 0.5,
+                        autoPlayCurve: Curves.linearToEaseOut,
+                        autoPlayAnimationDuration: const Duration(seconds: 1),
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        enlargeCenterPage: true,
+                        onPageChanged: (index, reason) {
+                          context.read<CarouselBloc>().add(ChangeCarouselMovie(index: index));
+                        },
+                      ),
+                      itemBuilder: (_, index, realIndex) {
+                        return MovieCarouselCard(movie: movies[index]);
+                      },
+                    ),
+                    MovieTitle(movies: movies),
+                  ],
                 ),
-                CarouselSlider.builder(
-                  itemCount: movies.length,
-                  options: CarouselOptions(
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    viewportFraction: 0.6,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
-                    enlargeCenterPage: true,
-                    onPageChanged: (index, reason) {
-                      context.read<CarouselBloc>().add(ChangeCarouselMovie(index: index));
-                    },
-                  ),
-                  itemBuilder: (_, index, realIndex) {
-                    return MovieCarouselCard(movie: movies[index]);
-                  },
-                ),
-              ],
-            ),
-          );
+              ),
+            );
+          }
+          return const SizedBox.shrink();
         },
       ),
     );

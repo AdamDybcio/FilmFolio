@@ -22,7 +22,8 @@ class MovieBackdrop extends StatelessWidget {
         if (state is CarouselChanged) {
           return Blur(
             blur: 2,
-            colorOpacity: 0,
+            colorOpacity: 0.25,
+            blurColor: Colors.black,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(

@@ -9,11 +9,12 @@ sealed class BookmarksState extends Equatable {
 
 final class BookmarksInitial extends BookmarksState {
   final List<MovieModel> bookmarks;
+  final List<int> bookmarkIds;
 
-  const BookmarksInitial(this.bookmarks);
+  const BookmarksInitial(this.bookmarks, this.bookmarkIds);
 
   @override
-  List<Object> get props => [bookmarks];
+  List<Object> get props => [bookmarks, bookmarkIds];
 }
 
 final class BookmarksChanging extends BookmarksState {
@@ -22,9 +23,10 @@ final class BookmarksChanging extends BookmarksState {
 
 final class BookmarksChanged extends BookmarksState {
   final List<MovieModel> bookmarks;
+  final List<int> bookmarkIds;
 
-  const BookmarksChanged(this.bookmarks);
+  const BookmarksChanged(this.bookmarks, this.bookmarkIds);
 
   @override
-  List<Object> get props => [bookmarks];
+  List<Object> get props => [bookmarks, bookmarkIds];
 }

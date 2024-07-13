@@ -23,13 +23,18 @@ class MovieTitle extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 24, left: 12, right: 12),
                 child: Container(
-                  decoration: Styles(context: context).cardBoxDecoration,
+                  decoration: Styles(context: context).cardBoxDecoration.copyWith(
+                        color: Theme.of(context).colorScheme.primary.withOpacity(1),
+                      ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       movies[state.index].title,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),

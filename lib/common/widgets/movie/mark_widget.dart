@@ -29,7 +29,7 @@ class MarkWidget extends StatelessWidget {
       bloc: context.read<BookmarksBloc>(),
       builder: (context, state) {
         if (state is BookmarksChanged) {
-          isBookmarked = state.bookmarks.contains(movie);
+          isBookmarked = state.bookmarkIds.contains(movie.id);
 
           return Align(
             alignment: Alignment.topRight,

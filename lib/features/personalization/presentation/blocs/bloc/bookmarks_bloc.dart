@@ -10,19 +10,22 @@ part 'bookmarks_state.dart';
 
 class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
   List<MovieModel> bookmarks;
+  List<int> bookmarkIds;
 
-  BookmarksBloc({required this.bookmarks}) : super(BookmarksInitial(bookmarks)) {
+  BookmarksBloc({required this.bookmarks, required this.bookmarkIds}) : super(BookmarksInitial(bookmarks, bookmarkIds)) {
     on<LoadBookmarks>((event, emit) {
       bookmarks.clear();
+      bookmarkIds.clear();
       emit(const BookmarksChanging());
 
       var box = Hive.box<BookmarkedMovie>('bookmarks');
 
       for (var element in box.values) {
         bookmarks.add(element.toMovieModel());
+        bookmarkIds.add(element.id);
       }
 
-      emit(BookmarksChanged(bookmarks));
+      emit(BookmarksChanged(bookmarks, bookmarkIds));
     });
     on<AddBookmark>((event, emit) {
       emit(const BookmarksChanging());
@@ -31,8 +34,9 @@ class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
 
       box.add(event.movie.toBookmarkedMovie());
       bookmarks.add(event.movie);
+      bookmarkIds.add(event.movie.id);
 
-      emit(BookmarksChanged(bookmarks));
+      emit(BookmarksChanged(bookmarks, bookmarkIds));
     });
     on<RemoveBookmark>((event, emit) {
       emit(const BookmarksChanging());
@@ -60,8 +64,9 @@ class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
 
       box.deleteAt(indexToRemove);
       bookmarks.removeWhere((element) => element.id == event.movie.id);
+      bookmarkIds.removeWhere((key) => key == event.movie.id);
 
-      emit(BookmarksChanged(bookmarks));
+      emit(BookmarksChanged(bookmarks, bookmarkIds));
     });
   }
 }

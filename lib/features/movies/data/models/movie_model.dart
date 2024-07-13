@@ -1,7 +1,9 @@
+import 'package:equatable/equatable.dart';
+
 import '../../../personalization/data/models/bookmarked_movie_hive.dart';
 import '../../domain/entities/movie_entity.dart';
 
-class MovieModel extends MovieEntity {
+class MovieModel extends MovieEntity with EquatableMixin {
   const MovieModel({
     required super.id,
     required super.title,
@@ -55,4 +57,17 @@ class MovieModel extends MovieEntity {
       video: video,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        overview,
+        releaseDate,
+        posterPath,
+        backdropPath,
+        voteAverage,
+        adult,
+        video,
+      ];
 }

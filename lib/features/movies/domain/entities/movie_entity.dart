@@ -24,8 +24,15 @@ abstract class MovieEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props => [id, title];
-
-  @override
-  bool get stringify => true;
+  List<Object?> get props => [
+        id,
+        title,
+        overview,
+        posterPath,
+        backdropPath,
+        voteAverage,
+        releaseDate,
+        video,
+        adult,
+      ];
 }

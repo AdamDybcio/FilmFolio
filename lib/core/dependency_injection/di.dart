@@ -31,6 +31,7 @@ Future init() async {
   sl.registerSingleton<List<MovieModel>>([], instanceName: 'search_movies');
 
   sl.registerSingleton<List<MovieModel>>([], instanceName: 'bookmarks');
+  sl.registerSingleton<List<int>>([], instanceName: 'bookmarkIds');
 
   //Use cases
   sl.registerLazySingleton<GetPopular>(() => GetPopular(sl()));
@@ -43,7 +44,10 @@ Future init() async {
   sl.registerFactory(() => NavBarBloc());
   sl.registerFactory(() => CarouselBloc());
 
-  sl.registerFactory(() => BookmarksBloc(bookmarks: sl(instanceName: 'bookmarks')));
+  sl.registerFactory(() => BookmarksBloc(
+        bookmarks: sl(instanceName: 'bookmarks'),
+        bookmarkIds: sl(instanceName: 'bookmarkIds'),
+      ));
 
   //Pages Blocs
   sl.registerFactory(

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/common/widgets/appbars_navbars/custom_appbar.dart';
-import 'package:movie_bloc_app/common/widgets/texts/header.dart';
-import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_details_bloc.dart';
 
 import '../../../../../core/dependency_injection/di.dart';
 import '../../../data/models/movie_model.dart';
-import '../../widgets/details/movie_details_section.dart';
-import '../../widgets/details/movie_image.dart';
-import '../../widgets/details/movie_info.dart';
-import '../../widgets/details/movie_overview.dart';
+import '../../blocs/details/details_bloc.dart';
+import '../../widgets/details/details_section.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.movie, required this.id});
@@ -20,32 +16,19 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<MovieDetailsBloc>()..add(GetMovieDetailsEvent(movie.id)),
+      create: (_) => sl<DetailsBloc>()..add(GetMovieDetailsEvent(movie.id)),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
-              CustomAppBar(
+              const CustomAppBar(
                 hasBackButton: true,
-                title: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Text(movie.title)),
+                title: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Text('Details')),
               ),
             ];
           },
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                MovieImage(movie: movie),
-                const Header(title: 'Movie Info'),
-                MovieInfo(movie: movie),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                if (movie.overview.isNotEmpty) const Header(title: 'Overview'),
-                if (movie.overview.isNotEmpty) MovieOverview(movie: movie),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                MovieDetailsSection(movie: movie),
-              ],
-            ),
-          ),
+          body: DetailsSection(movie: movie),
         ),
       ),
     );

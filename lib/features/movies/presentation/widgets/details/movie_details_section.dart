@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/error_placeholder.dart';
 import 'package:movie_bloc_app/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
-import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_details_bloc.dart';
 
+import '../../blocs/details/details_bloc.dart';
 import 'movie_details.dart';
 
 class MovieDetailsSection extends StatelessWidget {
@@ -17,11 +17,11 @@ class MovieDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return BlocBuilder(
-      bloc: context.read<MovieDetailsBloc>(),
+      bloc: context.read<DetailsBloc>(),
       builder: (context, state) {
-        if (state is MovieDetailsLoading) {
+        if (state is DetailsLoading) {
           return const LoadingPlaceholder(height: 0.4);
-        } else if (state is MovieDetailsError) {
+        } else if (state is DetailsError) {
           return ErrorPlaceholder(
             message: state.message,
             height: 0.4,
@@ -42,15 +42,15 @@ class MovieDetailsSection extends StatelessWidget {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    context.read<MovieDetailsBloc>().add(GetMovieDetailsEvent(movie.id));
+                    context.read<DetailsBloc>().add(GetMovieDetailsEvent(movie.id));
                   },
                   child: const Text('Retry'),
                 ),
               ],
             ),
           );
-        } else if (state is MovieDetailsLoaded) {
-          return MovieDetails(details: state.movieDetails);
+        } else if (state is DetailsLoaded) {
+          return MovieDetails(details: state.details);
         }
         return const SizedBox.shrink();
       },

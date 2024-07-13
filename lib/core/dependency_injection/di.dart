@@ -12,11 +12,12 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_popular.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
-import 'package:movie_bloc_app/features/movies/presentation/blocs/details/movie_details_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/carousel_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home/home_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/search/search/search_bloc.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/bloc/bookmarks_bloc.dart';
+
+import '../../features/movies/presentation/blocs/details/details_bloc.dart';
 
 final sl = GetIt.I;
 
@@ -58,7 +59,7 @@ Future init() async {
     ),
   );
 
-  sl.registerFactory(() => MovieDetailsBloc(getMovieDetails: sl()));
+  sl.registerFactory(() => DetailsBloc(getMovieDetails: sl()));
 
   sl.registerFactory(
     () => SearchBloc(

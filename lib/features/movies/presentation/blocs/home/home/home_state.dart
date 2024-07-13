@@ -34,5 +34,3 @@ final class HomeError extends HomeState {
   @override
   List<Object> get props => [message];
 }
-
-final class HomeNoInternet extends HomeState {}

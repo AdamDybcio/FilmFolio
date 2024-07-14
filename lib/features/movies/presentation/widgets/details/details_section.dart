@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
@@ -40,6 +41,13 @@ class DetailsSection extends StatelessWidget {
             ],
           );
         } else if (state is DetailsLoaded) {
+          String trailer = '';
+          try {
+            trailer = state.details.videos.firstWhere((video) => video.type == 'Trailer' && video.site == 'YouTube').key;
+          } catch (e) {
+            if (kDebugMode) print('No trailer available.');
+          }
+
           return SingleChildScrollView(
             child: FadeIn(
               child: Column(
@@ -51,7 +59,7 @@ class DetailsSection extends StatelessWidget {
                   if (state.details.genres.isNotEmpty) MovieGenresSection(genres: state.details.genres),
                   if (state.details.actors.isNotEmpty) MovieActorsSection(actors: state.details.actors),
                   if (state.details.productionCompanies.isNotEmpty) MovieProductionCompaniesSection(productionCompanies: state.details.productionCompanies),
-                  if (state.details.videos.isNotEmpty) MovieVideoSection(videos: state.details.videos),
+                  if (state.details.videos.isNotEmpty && trailer != '') MovieVideoSection(trailer: trailer),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 ],
               ),

@@ -15,12 +15,26 @@ class HelperFunctions {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        elevation: 10,
+        behavior: SnackBarBehavior.floating,
         dismissDirection: DismissDirection.horizontal,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        animation: CurvedAnimation(
+          parent: AnimationController(
+            duration: const Duration(milliseconds: 500),
+            vsync: ScaffoldMessenger.of(context),
+          ),
+          curve: Curves.linear,
+        ),
         content: Text(
           message,
           overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
         ),
-        duration: const Duration(seconds: 1),
+        duration: const Duration(seconds: 2),
       ),
     );
   }

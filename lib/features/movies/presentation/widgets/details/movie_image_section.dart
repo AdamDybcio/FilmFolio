@@ -45,6 +45,9 @@ class MovieImageSection extends StatelessWidget {
               const AdultWidget(
                 alignment: Alignment.topRight,
                 padding: EdgeInsets.only(right: 20, top: 20),
+                width: 50,
+                height: 50,
+                hasShadow: true,
               ),
             VoteAvgWidget(
               alignment: Alignment.bottomRight,

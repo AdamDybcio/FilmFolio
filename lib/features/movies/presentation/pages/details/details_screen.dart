@@ -30,7 +30,10 @@ class DetailsScreen extends StatelessWidget {
                   child: Text('Details'),
                 ),
                 actions: [
-                  MarkWidget(movie: movie, align: false),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: MarkWidget(movie: movie, align: false),
+                  ),
                 ],
               ),
             ];

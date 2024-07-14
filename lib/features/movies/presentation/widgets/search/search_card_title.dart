@@ -18,7 +18,10 @@ class SearchCardTitle extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Text(
           movie.title,
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
         ),
       ),
     );

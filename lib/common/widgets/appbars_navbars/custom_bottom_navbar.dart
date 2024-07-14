@@ -35,7 +35,7 @@ class CustomBottomNavbar extends StatelessWidget implements PreferredSizeWidget 
             ),
             BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.solidUser),
-              label: 'Profile',
+              label: 'Settings',
             ),
           ],
         );

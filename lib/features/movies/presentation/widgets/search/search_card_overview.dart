@@ -16,10 +16,10 @@ class SearchCardOverview extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 40),
         child: SingleChildScrollView(
-          child: Text(
-            movie.overview,
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
+          child: Text(movie.overview,
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    color: Colors.white,
+                  )),
         ),
       ),
     );

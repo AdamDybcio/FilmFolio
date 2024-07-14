@@ -54,6 +54,7 @@ class MovieActorsSection extends StatelessWidget {
                                             fit: BoxFit.fill,
                                             child: FaIcon(
                                               FontAwesomeIcons.solidUser,
+                                              color: Colors.white,
                                             ),
                                           )
                                         : null),

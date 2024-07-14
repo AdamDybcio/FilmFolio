@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/common/widgets/appbars_navbars/custom_appbar.dart';
-import 'package:movie_bloc_app/common/widgets/movie/adult_widget.dart';
 import 'package:movie_bloc_app/common/widgets/movie/mark_widget.dart';
 
 import '../../../../../core/dependency_injection/di.dart';
@@ -31,11 +30,6 @@ class DetailsScreen extends StatelessWidget {
                   child: Text('Details'),
                 ),
                 actions: [
-                  if (movie.adult)
-                    const AdultWidget(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(right: 15),
-                    ),
                   MarkWidget(movie: movie, align: false),
                 ],
               ),

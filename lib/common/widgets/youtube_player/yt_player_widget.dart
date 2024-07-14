@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_bloc_app/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YtPlayerWidget extends StatefulWidget {
@@ -64,6 +63,6 @@ class _YtPlayerWidgetState extends State<YtPlayerWidget> {
               aspectRatio: 16 / 9,
             ),
           )
-        : const LoadingPlaceholder(height: 0.3, width: 1);
+        : const SizedBox(height: 0.3, width: 1);
   }
 }

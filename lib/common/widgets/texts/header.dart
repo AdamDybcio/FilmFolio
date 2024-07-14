@@ -17,11 +17,7 @@ class Header extends StatelessWidget {
         child: SizedBox(
           height: size.height * 0.1,
           width: double.infinity,
-          child: Row(
-            children: [
-              Text(title, style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.fade),
-            ],
-          ),
+          child: Text(title, style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.clip),
         ),
       ),
     );

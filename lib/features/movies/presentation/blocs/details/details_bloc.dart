@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
 
 import '../../../../../core/utils/helpers/helper_functions.dart';
-import '../../../domain/entities/params.dart';
+import '../../../domain/entities/params/params.dart';
 import '../../../domain/usecases/get_movie_details.dart';
 
 part 'details_event.dart';

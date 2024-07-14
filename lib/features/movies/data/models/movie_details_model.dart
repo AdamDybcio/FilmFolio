@@ -21,9 +21,9 @@ class MovieDetailsModel extends MovieDetailsEntity {
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) {
     return MovieDetailsModel(
       genres: json['genres'] != null ? List<GenreModel>.from(json['genres'].map((x) => GenreModel.fromJson(x))) : [],
-      runtime: json['runtime'] ?? 0,
-      budget: json['budget'] ?? 0,
-      originalLanguage: json['original_language'] ?? 'en',
+      runtime: json['runtime'] ?? -1,
+      budget: json['budget'] ?? -1,
+      originalLanguage: json['original_language'] ?? 'UNKNOWN',
       productionCompanies:
           json['production_companies'] != null ? List<ProductionCompanyModel>.from(json['production_companies'].map((x) => ProductionCompanyModel.fromJson(x))) : [],
       videos: json['videos']['results'] != null ? List<VideoModel>.from(json['videos']['results'].map((x) => VideoModel.fromJson(x))) : [],
@@ -35,9 +35,9 @@ class MovieDetailsModel extends MovieDetailsEntity {
   static MovieDetailsModel empty() {
     return MovieDetailsModel(
       genres: const [],
-      runtime: 0,
-      budget: 0,
-      originalLanguage: 'en',
+      runtime: -1,
+      budget: -1,
+      originalLanguage: 'UNKNOWN',
       productionCompanies: const [],
       videos: const [],
       actors: const [],

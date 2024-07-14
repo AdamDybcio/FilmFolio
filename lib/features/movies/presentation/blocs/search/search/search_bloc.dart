@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/search_param.dart';
+import 'package:movie_bloc_app/features/movies/domain/entities/params/search_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies.dart';
 
 import '../../../../../../core/utils/helpers/helper_functions.dart';

@@ -1,5 +1,5 @@
 import 'package:movie_bloc_app/features/movies/data/models/movies_result_model.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/search_param.dart';
+import 'package:movie_bloc_app/features/movies/domain/entities/params/search_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/usecase.dart';
 

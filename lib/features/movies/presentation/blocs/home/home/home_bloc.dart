@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movies_result_model.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/page_param.dart';
+import 'package:movie_bloc_app/features/movies/domain/entities/params/page_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_genres.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_popular.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
@@ -9,7 +9,7 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart
 import '../../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../data/models/genre_model.dart';
 import '../../../../data/models/movie_model.dart';
-import '../../../../domain/entities/no_params.dart';
+import '../../../../domain/entities/params/no_params.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

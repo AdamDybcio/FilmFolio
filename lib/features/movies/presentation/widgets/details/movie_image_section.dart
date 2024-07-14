@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
+import 'package:movie_bloc_app/common/widgets/movie/adult_widget.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
 import 'package:movie_bloc_app/common/widgets/movie/vote_avg_widget.dart';
 
@@ -40,6 +41,11 @@ class MovieImageSection extends StatelessWidget {
                 ),
               ),
             ),
+            if (movie.adult)
+              const AdultWidget(
+                alignment: Alignment.topRight,
+                padding: EdgeInsets.only(right: 20, top: 20),
+              ),
             VoteAvgWidget(
               alignment: Alignment.bottomRight,
               voteAvg: movie.voteAverage,

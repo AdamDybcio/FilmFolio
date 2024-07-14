@@ -1,19 +1,19 @@
 import 'package:equatable/equatable.dart';
+import 'package:movie_bloc_app/features/movies/data/models/actor_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/production_company_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/video_model.dart';
 
-import 'actor_entity.dart';
-import 'genre_entity.dart';
-import 'production_company_entity.dart';
 import 'reviews_result_entity.dart';
-import 'video_entity.dart';
 
 abstract class MovieDetailsEntity extends Equatable {
-  final List<GenreEntity> genres;
+  final List<GenreModel> genres;
   final int runtime;
   final int budget;
   final String originalLanguage;
-  final List<ProductionCompanyEntity> productionCompanies;
-  final List<VideoEntity> videos;
-  final List<ActorEntity> actors;
+  final List<ProductionCompanyModel> productionCompanies;
+  final List<VideoModel> videos;
+  final List<ActorModel> actors;
   final ReviewsResultEntity reviews;
 
   const MovieDetailsEntity({

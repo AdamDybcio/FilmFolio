@@ -6,6 +6,7 @@ import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import '../../../../../common/widgets/texts/centered_message.dart';
 import '../../blocs/details/details_bloc.dart';
 import 'movie_image.dart';
+import 'movie_title_section.dart';
 
 class DetailsSection extends StatelessWidget {
   const DetailsSection({super.key, required this.movie});
@@ -38,6 +39,7 @@ class DetailsSection extends StatelessWidget {
               child: Column(
                 children: [
                   MovieImage(movie: movie),
+                  MovieTitleSection(title: movie.title),
                   // const Header(title: 'Movie Info'),
                   // MovieInfo(movie: movie),
                   // SizedBox(height: MediaQuery.of(context).size.height * 0.05),

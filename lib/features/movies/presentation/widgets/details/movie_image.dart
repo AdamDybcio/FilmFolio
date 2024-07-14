@@ -1,11 +1,10 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
-
-import 'package:movie_bloc_app/core/utils/helpers/ui_helpers.dart';
-import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
+import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
+import 'package:movie_bloc_app/common/widgets/movie/vote_avg_widget.dart';
 
-import 'adult_only.dart';
-import 'bookmark_details.dart';
+import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 class MovieImage extends StatelessWidget {
   const MovieImage({super.key, required this.movie});
@@ -14,23 +13,35 @@ class MovieImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        Container(
-          height: 300,
-          width: double.infinity,
-          decoration: UiHelpers().displayImageDecoration(context, movie, true),
-        ),
-        Center(
-          child: MovieCard(
-            movie: movie,
-            touchable: false,
-            width: 150,
-            height: 250,
+        Blur(
+          colorOpacity: 0.25,
+          blurColor: Colors.black,
+          child: Container(
+            width: double.infinity,
+            height: size.height * 0.4,
+            decoration: Styles(context: context, imagePath: movie.backdropPath).cardBoxDecoration,
           ),
         ),
-        if (movie.adult) const AdultOnly(),
-        BookmarkDetails(movie: movie),
+        Center(
+          child: SizedBox(
+            height: size.height * 0.35,
+            child: MovieCard(
+              movie: movie,
+              showInfo: false,
+              aspectRatio: 10 / 16,
+              touchable: false,
+            ),
+          ),
+        ),
+        VoteAvgWidget(
+          voteAvg: movie.voteAverage,
+          width: 70,
+          height: 70,
+          hasShadow: true,
+        ),
       ],
     );
   }

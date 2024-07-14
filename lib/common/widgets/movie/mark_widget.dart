@@ -14,12 +14,14 @@ class MarkWidget extends StatelessWidget {
     this.width = 45,
     this.height = 45,
     this.hasShadow = false,
+    this.align = true,
   });
 
   final MovieModel movie;
   final double width;
   final double height;
   final bool hasShadow;
+  final bool align;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class MarkWidget extends StatelessWidget {
           isBookmarked = state.bookmarkIds.contains(movie.id);
 
           return Align(
-            alignment: Alignment.topRight,
+            alignment: align ? Alignment.topRight : Alignment.center,
             child: Container(
               width: width,
               height: height,

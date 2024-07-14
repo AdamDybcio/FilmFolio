@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
-import 'package:movie_bloc_app/features/movies/presentation/widgets/home/movie_carousel_card.dart';
+import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
 
 import '../../../data/models/movie_model.dart';
 
@@ -24,7 +24,7 @@ class MoviesUpcoming extends StatelessWidget {
         itemBuilder: (_, index) {
           final movie = movies[index];
           return FadeIn(
-            child: MovieCarouselCard(
+            child: MovieCard(
               movie: movie,
               aspectRatio: 10 / 16,
               verticalPadding: 2,

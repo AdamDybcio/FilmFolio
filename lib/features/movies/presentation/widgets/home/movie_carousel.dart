@@ -7,7 +7,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../../../../../core/dependency_injection/di.dart';
 import '../../../data/models/movie_model.dart';
 import 'movie_backdrop.dart';
-import 'movie_carousel_card.dart';
+import '../../../../../common/widgets/movie/movie_card.dart';
 import 'movie_title.dart';
 
 class MovieCarousel extends StatelessWidget {
@@ -46,7 +46,7 @@ class MovieCarousel extends StatelessWidget {
                         },
                       ),
                       itemBuilder: (_, index, realIndex) {
-                        return MovieCarouselCard(movie: movies[index]);
+                        return MovieCard(movie: movies[index]);
                       },
                     ),
                     MovieTitle(movies: movies),

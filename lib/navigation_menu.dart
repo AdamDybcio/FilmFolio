@@ -32,6 +32,7 @@ class NavigationMenu extends StatelessWidget {
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ),
+                actions: const [],
               ),
             ];
           },

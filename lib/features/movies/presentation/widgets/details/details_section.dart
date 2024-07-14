@@ -1,9 +1,11 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../../../../common/widgets/texts/centered_message.dart';
 import '../../blocs/details/details_bloc.dart';
+import 'movie_image.dart';
 
 class DetailsSection extends StatelessWidget {
   const DetailsSection({super.key, required this.movie});
@@ -31,18 +33,20 @@ class DetailsSection extends StatelessWidget {
             ],
           );
         } else if (state is DetailsLoaded) {
-          return const SingleChildScrollView(
-            child: Column(
-              children: [
-                // MovieImage(movie: movie),
-                // const Header(title: 'Movie Info'),
-                // MovieInfo(movie: movie),
-                // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                // if (movie.overview.isNotEmpty) const Header(title: 'Overview'),
-                // if (movie.overview.isNotEmpty) MovieOverview(movie: movie),
-                // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                // MovieDetailsSection(movie: movie),
-              ],
+          return SingleChildScrollView(
+            child: FadeIn(
+              child: Column(
+                children: [
+                  MovieImage(movie: movie),
+                  // const Header(title: 'Movie Info'),
+                  // MovieInfo(movie: movie),
+                  // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  // if (movie.overview.isNotEmpty) const Header(title: 'Overview'),
+                  // if (movie.overview.isNotEmpty) MovieOverview(movie: movie),
+                  // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  // MovieDetailsSection(movie: movie),
+                ],
+              ),
             ),
           );
         }

@@ -5,8 +5,9 @@ import 'package:go_router/go_router.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
   final bool hasBackButton;
+  final List<Widget> actions;
 
-  const CustomAppBar({super.key, required this.title, required this.hasBackButton});
+  const CustomAppBar({super.key, required this.title, required this.hasBackButton, required this.actions});
 
   @override
   Size get preferredSize => const Size.fromHeight(100);
@@ -27,6 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : null,
       titleTextStyle: Theme.of(context).textTheme.headlineSmall,
       elevation: 10,
+      actions: actions,
     );
   }
 }

@@ -23,53 +23,56 @@ class MovieActorsSection extends StatelessWidget {
         SizedBox(
           height: size.height * 0.2,
           child: Center(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: actors.length,
-              itemBuilder: (context, index) {
-                final actor = actors[index];
-                return FadeIn(
-                  child: Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: SizedBox(
-                      width: size.width * 0.3,
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: Styles(context: context).cardBoxDecoration.copyWith(
-                                  borderRadius: BorderRadius.circular(size.width * 0.1),
-                                ),
-                            child: GestureDetector(
-                              onTap: () {
-                                //TODO: Add navigation to actor details
-                              },
-                              child: CircleAvatar(
-                                  radius: size.width * 0.1,
-                                  backgroundColor: Theme.of(context).colorScheme.primary,
-                                  backgroundImage: actor.profilePath != '' ? CachedNetworkImageProvider(ApiStrings.imageUrl + actor.profilePath) : null,
-                                  child: actor.profilePath == ''
-                                      ? const FittedBox(
-                                          fit: BoxFit.fill,
-                                          child: FaIcon(
-                                            FontAwesomeIcons.solidUser,
-                                          ),
-                                        )
-                                      : null),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: actors.length,
+                itemBuilder: (context, index) {
+                  final actor = actors[index];
+                  return FadeIn(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: SizedBox(
+                        width: size.width * 0.3,
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: Styles(context: context).cardBoxDecoration.copyWith(
+                                    borderRadius: BorderRadius.circular(size.width * 0.1),
+                                  ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  //TODO: Add navigation to actor details
+                                },
+                                child: CircleAvatar(
+                                    radius: size.width * 0.1,
+                                    backgroundColor: Theme.of(context).colorScheme.primary,
+                                    backgroundImage: actor.profilePath != '' ? CachedNetworkImageProvider(ApiStrings.imageUrl + actor.profilePath) : null,
+                                    child: actor.profilePath == ''
+                                        ? const FittedBox(
+                                            fit: BoxFit.fill,
+                                            child: FaIcon(
+                                              FontAwesomeIcons.solidUser,
+                                            ),
+                                          )
+                                        : null),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Text(
-                              actor.name,
-                              textAlign: TextAlign.center,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: Text(
+                                actor.name,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),

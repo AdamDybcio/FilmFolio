@@ -87,7 +87,12 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       MovieCarousel(movies: state.popularMovies.movies!),
-                      const Header(title: 'Upcoming Movies'),
+                      Header(
+                        title: 'Upcoming Movies',
+                        onTap: () {
+                          //TODO: Navigate to upcoming movies
+                        },
+                      ),
                       MoviesUpcoming(movies: state.upcomingMovies.movies!),
                       SizedBox(height: size.height * 0.05),
                       const Header(title: 'Movie Genres'),

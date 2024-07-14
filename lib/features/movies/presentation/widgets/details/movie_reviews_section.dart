@@ -20,7 +20,14 @@ class MovieReviewsSection extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: size.height * 0.05),
-        const Header(title: 'Reviews'),
+        Header(
+          title: 'Reviews',
+          onTap: reviews.totalPages > 1
+              ? () {
+                  //TODO: Implement reviews pagination
+                }
+              : null,
+        ),
         for (int i = 0; i < reviews.reviews.length; i++)
           FadeIn(
             child: Padding(

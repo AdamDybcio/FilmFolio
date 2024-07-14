@@ -19,14 +19,14 @@ class RateWidget extends StatelessWidget {
             FontAwesomeIcons.solidStar,
             color: Colors.yellow,
             size: 15,
-            shadows: Styles(context: context).iconShadows,
+            shadows: Styles(context: context, isStarIcon: true).iconShadows,
           );
         } else if (hasHalfStar && index == fullStars) {
           return FaIcon(
             FontAwesomeIcons.starHalfStroke,
             color: Colors.yellow,
             size: 15,
-            shadows: Styles(context: context).iconShadows,
+            shadows: Styles(context: context, isStarIcon: true).iconShadows,
           );
         } else {
           return FaIcon(

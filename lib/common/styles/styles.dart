@@ -47,7 +47,7 @@ class Styles {
             const Shadow(
               color: Colors.grey,
               offset: Offset(0, 0),
-              blurRadius: 1,
+              blurRadius: 2,
             ),
           ]
         : [

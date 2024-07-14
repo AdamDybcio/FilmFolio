@@ -12,27 +12,33 @@ class MoviesUpcoming extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.35,
-      width: double.infinity,
-      decoration: Styles(context: context).cardBoxDecoration.copyWith(
-            color: Theme.of(context).scaffoldBackgroundColor,
+    final size = MediaQuery.of(context).size;
+    return Column(
+      children: [
+        SizedBox(height: size.height * 0.035),
+        Container(
+          height: size.height * 0.35,
+          width: double.infinity,
+          decoration: Styles(context: context).cardBoxDecoration.copyWith(
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ),
+          child: ListView.builder(
+            itemCount: movies.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (_, index) {
+              final movie = movies[index];
+              return FadeIn(
+                child: MovieCard(
+                  movie: movie,
+                  aspectRatio: 10 / 16,
+                  verticalPadding: 2,
+                  horizontalPadding: 2,
+                ),
+              );
+            },
           ),
-      child: ListView.builder(
-        itemCount: movies.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (_, index) {
-          final movie = movies[index];
-          return FadeIn(
-            child: MovieCard(
-              movie: movie,
-              aspectRatio: 10 / 16,
-              verticalPadding: 2,
-              horizontalPadding: 2,
-            ),
-          );
-        },
-      ),
+        ),
+      ],
     );
   }
 }

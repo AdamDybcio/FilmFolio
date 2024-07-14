@@ -11,8 +11,9 @@ class Styles {
   late List<Shadow> iconShadows;
   late List<BoxShadow>? containerShadows;
   late List<Shadow> textShadows;
+  final bool isStarIcon;
 
-  Styles({required this.context, this.imagePath = ''}) {
+  Styles({required this.context, this.imagePath = '', this.isStarIcon = false}) {
     final isDark = HelperFunctions.isDarkMode(context);
 
     cardBoxDecoration = BoxDecoration(
@@ -41,13 +42,21 @@ class Styles {
           : null,
     );
 
-    iconShadows = [
-      const Shadow(
-        color: Colors.black,
-        offset: Offset(0, 0),
-        blurRadius: 5,
-      ),
-    ];
+    iconShadows = isStarIcon
+        ? [
+            const Shadow(
+              color: Colors.grey,
+              offset: Offset(0, 0),
+              blurRadius: 1,
+            ),
+          ]
+        : [
+            const Shadow(
+              color: Colors.black,
+              offset: Offset(0, 0),
+              blurRadius: 5,
+            ),
+          ];
 
     containerShadows = [
       const BoxShadow(

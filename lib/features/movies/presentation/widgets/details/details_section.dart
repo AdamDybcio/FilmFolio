@@ -11,6 +11,7 @@ import 'movie_genres_section.dart';
 import 'movie_image_section.dart';
 import 'movie_overview_section.dart';
 import 'movie_production_companies_section.dart';
+import 'movie_reviews_section.dart';
 import 'movie_title_section.dart';
 import 'movie_video_section.dart';
 import 'movie_year_section.dart';
@@ -60,6 +61,7 @@ class DetailsSection extends StatelessWidget {
                   if (state.details.actors.isNotEmpty) MovieActorsSection(actors: state.details.actors),
                   if (state.details.productionCompanies.isNotEmpty) MovieProductionCompaniesSection(productionCompanies: state.details.productionCompanies),
                   if (state.details.videos.isNotEmpty && trailer != '') MovieVideoSection(trailer: trailer),
+                  if (state.details.reviews.totalPages > 0) MovieReviewsSection(reviews: state.details.reviews),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 ],
               ),

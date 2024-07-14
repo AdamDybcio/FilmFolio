@@ -7,8 +7,8 @@ import 'package:movie_bloc_app/common/widgets/movie/vote_avg_widget.dart';
 
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
-class MovieImage extends StatelessWidget {
-  const MovieImage({super.key, required this.movie});
+class MovieImageSection extends StatelessWidget {
+  const MovieImageSection({super.key, required this.movie});
 
   final MovieModel movie;
 

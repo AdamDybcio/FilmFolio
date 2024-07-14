@@ -5,4 +5,9 @@ extension StringExtensions on String {
     if (length < 10) return {substring(0, length - 6), ' M'}.join();
     return {substring(0, length - 9), ' B'}.join();
   }
+
+  String displayDate() {
+    final date = DateTime.parse(this);
+    return '${date.day}/${date.month}/${date.year}';
+  }
 }

@@ -30,7 +30,6 @@ class MoviesUpcoming extends StatelessWidget {
               return FadeIn(
                 child: MovieCard(
                   movie: movie,
-                  aspectRatio: 10 / 16,
                   verticalPadding: 2,
                   horizontalPadding: 2,
                 ),

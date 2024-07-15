@@ -18,7 +18,7 @@ class SearchCardImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: AspectRatio(
-        aspectRatio: 9 / 16,
+        aspectRatio: 10 / 16,
         child: movie.posterPath != ''
             ? CachedNetworkImage(
                 imageUrl: '${ApiStrings.imageUrl}${movie.posterPath}',

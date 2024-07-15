@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 import 'setting_tile.dart';
@@ -7,9 +8,9 @@ class SettingsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
+    return SafeArea(
+      child: FadeIn(
+        child: const Column(
           children: [
             SettingTile(title: 'Show Adult Content', isSwitch: true),
             SettingTile(title: 'Clear All Bookmarks', isButton: true, buttonTitle: 'Clear'),

@@ -13,7 +13,7 @@ class MovieCard extends StatelessWidget {
   const MovieCard({
     super.key,
     required this.movie,
-    this.aspectRatio = 9 / 16,
+    this.aspectRatio = 10 / 16,
     this.verticalPadding = 16,
     this.horizontalPadding = 12,
     this.showInfo = true,

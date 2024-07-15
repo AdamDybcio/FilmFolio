@@ -34,6 +34,7 @@ Future<void> main() async {
   //   ),
   // );
 
+  FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
 

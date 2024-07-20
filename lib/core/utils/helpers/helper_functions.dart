@@ -1,9 +1,19 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HelperFunctions {
   static bool isDarkMode(BuildContext context) {
-    return MediaQuery.of(context).platformBrightness == Brightness.dark;
+    if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark) {
+      return true;
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.light) {
+      return false;
+    } else if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system) {
+      final brightness = MediaQuery.of(context).platformBrightness;
+      return brightness == Brightness.dark;
+    } else {
+      return false;
+    }
   }
 
   static Future<bool> hasConnection() async {

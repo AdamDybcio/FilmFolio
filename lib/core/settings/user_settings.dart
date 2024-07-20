@@ -47,6 +47,10 @@ class UserSettings {
     saveToStorage();
   }
 
+  String getApiKey() {
+    return _settings['api_key'];
+  }
+
   void saveToStorage() {
     Hive.box('settings').put('settings', _settings);
     Hive.box('theme_mode').put('theme_mode', _themeMode);

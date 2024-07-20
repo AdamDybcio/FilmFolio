@@ -26,3 +26,5 @@ final class RemoveBookmark extends BookmarksEvent {
   @override
   List<Object> get props => [movie];
 }
+
+final class ClearBookmarks extends BookmarksEvent {}

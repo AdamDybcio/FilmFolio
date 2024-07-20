@@ -5,7 +5,7 @@ import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../../core/utils/helpers/helper_functions.dart';
-import '../../../features/personalization/presentation/blocs/bloc/bookmarks_bloc.dart';
+import '../../../features/personalization/presentation/blocs/bookmarks/bookmarks_bloc.dart';
 
 class MarkWidget extends StatelessWidget {
   const MarkWidget({

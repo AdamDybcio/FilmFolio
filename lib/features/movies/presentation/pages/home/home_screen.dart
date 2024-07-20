@@ -6,7 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_bloc_app/common/widgets/texts/centered_message.dart';
 import 'package:movie_bloc_app/common/widgets/texts/header.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home/home_bloc.dart';
-import 'package:movie_bloc_app/features/personalization/presentation/blocs/bloc/bookmarks_bloc.dart';
+import 'package:movie_bloc_app/features/personalization/presentation/blocs/bookmarks/bookmarks_bloc.dart';
 
 import '../../widgets/home/movie_carousel.dart';
 import '../../widgets/home/movie_genres.dart';

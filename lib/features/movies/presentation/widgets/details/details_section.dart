@@ -31,15 +31,17 @@ class DetailsSection extends StatelessWidget {
         } else if (state is DetailsLoading) {
           return const CenteredMessage(message: 'Loading...');
         } else if (state is DetailsError) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CenteredMessage(message: state.message),
-              ElevatedButton(
-                onPressed: () => context.read<DetailsBloc>().add(GetMovieDetailsEvent(movie.id)),
-                child: const Text('Retry'),
-              ),
-            ],
+          return FadeIn(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CenteredMessage(message: state.message),
+                ElevatedButton(
+                  onPressed: () => context.read<DetailsBloc>().add(GetMovieDetailsEvent(movie.id)),
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
           );
         } else if (state is DetailsLoaded) {
           String trailer = '';

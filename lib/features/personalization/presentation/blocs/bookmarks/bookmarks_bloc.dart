@@ -68,5 +68,16 @@ class BookmarksBloc extends Bloc<BookmarksEvent, BookmarksState> {
 
       emit(BookmarksChanged(bookmarks, bookmarkIds));
     });
+    on<ClearBookmarks>((event, emit) {
+      emit(const BookmarksChanging());
+
+      var box = Hive.box<BookmarkedMovie>('bookmarks');
+
+      box.clear();
+      bookmarks.clear();
+      bookmarkIds.clear();
+
+      emit(BookmarksChanged(bookmarks, bookmarkIds));
+    });
   }
 }

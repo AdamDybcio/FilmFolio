@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_bloc_app/core/dependency_injection/di.dart';
+import 'package:movie_bloc_app/core/settings/user_settings.dart';
 
 import '../../../../../common/styles/styles.dart';
 import '../../../../../core/utils/enums/enums.dart';
@@ -70,19 +72,39 @@ class SettingTile extends StatelessWidget {
                                 value: state.showAdultContent,
                                 onChanged: onTapSwitch,
                                 activeColor: Colors.white,
+                                trackColor: WidgetStateProperty.all(
+                                  state.showAdultContent ? Theme.of(context).colorScheme.tertiary : Theme.of(context).colorScheme.tertiary.withOpacity(0.25),
+                                ),
+                                inactiveThumbColor: Colors.white.withOpacity(0.75),
+                                trackOutlineColor: WidgetStateProperty.all(
+                                  state.showAdultContent ? Colors.white : Colors.white.withOpacity(0.75),
+                                ),
                               )
                             : type == SettingsTileType.buttonType
                                 ? ElevatedButton(
                                     onPressed: onTapButton,
-                                    child: Text(buttonTitle),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: onTapButton == null ? Theme.of(context).colorScheme.tertiary.withOpacity(0.5) : Theme.of(context).colorScheme.tertiary,
+                                    ),
+                                    child: Text(
+                                      buttonTitle,
+                                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                            color: Colors.white,
+                                          ),
+                                    ),
                                   )
                                 : type == SettingsTileType.toggleButtonsType
                                     ? ToggleButtons(
-                                        isSelected: state.themeMode == 'light'
-                                            ? const [true, false, false]
-                                            : state.themeMode == 'dark'
-                                                ? const [false, true, false]
-                                                : const [false, false, true],
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderWidth: 2,
+                                        selectedBorderColor: Colors.white,
+                                        color: Colors.white,
+                                        fillColor: Theme.of(context).colorScheme.tertiary,
+                                        isSelected: [
+                                          sl<UserSettings>().getThemeMode() == 'light',
+                                          sl<UserSettings>().getThemeMode() == 'dark',
+                                          sl<UserSettings>().getThemeMode() == 'auto',
+                                        ],
                                         onPressed: onTapToggleButtons,
                                         children: const [
                                           Padding(padding: EdgeInsets.all(3), child: Text('Light')),

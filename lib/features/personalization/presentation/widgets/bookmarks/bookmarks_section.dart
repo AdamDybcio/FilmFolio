@@ -18,7 +18,7 @@ class BookmarksSection extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
-          crossAxisCount: 2,
+          crossAxisCount: 3,
           children: [
             for (final bookmark in bookmarks) BookmarkCard(movie: bookmark),
           ],

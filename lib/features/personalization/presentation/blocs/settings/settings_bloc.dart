@@ -23,6 +23,16 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         sl<UserSettings>().setApiKey(event.apiKey!);
       }
 
+      if (event.themeMode != null) {
+        if (event.themeMode == 'dark') {
+          sl<UserSettings>().setThemeMode('dark');
+        } else if (event.themeMode == 'light') {
+          sl<UserSettings>().setThemeMode('light');
+        } else {
+          sl<UserSettings>().setThemeMode('auto');
+        }
+      }
+
       emit(SettingsChanged(
         sl<UserSettings>().getSettings()['include_adult'],
         sl<UserSettings>().getSettings()['language'],

@@ -1,11 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
+import 'package:movie_bloc_app/features/personalization/presentation/widgets/settings/adult_content_tile.dart';
+import 'package:movie_bloc_app/features/personalization/presentation/widgets/settings/theme_mode_tile.dart';
 
 import '../../../../../core/utils/enums/enums.dart';
-import '../../blocs/bookmarks/bookmarks_bloc.dart';
 import '../../blocs/settings/settings_bloc.dart';
+import 'clear_bookmarks_tile.dart';
 import 'setting_tile.dart';
 
 class SettingsList extends StatelessWidget {
@@ -21,35 +22,14 @@ class SettingsList extends StatelessWidget {
             child: FadeIn(
               child: Column(
                 children: [
-                  SettingTile(
-                    title: 'Show Adult Content',
-                    type: SettingsTileType.switchType,
-                    onTapSwitch: (value) {
-                      context.read<SettingsBloc>().add(ChangeSettings(includeAdult: value));
-                      HelperFunctions.showSnackBar(context, 'From now, adult content will be ${value ? 'shown' : 'hidden'}');
-                    },
+                  const AdultContentTile(),
+                  const ClearBookmarksTile(),
+                  const SettingTile(
+                    title: 'Change Language',
+                    type: SettingsTileType.buttonType,
+                    onTapButton: null,
                   ),
-                  BlocBuilder(
-                    bloc: context.read<BookmarksBloc>(),
-                    builder: (context, state) {
-                      if (state is BookmarksChanged) {
-                        return SettingTile(
-                          title: 'Clear All Bookmarks',
-                          type: SettingsTileType.buttonType,
-                          buttonTitle: 'Clear',
-                          onTapButton: state.bookmarks.isNotEmpty
-                              ? () {
-                                  context.read<BookmarksBloc>().add(ClearBookmarks());
-                                  HelperFunctions.showSnackBar(context, 'All bookmarks have been cleared');
-                                }
-                              : null,
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    },
-                  ),
-                  const SettingTile(title: 'Change Language', type: SettingsTileType.buttonType),
-                  const SettingTile(title: 'Set Dark/Light/Auto Mode', type: SettingsTileType.toggleButtonsType),
+                  const ThemeModeTile(),
                   const SettingTile(title: 'Set Your API KEY', type: SettingsTileType.buttonType),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.025),
                   SizedBox(

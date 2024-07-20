@@ -43,6 +43,9 @@ dependencies:
   custom_refresh_indicator: ^3.1.0
   readmore: ^3.0.0
 
+  #Theme
+  adaptive_theme: ^3.6.0
+
   #Color Scheme
   flex_color_scheme: ^7.3.1
 

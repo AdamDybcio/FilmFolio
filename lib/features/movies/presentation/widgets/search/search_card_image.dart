@@ -23,18 +23,23 @@ class SearchCardImage extends StatelessWidget {
             ? CachedNetworkImage(
                 imageUrl: '${ApiStrings.imageUrl}${movie.posterPath}',
                 fit: BoxFit.cover,
-                errorWidget: (context, url, error) => const FaIcon(
-                  FontAwesomeIcons.film,
-                  color: Colors.white,
-                  size: 30,
+                errorWidget: (context, url, error) => const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: FaIcon(
+                    FontAwesomeIcons.film,
+                    color: Colors.white,
+                  ),
                 ),
               )
-            : const Center(
-                child: FaIcon(
-                FontAwesomeIcons.film,
-                size: 30,
-                color: Colors.white,
-              )),
+            : FittedBox(
+                fit: BoxFit.cover,
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  child: const FaIcon(
+                    FontAwesomeIcons.film,
+                    color: Colors.white,
+                  ),
+                )),
       ),
     );
   }

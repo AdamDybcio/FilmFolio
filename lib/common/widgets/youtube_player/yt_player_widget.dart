@@ -39,12 +39,14 @@ class _YtPlayerWidgetState extends State<YtPlayerWidget> {
   Widget build(BuildContext context) {
     return showPlayer
         ? PopScope(
-            canPop: false,
+            canPop: true,
             onPopInvoked: (_) {
-              setState(() {
-                controller.pause();
-                showPlayer = false;
-              });
+              if (mounted) {
+                setState(() {
+                  controller.pause();
+                  showPlayer = false;
+                });
+              }
               return;
             },
             child: YoutubePlayer(

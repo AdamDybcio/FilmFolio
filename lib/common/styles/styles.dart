@@ -17,7 +17,7 @@ class Styles {
     final isDark = HelperFunctions.isDarkMode(context);
 
     cardBoxDecoration = BoxDecoration(
-      color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+      color: Theme.of(context).colorScheme.primary,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
         BoxShadow(

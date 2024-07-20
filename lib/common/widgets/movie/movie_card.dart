@@ -64,8 +64,8 @@ class MovieCard extends StatelessWidget {
                             child: const FittedBox(
                               fit: BoxFit.cover,
                               child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: FaIcon(FontAwesomeIcons.film),
+                                padding: EdgeInsets.all(16),
+                                child: FaIcon(FontAwesomeIcons.film, color: Colors.white),
                               ),
                             ),
                           ),

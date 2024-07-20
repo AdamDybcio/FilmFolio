@@ -36,9 +36,7 @@ class SettingTile extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: size.height * 0.1,
-              decoration: Styles(context: context).cardBoxDecoration.copyWith(
-                    color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-                  ),
+              decoration: Styles(context: context).cardBoxDecoration,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

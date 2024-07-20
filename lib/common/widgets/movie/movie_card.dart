@@ -49,16 +49,17 @@ class MovieCard extends StatelessWidget {
                   child: Container(
                     height: size.height * 0.4,
                     decoration: Styles(context: context).cardBoxDecoration.copyWith(
-                          image: movie.posterPath != ''
+                          image: movie.posterPath.trim() != ''
                               ? DecorationImage(
                                   image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.posterPath),
                                   fit: BoxFit.cover,
+                                  onError: (_, __) {},
                                 )
                               : null,
                         ),
                     child: Stack(
                       children: [
-                        if (movie.posterPath == '')
+                        if (movie.posterPath.trim() == '')
                           SizedBox(
                             height: size.height * 0.35,
                             child: const FittedBox(

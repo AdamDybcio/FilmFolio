@@ -57,15 +57,15 @@ class DetailsSection extends StatelessWidget {
               child: Column(
                 children: [
                   MovieImageSection(movie: movie),
-                  if (movie.title != '') MovieTitleSection(title: movie.title),
-                  if (movie.releaseDate != '' || state.details.budget != -1 || state.details.originalLanguage != 'UNKNOWN' || state.details.runtime != -1)
+                  if (movie.title.trim() != '') MovieTitleSection(title: movie.title),
+                  if (movie.releaseDate.trim() != '' || state.details.budget != -1 || state.details.originalLanguage.trim() != 'UNKNOWN' || state.details.runtime != -1)
                     MovieYearSection(
                       year: movie.releaseDate,
                       budget: state.details.budget,
                       language: state.details.originalLanguage,
                       runtime: state.details.runtime,
                     ),
-                  if (movie.overview.isNotEmpty) MovieOverviewSection(overview: movie.overview),
+                  if (movie.overview.trim().isNotEmpty) MovieOverviewSection(overview: movie.overview),
                   if (state.details.genres.isNotEmpty) MovieGenresSection(genres: state.details.genres),
                   if (state.details.actors.isNotEmpty) MovieActorsSection(actors: state.details.actors),
                   if (state.details.productionCompanies.isNotEmpty) MovieProductionCompaniesSection(productionCompanies: state.details.productionCompanies),

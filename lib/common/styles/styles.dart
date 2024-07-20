@@ -31,13 +31,10 @@ class Styles {
         color: Theme.of(context).colorScheme.primary,
         width: 1,
       ),
-      image: imagePath != ''
+      image: imagePath.trim() != ''
           ? DecorationImage(
               image: CachedNetworkImageProvider(ApiStrings.imageUrl + imagePath),
               fit: BoxFit.cover,
-              onError: (_, __) {
-                null;
-              },
             )
           : null,
     );

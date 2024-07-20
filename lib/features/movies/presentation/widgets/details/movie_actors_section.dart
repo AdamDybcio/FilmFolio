@@ -48,8 +48,8 @@ class MovieActorsSection extends StatelessWidget {
                                 child: CircleAvatar(
                                     radius: size.width * 0.1,
                                     backgroundColor: Theme.of(context).colorScheme.primary,
-                                    backgroundImage: actor.profilePath != '' ? CachedNetworkImageProvider(ApiStrings.imageUrl + actor.profilePath) : null,
-                                    child: actor.profilePath == ''
+                                    backgroundImage: actor.profilePath.trim() != '' ? CachedNetworkImageProvider(ApiStrings.imageUrl + actor.profilePath) : null,
+                                    child: actor.profilePath.trim() == ''
                                         ? const FittedBox(
                                             fit: BoxFit.fill,
                                             child: FaIcon(

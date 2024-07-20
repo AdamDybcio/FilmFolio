@@ -91,4 +91,14 @@ class MovieRepoImpl extends MovieRepo {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<MoviesResultModel> getSimilarMovies({required int movieId}) {
+    try {
+      final movies = tmdbDatasource.getSimilarMovies(movieId: movieId);
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

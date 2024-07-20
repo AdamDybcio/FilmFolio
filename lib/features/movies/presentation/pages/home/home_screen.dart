@@ -11,7 +11,7 @@ import 'package:movie_bloc_app/features/personalization/presentation/blocs/setti
 
 import '../../widgets/home/movie_carousel.dart';
 import '../../widgets/home/movie_genres.dart';
-import '../../widgets/home/movies_section.dart';
+import '../../../../../common/widgets/movie/movies_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

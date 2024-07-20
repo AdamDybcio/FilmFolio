@@ -12,6 +12,7 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_nowplaying.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_popular.dart';
+import 'package:movie_bloc_app/features/movies/domain/usecases/get_similar.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_toprated.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
@@ -49,6 +50,7 @@ Future init() async {
   sl.registerLazySingleton<GetNowplaying>(() => GetNowplaying(sl()));
   sl.registerLazySingleton<GetToprated>(() => GetToprated(sl()));
   sl.registerLazySingleton<GetTrending>(() => GetTrending(sl()));
+  sl.registerLazySingleton<GetSimilar>(() => GetSimilar(sl()));
 
   //Blocs
   sl.registerFactory(() => NavBarBloc());
@@ -71,7 +73,7 @@ Future init() async {
     ),
   );
 
-  sl.registerFactory(() => DetailsBloc(getMovieDetails: sl()));
+  sl.registerFactory(() => DetailsBloc(getMovieDetails: sl(), getSimilar: sl()));
 
   sl.registerFactory(
     () => SearchBloc(

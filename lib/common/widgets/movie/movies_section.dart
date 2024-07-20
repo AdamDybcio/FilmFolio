@@ -2,20 +2,23 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/common/widgets/movie/movie_card.dart';
+import 'package:movie_bloc_app/common/widgets/texts/header.dart';
 
-import '../../../data/models/movie_model.dart';
+import '../../../features/movies/data/models/movie_model.dart';
 
 class MoviesSection extends StatelessWidget {
-  const MoviesSection({super.key, required this.movies});
+  const MoviesSection({super.key, required this.movies, this.isSimilar = false});
 
   final List<MovieModel> movies;
+  final bool isSimilar;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
-        SizedBox(height: size.height * 0.035),
+        if (isSimilar) SizedBox(height: size.height * 0.035),
+        if (isSimilar) const Header(title: 'Similar Movies'),
         Container(
           height: size.height * 0.35,
           width: double.infinity,

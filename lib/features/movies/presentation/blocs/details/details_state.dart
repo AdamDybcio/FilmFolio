@@ -13,11 +13,12 @@ final class DetailsLoading extends DetailsState {}
 
 final class DetailsLoaded extends DetailsState {
   final MovieDetailsModel details;
+  final MoviesResultModel similar;
 
-  const DetailsLoaded(this.details);
+  const DetailsLoaded(this.details, this.similar);
 
   @override
-  List<Object> get props => [details];
+  List<Object> get props => [details, similar];
 }
 
 final class DetailsError extends DetailsState {

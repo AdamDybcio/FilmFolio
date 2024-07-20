@@ -19,4 +19,6 @@ abstract class MovieRepo {
   Future<MoviesResultModel> getTopRatedMovies({int page = 1});
 
   Future<MoviesResultModel> getTrendingMovies();
+
+  Future<MoviesResultModel> getSimilarMovies({required int movieId});
 }

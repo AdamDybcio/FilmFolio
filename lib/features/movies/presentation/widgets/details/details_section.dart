@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_bloc_app/common/widgets/movie/movies_section.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../../../../common/widgets/texts/centered_message.dart';
@@ -69,6 +70,7 @@ class DetailsSection extends StatelessWidget {
                   if (state.details.actors.isNotEmpty) MovieActorsSection(actors: state.details.actors),
                   if (state.details.productionCompanies.isNotEmpty) MovieProductionCompaniesSection(productionCompanies: state.details.productionCompanies),
                   if (state.details.videos.isNotEmpty && trailer != '') MovieVideoSection(trailer: trailer),
+                  if (state.similar.movies!.isNotEmpty) MoviesSection(movies: state.similar.movies!, isSimilar: true),
                   if (state.details.reviews.totalPages > 0) MovieReviewsSection(reviews: state.details.reviews),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 ],

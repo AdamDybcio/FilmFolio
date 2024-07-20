@@ -13,8 +13,8 @@ class SettingsScreen extends StatelessWidget {
     return const Stack(
       children: [
         BackgroundIcon(icon: FontAwesomeIcons.solidUser),
-        SettingsList(),
         AuthorWidget(),
+        SettingsList(),
       ],
     );
   }

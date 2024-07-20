@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../common/styles/styles.dart';
@@ -24,7 +25,7 @@ class MovieTitleSection extends StatelessWidget {
                   ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
+                child: AutoSizeText(
                   title,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(

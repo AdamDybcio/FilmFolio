@@ -20,14 +20,16 @@ class SettingsList extends StatelessWidget {
         if (state is SettingsChanged) {
           return SafeArea(
             child: FadeIn(
-              child: const Column(
-                children: [
-                  AdultContentTile(),
-                  ClearBookmarksTile(),
-                  ChangeLanguageTile(),
-                  ThemeModeTile(),
-                  SetApiKeyTile(),
-                ],
+              child: const SingleChildScrollView(
+                child: Column(
+                  children: [
+                    AdultContentTile(),
+                    ClearBookmarksTile(),
+                    ChangeLanguageTile(),
+                    ThemeModeTile(),
+                    SetApiKeyTile(),
+                  ],
+                ),
               ),
             ),
           );

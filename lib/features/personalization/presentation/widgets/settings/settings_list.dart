@@ -51,6 +51,25 @@ class SettingsList extends StatelessWidget {
                   const SettingTile(title: 'Change Language', type: SettingsTileType.buttonType),
                   const SettingTile(title: 'Set Dark/Light/Auto Mode', type: SettingsTileType.toggleButtonsType),
                   const SettingTile(title: 'Set Your API KEY', type: SettingsTileType.buttonType),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.error,
+                        ),
+                        child: Text(
+                          'Reset All Settings',
+                          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                color: Colors.white,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

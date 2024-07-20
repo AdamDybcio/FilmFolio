@@ -15,15 +15,28 @@ final class HomeLoaded extends HomeState {
   final MoviesResultModel popularMovies;
   final MoviesResultModel upcomingMovies;
   final List<GenreModel> genres;
+  final MoviesResultModel nowPlayingMovies;
+  final MoviesResultModel topRatedMovies;
+  final MoviesResultModel trendingMovies;
 
   const HomeLoaded({
     required this.upcomingMovies,
     required this.genres,
     required this.popularMovies,
+    required this.nowPlayingMovies,
+    required this.topRatedMovies,
+    required this.trendingMovies,
   });
 
   @override
-  List<Object> get props => [upcomingMovies, genres, popularMovies];
+  List<Object> get props => [
+        upcomingMovies,
+        genres,
+        popularMovies,
+        nowPlayingMovies,
+        topRatedMovies,
+        trendingMovies,
+      ];
 }
 
 final class HomeError extends HomeState {

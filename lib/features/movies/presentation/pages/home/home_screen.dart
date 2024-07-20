@@ -10,7 +10,7 @@ import 'package:movie_bloc_app/features/personalization/presentation/blocs/bookm
 
 import '../../widgets/home/movie_carousel.dart';
 import '../../widgets/home/movie_genres.dart';
-import '../../widgets/home/movies_upcoming.dart';
+import '../../widgets/home/movies_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -86,17 +86,41 @@ class HomeScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      MovieCarousel(movies: state.popularMovies.movies!),
+                      MovieCarousel(movies: state.trendingMovies.movies!),
                       Header(
                         title: 'Upcoming Movies',
                         onTap: () {
-                          //TODO: Navigate to upcoming movies
+                          //TODO: Navigate
                         },
                       ),
-                      MoviesUpcoming(movies: state.upcomingMovies.movies!),
+                      MoviesSection(movies: state.upcomingMovies.movies!),
                       SizedBox(height: size.height * 0.05),
                       const Header(title: 'Movie Genres'),
                       MovieGenres(genres: state.genres),
+                      SizedBox(height: size.height * 0.05),
+                      Header(
+                        title: 'Now Playing Movies',
+                        onTap: () {
+                          //TODO: Navigate
+                        },
+                      ),
+                      MoviesSection(movies: state.nowPlayingMovies.movies!),
+                      SizedBox(height: size.height * 0.05),
+                      Header(
+                        title: 'Top Rated Movies',
+                        onTap: () {
+                          //TODO: Navigate
+                        },
+                      ),
+                      MoviesSection(movies: state.topRatedMovies.movies!),
+                      SizedBox(height: size.height * 0.05),
+                      Header(
+                        title: 'Popular Movies',
+                        onTap: () {
+                          //TODO: Navigate
+                        },
+                      ),
+                      MoviesSection(movies: state.popularMovies.movies!),
                       SizedBox(height: size.height * 0.05),
                     ],
                   ),

@@ -79,10 +79,8 @@ class TmdbDatasource {
   Future<MoviesResultModel> getTrendingMovies() async {
     Map<String, dynamic> settings = sl<UserSettings>().getSettings();
 
-    settings['time_window'] = 'day';
-
     final response = await dio.get(
-      '${ApiStrings.baseUrl}trending/movie',
+      '${ApiStrings.baseUrl}trending/movie/day',
       queryParameters: settings,
     );
 

@@ -61,4 +61,34 @@ class MovieRepoImpl extends MovieRepo {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<MoviesResultModel> getTrendingMovies() {
+    try {
+      final movies = tmdbDatasource.getTrendingMovies();
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<MoviesResultModel> getNowPlayingMovies({int page = 1}) {
+    try {
+      final movies = tmdbDatasource.getNowPlayingMovies(page: page);
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<MoviesResultModel> getTopRatedMovies({int page = 1}) {
+    try {
+      final movies = tmdbDatasource.getTopRatedMovies(page: page);
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

@@ -11,7 +11,7 @@ import 'package:movie_bloc_app/core/utils/themes/custom_theme.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/bookmarks/bookmarks_bloc.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/settings/settings_bloc.dart';
 
-// import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 
 import 'common/blocs/bloc/nav_bar_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -31,19 +31,19 @@ Future<void> main() async {
   await Hive.openBox('settings');
   await Hive.openBox('theme_mode');
 
-  await init();
+  await initDependencyInjection();
 
   // Used only for testing on different devices
-  // FlutterNativeSplash.remove();
-  // runApp(
-  //   DevicePreview(
-  //     enabled: true,
-  //     builder: (context) => const MyApp(),
-  //   ),
-  // );
-
   FlutterNativeSplash.remove();
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const MyApp(),
+    ),
+  );
+
+  // FlutterNativeSplash.remove();
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -70,8 +70,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'FilmFolio',
           theme: theme,
-          // locale: DevicePreview.locale(context),
-          // builder: DevicePreview.appBuilder,
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
           darkTheme: darkTheme,
         ),
       ),

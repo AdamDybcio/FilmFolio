@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/core/utils/strings/url_strings.dart';
@@ -55,14 +56,12 @@ class MovieProductionCompaniesSection extends StatelessWidget {
                         const SizedBox(height: 5),
                         Padding(
                           padding: const EdgeInsets.all(2),
-                          child: Text(
+                          child: AutoSizeText(
                             company.name,
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),

@@ -26,7 +26,7 @@ import '../../features/movies/presentation/blocs/details/details_bloc.dart';
 
 final sl = GetIt.instance;
 
-Future init() async {
+Future initDependencyInjection() async {
   //Datasources
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton<TmdbDatasource>(() => TmdbDatasource(sl()));

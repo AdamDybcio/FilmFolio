@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/common/widgets/texts/header.dart';
 
@@ -27,13 +28,9 @@ class MovieGenresSection extends StatelessWidget {
               return FadeIn(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: GestureDetector(
-                    onTap: () {
-                      //TODO: Add navigation to genre movies
-                    },
-                    child: Chip(
-                      label: Text(genre.name),
-                    ),
+                  child: Chip(
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                    label: AutoSizeText(genre.name, maxFontSize: 24),
                   ),
                 ),
               );

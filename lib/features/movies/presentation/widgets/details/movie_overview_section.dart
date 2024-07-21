@@ -12,6 +12,7 @@ class MovieOverviewSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         const Header(title: 'Overview'),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

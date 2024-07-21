@@ -4,7 +4,7 @@ class UserSettings {
   static final Map<String, dynamic> _defaultSettings = {
     'api_key': '',
     'language': 'en-US',
-    'include_adult': true,
+    'include_adult': false,
   };
 
   late Map<String, dynamic> _settings;

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/common/widgets/texts/header.dart';
@@ -27,110 +28,109 @@ class MovieYearSection extends StatelessWidget {
           height: size.height * 0.2,
           child: Align(
             alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 24, left: 12, right: 12),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (year != '')
-                          Container(
-                            decoration: Styles(context: context).cardBoxDecoration.copyWith(
-                                  color: Theme.of(context).colorScheme.secondary.withOpacity(1),
-                                ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (year != '')
+                        Container(
+                          height: size.height * 0.1,
+                          decoration: Styles(context: context).cardBoxDecoration.copyWith(
+                                color: Theme.of(context).colorScheme.secondary.withOpacity(1),
+                              ),
+                          child: Center(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  'Release Date: ${year.displayDate()}',
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                              child: AutoSizeText(
+                                'Release Date: ${year.displayDate()}',
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                               ),
                             ),
                           ),
-                        if (runtime != -1 && year != "") const SizedBox(width: 20),
-                        if (runtime != -1)
-                          Flexible(
-                            child: Container(
-                              decoration: Styles(context: context).cardBoxDecoration.copyWith(
-                                    color: Theme.of(context).colorScheme.secondary.withOpacity(1),
-                                  ),
+                        ),
+                      if (runtime != -1 && year != "") const SizedBox(width: 20),
+                      if (runtime != -1)
+                        Flexible(
+                          child: Container(
+                            height: size.height * 0.1,
+                            decoration: Styles(context: context).cardBoxDecoration.copyWith(
+                                  color: Theme.of(context).colorScheme.secondary.withOpacity(1),
+                                ),
+                            child: Center(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Runtime: \n$runtime mins',
+                                child: AutoSizeText(
+                                  'Runtime: $runtime mins',
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),
                           ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (budget != -1)
-                          Container(
-                            decoration: Styles(context: context).cardBoxDecoration.copyWith(
-                                  color: Theme.of(context).colorScheme.secondary.withOpacity(1),
-                                ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (budget != -1)
+                        Container(
+                          height: size.height * 0.1 - 20,
+                          decoration: Styles(context: context).cardBoxDecoration.copyWith(
+                                color: Theme.of(context).colorScheme.secondary.withOpacity(1),
+                              ),
+                          child: Center(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
+                              child: AutoSizeText(
                                 'Budget: \$${budget.toString().changeToMilion()}',
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ),
-                        if (budget != -1 && language != "UNKNOWN") const SizedBox(width: 20),
-                        if (language != "UNKNOWN")
-                          Flexible(
-                            child: Container(
-                              decoration: Styles(context: context).cardBoxDecoration.copyWith(
-                                    color: Theme.of(context).colorScheme.secondary.withOpacity(1),
-                                  ),
+                        ),
+                      if (budget != -1 && language != "UNKNOWN") const SizedBox(width: 20),
+                      if (language != "UNKNOWN")
+                        Flexible(
+                          child: Container(
+                            height: size.height * 0.1 - 20,
+                            decoration: Styles(context: context).cardBoxDecoration.copyWith(
+                                  color: Theme.of(context).colorScheme.secondary.withOpacity(1),
+                                ),
+                            child: Center(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(
+                                child: AutoSizeText(
                                   'Original language: ${language.toUpperCase()}',
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),
                           ),
-                      ],
-                    ),
-                  ],
-                ),
+                        ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

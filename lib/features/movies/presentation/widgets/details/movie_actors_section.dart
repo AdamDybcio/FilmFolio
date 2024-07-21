@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,39 +33,36 @@ class MovieActorsSection extends StatelessWidget {
                   final actor = actors[index];
                   return FadeIn(
                     child: Padding(
-                      padding: const EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(8),
                       child: SizedBox(
-                        width: size.width * 0.3,
+                        width: size.width * 0.25,
                         child: Column(
                           children: [
                             Container(
                               decoration: Styles(context: context).cardBoxDecoration.copyWith(
                                     borderRadius: BorderRadius.circular(size.width * 0.1),
                                   ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  //TODO: Add navigation to actor details
-                                },
-                                child: CircleAvatar(
-                                    radius: size.width * 0.1,
-                                    backgroundColor: Theme.of(context).colorScheme.primary,
-                                    backgroundImage: actor.profilePath.trim() != '' ? CachedNetworkImageProvider(UrlStrings.imageUrl + actor.profilePath) : null,
-                                    child: actor.profilePath.trim() == ''
-                                        ? const FittedBox(
-                                            fit: BoxFit.fill,
-                                            child: FaIcon(
-                                              FontAwesomeIcons.solidUser,
-                                              color: Colors.white,
-                                            ),
-                                          )
-                                        : null),
-                              ),
+                              child: CircleAvatar(
+                                  radius: size.height * 0.05,
+                                  backgroundColor: Theme.of(context).colorScheme.primary,
+                                  backgroundImage: actor.profilePath.trim() != '' ? CachedNetworkImageProvider(UrlStrings.imageUrl + actor.profilePath) : null,
+                                  child: actor.profilePath.trim() == ''
+                                      ? const FittedBox(
+                                          fit: BoxFit.fill,
+                                          child: FaIcon(
+                                            FontAwesomeIcons.solidUser,
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      : null),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8),
-                              child: Text(
+                              child: AutoSizeText(
                                 actor.name,
                                 textAlign: TextAlign.center,
+                                maxFontSize: 24,
+                                maxLines: 2,
                               ),
                             ),
                           ],

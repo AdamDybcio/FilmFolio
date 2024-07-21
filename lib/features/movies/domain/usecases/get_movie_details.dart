@@ -11,6 +11,6 @@ class GetMovieDetails extends Usecase<MovieDetailsModel, Params> {
 
   @override
   Future<MovieDetailsModel> call(Params params) async {
-    return await repository.getMovieDetails(movieId: params.id);
+    return await repository.getMovieDetails(movieId: params.id!);
   }
 }

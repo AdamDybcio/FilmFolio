@@ -129,10 +129,16 @@ class TmdbDatasource {
     return MoviesResultModel.fromJson(response.data);
   }
 
-  Future<MoviesResultModel> getMoviesByGenre({required int genreId, int page = 1}) async {
+  Future<MoviesResultModel> getMoviesByGenre({required int genreId, int page = 1, int? year}) async {
     Map<String, dynamic> settings = sl<UserSettings>().getSettings();
 
     settings['with_genres'] = genreId;
+    settings['page'] = page;
+    if (year != null) {
+      settings['year'] = year;
+    } else {
+      settings['year'] = DateTime.now().year;
+    }
 
     final response = await dio.get(
       '${UrlStrings.baseUrl}discover/movie',

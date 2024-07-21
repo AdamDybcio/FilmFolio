@@ -9,6 +9,7 @@ import 'package:movie_bloc_app/features/movies/data/repositories/movie_repo_impl
 import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_genres.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details.dart';
+import 'package:movie_bloc_app/features/movies/domain/usecases/get_movies_by_genre.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_nowplaying.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_popular.dart';
@@ -18,6 +19,7 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/all_movies/all_movies_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/carousel_bloc.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/genre_movies/genre_movies_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home/home_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/search/search/search_bloc.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/bookmarks/bookmarks_bloc.dart';
@@ -52,6 +54,7 @@ Future initDependencyInjection() async {
   sl.registerLazySingleton<GetToprated>(() => GetToprated(sl()));
   sl.registerLazySingleton<GetTrending>(() => GetTrending(sl()));
   sl.registerLazySingleton<GetSimilar>(() => GetSimilar(sl()));
+  sl.registerLazySingleton<GetMoviesByGenre>(() => GetMoviesByGenre(sl()));
 
   //Blocs
   sl.registerFactory(() => NavBarBloc());
@@ -70,6 +73,8 @@ Future initDependencyInjection() async {
       getPopular: sl(),
     ),
   );
+
+  sl.registerFactory(() => GenreMoviesBloc(getMoviesByGenre: sl()));
 
   //Pages Blocs
   sl.registerFactory(

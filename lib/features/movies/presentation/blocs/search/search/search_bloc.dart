@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/params/search_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies.dart';
 
 import '../../../../../../core/utils/helpers/helper_functions.dart';
+import '../../../../domain/entities/params/params.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -32,7 +32,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       }
       emit(SearchLoading());
       try {
-        final movieResult = await getSearchMovies(SearchParam(query: event.query));
+        final movieResult = await getSearchMovies(Params(query: event.query));
 
         if (controller.text != initialValue) {
           return;

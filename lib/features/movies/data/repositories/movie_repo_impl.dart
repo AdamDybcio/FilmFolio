@@ -101,4 +101,14 @@ class MovieRepoImpl extends MovieRepo {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<MoviesResultModel> getMoviesByGenre({required int genreId, int page = 1, int? year}) {
+    try {
+      final movies = tmdbDatasource.getMoviesByGenre(genreId: genreId, page: page, year: year);
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

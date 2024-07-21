@@ -1,15 +1,16 @@
 import 'package:movie_bloc_app/features/movies/data/models/movies_result_model.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/params/search_param.dart';
 import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/usecase.dart';
 
-class GetSearchMovies extends Usecase<MoviesResultModel, SearchParam> {
+import '../entities/params/params.dart';
+
+class GetSearchMovies extends Usecase<MoviesResultModel, Params> {
   final MovieRepo repository;
 
   GetSearchMovies(this.repository);
 
   @override
-  Future<MoviesResultModel> call(SearchParam params) async {
-    return await repository.searchMovies(query: params.query);
+  Future<MoviesResultModel> call(Params params) async {
+    return await repository.searchMovies(query: params.query!);
   }
 }

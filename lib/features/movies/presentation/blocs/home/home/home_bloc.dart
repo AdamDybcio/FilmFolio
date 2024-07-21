@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movies_result_model.dart';
-import 'package:movie_bloc_app/features/movies/domain/entities/params/page_param.dart';
+import 'package:movie_bloc_app/features/movies/domain/entities/params/params.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_genres.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_nowplaying.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_popular.dart';
@@ -61,7 +61,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeLoading());
 
       try {
-        final popularResult = await getPopular(PageParam());
+        final popularResult = await getPopular(Params());
 
         if (popularResult.movies!.isEmpty) {
           emit(const HomeError('Error while fetching data'));
@@ -69,7 +69,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           popularMovies = popularResult.movies!;
         }
 
-        final upcomingResult = await getUpcoming(PageParam());
+        final upcomingResult = await getUpcoming(Params());
 
         if (upcomingResult.movies!.isEmpty) {
           emit(const HomeError('Error while fetching data'));
@@ -85,7 +85,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           genres = genresResult;
         }
 
-        final nowPlayingResult = await getNowPlaying(PageParam());
+        final nowPlayingResult = await getNowPlaying(Params());
 
         if (nowPlayingResult.movies!.isEmpty) {
           emit(const HomeError('Error while fetching data'));
@@ -93,7 +93,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           nowPlayingMovies = nowPlayingResult.movies!;
         }
 
-        final topRatedResult = await getTopRated(PageParam());
+        final topRatedResult = await getTopRated(Params());
         if (topRatedResult.movies!.isEmpty) {
           emit(const HomeError('Error while fetching data'));
         } else {

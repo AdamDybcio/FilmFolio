@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
 
 import '../../../data/models/genre_model.dart';
@@ -21,7 +22,7 @@ class MovieGenres extends StatelessWidget {
           final genre = genres[index];
           return GestureDetector(
             onTap: () {
-              //TODO: Navigate to genre movies
+              context.push('/genre/${genre.id}', extra: genre.name);
             },
             child: Padding(
               padding: const EdgeInsets.all(2),

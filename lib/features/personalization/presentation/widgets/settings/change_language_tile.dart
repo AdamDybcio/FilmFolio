@@ -13,6 +13,7 @@ class ChangeLanguageTile extends StatelessWidget {
     return const SettingTile(
       title: 'Change Language',
       type: SettingsTileType.buttonType,
+      buttonTitle: 'Not available',
       onTapButton: null,
     );
   }

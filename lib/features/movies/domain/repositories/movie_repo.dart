@@ -21,4 +21,6 @@ abstract class MovieRepo {
   Future<MoviesResultModel> getTrendingMovies();
 
   Future<MoviesResultModel> getSimilarMovies({required int movieId});
+
+  Future<MoviesResultModel> getMoviesByGenre({required int genreId, int page = 1, int? year});
 }

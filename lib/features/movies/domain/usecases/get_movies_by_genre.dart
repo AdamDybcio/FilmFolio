@@ -4,13 +4,17 @@ import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.da
 import '../../data/models/movies_result_model.dart';
 import 'usecase.dart';
 
-class GetSimilar extends Usecase<MoviesResultModel, Params> {
+class GetMoviesByGenre extends Usecase<MoviesResultModel, Params> {
   final MovieRepo repository;
 
-  GetSimilar(this.repository);
+  GetMoviesByGenre(this.repository);
 
   @override
   Future<MoviesResultModel> call(Params params) async {
-    return await repository.getSimilarMovies(movieId: params.id!);
+    return await repository.getMoviesByGenre(
+      page: params.page!,
+      genreId: int.parse(params.genreId!),
+      year: params.year!,
+    );
   }
 }

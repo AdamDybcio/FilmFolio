@@ -5,6 +5,7 @@ import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/movies/presentation/pages/home/all_movies_screen.dart';
 import 'package:movie_bloc_app/features/movies/presentation/pages/details/details_screen.dart';
+import 'package:movie_bloc_app/features/movies/presentation/pages/home/genre_movies_screen.dart';
 import 'package:movie_bloc_app/navigation_menu.dart';
 
 class CustomGoRouterConfig {
@@ -50,6 +51,12 @@ class CustomGoRouterConfig {
         path: '/all/:section',
         builder: (BuildContext context, GoRouterState state) {
           return AllMoviesScreen(section: state.pathParameters['section']!, title: state.extra as String);
+        },
+      ),
+      GoRoute(
+        path: '/genre/:genreId',
+        builder: (BuildContext context, GoRouterState state) {
+          return GenreMoviesScreen(genreId: state.pathParameters['genreId']!, genreName: state.extra as String);
         },
       ),
     ],

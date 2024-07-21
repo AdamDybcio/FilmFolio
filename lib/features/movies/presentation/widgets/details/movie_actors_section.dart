@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
@@ -45,7 +45,13 @@ class MovieActorsSection extends StatelessWidget {
                               child: CircleAvatar(
                                   radius: size.height * 0.05,
                                   backgroundColor: Theme.of(context).colorScheme.primary,
-                                  backgroundImage: actor.profilePath.trim() != '' ? CachedNetworkImageProvider(UrlStrings.imageUrl + actor.profilePath) : null,
+                                  backgroundImage: actor.profilePath.trim() != ''
+                                      ? ExtendedNetworkImageProvider(
+                                          UrlStrings.imageUrl + actor.profilePath,
+                                          cache: true,
+                                          printError: false,
+                                        )
+                                      : null,
                                   child: actor.profilePath.trim() == ''
                                       ? const FittedBox(
                                           fit: BoxFit.fill,

@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/core/utils/strings/url_strings.dart';
 
@@ -40,17 +40,26 @@ class MovieProductionCompaniesSection extends StatelessWidget {
                           decoration: Styles(context: context).cardBoxDecoration.copyWith(color: Colors.white),
                           child: Padding(
                             padding: const EdgeInsets.all(4),
-                            child: CachedNetworkImage(
-                              imageUrl: UrlStrings.imageUrl + company.logoPath,
-                              height: size.height * 0.075,
-                              width: size.width * 0.25,
-                              errorWidget: (context, url, error) => FadeIn(
-                                child: const Icon(
-                                  Icons.image_not_supported_rounded,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
+                            child: company.logoPath.trim() != ''
+                                ? ExtendedImage.network(
+                                    UrlStrings.imageUrl + company.logoPath,
+                                    height: size.height * 0.075,
+                                    width: size.width * 0.25,
+                                    cache: true,
+                                    printError: false,
+                                  )
+                                : FadeIn(
+                                    child: Center(
+                                      child: SizedBox(
+                                        height: size.height * 0.075,
+                                        width: size.width * 0.25,
+                                        child: const Icon(
+                                          Icons.image_not_supported_rounded,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                           ),
                         ),
                         const SizedBox(height: 5),

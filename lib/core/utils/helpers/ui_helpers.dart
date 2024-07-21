@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/movies/data/models/movie_model.dart';
@@ -7,14 +7,16 @@ import '../strings/url_strings.dart';
 class UiHelpers {
   BoxDecoration displayImageDecoration(BuildContext context, MovieModel movie, bool isBackdrop) {
     return BoxDecoration(
-      image: movie.backdropPath != '' || movie.posterPath != ''
+      image: movie.backdropPath.trim() != '' || movie.posterPath.trim() != ''
           ? DecorationImage(
-              image: CachedNetworkImageProvider(
+              image: ExtendedNetworkImageProvider(
                 isBackdrop
                     ? (movie.backdropPath != '' ? UrlStrings.imageUrl + movie.backdropPath : UrlStrings.imageUrl + movie.posterPath)
                     : movie.posterPath != ''
                         ? UrlStrings.imageUrl + movie.posterPath
                         : movie.backdropPath,
+                cache: true,
+                printError: false,
               ),
               fit: BoxFit.cover,
             )
@@ -40,13 +42,15 @@ class UiHelpers {
   }
 
   DecorationImage? decorationImage({required MovieModel movie, required bool isPoster}) {
-    return movie.backdropPath != '' || movie.posterPath != ''
+    return movie.backdropPath.trim() != '' || movie.posterPath.trim() != ''
         ? DecorationImage(
             fit: BoxFit.cover,
-            image: CachedNetworkImageProvider(
+            image: ExtendedNetworkImageProvider(
               isPoster
                   ? (movie.posterPath != '' ? UrlStrings.imageUrl + movie.posterPath : UrlStrings.imageUrl + movie.backdropPath)
                   : (movie.backdropPath != '' ? UrlStrings.imageUrl + movie.backdropPath : UrlStrings.imageUrl + movie.posterPath),
+              cache: true,
+              printError: false,
             ),
           )
         : null;

@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -51,7 +51,7 @@ class MovieCard extends StatelessWidget {
                     decoration: Styles(context: context).cardBoxDecoration.copyWith(
                           image: movie.posterPath.trim() != ''
                               ? DecorationImage(
-                                  image: CachedNetworkImageProvider(UrlStrings.imageUrl + movie.posterPath),
+                                  image: ExtendedNetworkImageProvider(UrlStrings.imageUrl + movie.posterPath, cache: true, printError: false),
                                   fit: BoxFit.cover,
                                   onError: (_, __) {},
                                 )

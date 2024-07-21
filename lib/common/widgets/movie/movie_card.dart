@@ -7,7 +7,7 @@ import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/common/widgets/movie/adult_widget.dart';
 import 'package:movie_bloc_app/common/widgets/movie/mark_widget.dart';
 import 'package:movie_bloc_app/common/widgets/movie/vote_avg_widget.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+import 'package:movie_bloc_app/core/utils/strings/url_strings.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/settings/settings_bloc.dart';
 
@@ -51,7 +51,7 @@ class MovieCard extends StatelessWidget {
                     decoration: Styles(context: context).cardBoxDecoration.copyWith(
                           image: movie.posterPath.trim() != ''
                               ? DecorationImage(
-                                  image: CachedNetworkImageProvider(ApiStrings.imageUrl + movie.posterPath),
+                                  image: CachedNetworkImageProvider(UrlStrings.imageUrl + movie.posterPath),
                                   fit: BoxFit.cover,
                                   onError: (_, __) {},
                                 )

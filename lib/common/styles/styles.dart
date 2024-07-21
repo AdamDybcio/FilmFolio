@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/core/utils/helpers/helper_functions.dart';
 
-import '../../core/utils/strings/api_strings.dart';
+import '../../core/utils/strings/url_strings.dart';
 
 class Styles {
   final BuildContext context;
@@ -33,7 +33,7 @@ class Styles {
       ),
       image: imagePath.trim() != ''
           ? DecorationImage(
-              image: CachedNetworkImageProvider(ApiStrings.imageUrl + imagePath),
+              image: CachedNetworkImageProvider(UrlStrings.imageUrl + imagePath),
               fit: BoxFit.cover,
             )
           : null,

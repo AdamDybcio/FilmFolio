@@ -6,7 +6,7 @@ import 'package:movie_bloc_app/features/movies/data/models/reviews_result_model.
 import 'package:readmore/readmore.dart';
 
 import '../../../../../common/widgets/texts/header.dart';
-import '../../../../../core/utils/strings/api_strings.dart';
+import '../../../../../core/utils/strings/url_strings.dart';
 import 'rate_widget.dart';
 
 class MovieReviewsSection extends StatelessWidget {
@@ -57,7 +57,7 @@ class MovieReviewsSection extends StatelessWidget {
                               child: CircleAvatar(
                                 backgroundImage: reviews.reviews[i].avatarPath != ''
                                     ? CachedNetworkImageProvider(
-                                        '${ApiStrings.imageUrl}${reviews.reviews[i].avatarPath}',
+                                        '${UrlStrings.imageUrl}${reviews.reviews[i].avatarPath}',
                                       )
                                     : null,
                                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,

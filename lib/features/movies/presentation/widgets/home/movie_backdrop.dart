@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+import 'package:movie_bloc_app/core/utils/strings/url_strings.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 import 'package:blur/blur.dart';
 
@@ -29,7 +29,7 @@ class MovieBackdrop extends StatelessWidget {
               decoration: BoxDecoration(
                 image: movies[state.index].backdropPath != ''
                     ? DecorationImage(
-                        image: CachedNetworkImageProvider(ApiStrings.imageUrl + movies[state.index].backdropPath),
+                        image: CachedNetworkImageProvider(UrlStrings.imageUrl + movies[state.index].backdropPath),
                         fit: BoxFit.cover,
                       )
                     : null,

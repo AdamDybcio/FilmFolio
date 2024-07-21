@@ -4,7 +4,7 @@ import 'package:movie_bloc_app/core/settings/user_settings.dart';
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
 
-import '../../../../../core/utils/strings/api_strings.dart';
+import '../../../../../core/utils/strings/url_strings.dart';
 import '../../models/movies_result_model.dart';
 
 class TmdbDatasource {
@@ -19,7 +19,7 @@ class TmdbDatasource {
     settings['sort_by'] = 'popularity.desc';
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}discover/movie',
+      '${UrlStrings.baseUrl}discover/movie',
       queryParameters: settings,
     );
 
@@ -36,7 +36,7 @@ class TmdbDatasource {
     settings['release_date.lte'] = DateTime.now().add(const Duration(days: 30)).toString();
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}discover/movie',
+      '${UrlStrings.baseUrl}discover/movie',
       queryParameters: settings,
     );
 
@@ -52,7 +52,7 @@ class TmdbDatasource {
     settings['vote_count.gte'] = 200;
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}discover/movie',
+      '${UrlStrings.baseUrl}discover/movie',
       queryParameters: settings,
     );
 
@@ -69,7 +69,7 @@ class TmdbDatasource {
     settings['release_date.lte'] = DateTime.now().toString();
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}discover/movie',
+      '${UrlStrings.baseUrl}discover/movie',
       queryParameters: settings,
     );
 
@@ -80,7 +80,7 @@ class TmdbDatasource {
     Map<String, dynamic> settings = sl<UserSettings>().getSettings();
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}trending/movie/day',
+      '${UrlStrings.baseUrl}trending/movie/day',
       queryParameters: settings,
     );
 
@@ -88,10 +88,12 @@ class TmdbDatasource {
   }
 
   Future<List<GenreModel>> getMovieGenres() async {
+    Map<String, dynamic> settings = sl<UserSettings>().getSettings();
+
     final response = await dio.get(
-      '${ApiStrings.baseUrl}genre/movie/list',
+      '${UrlStrings.baseUrl}genre/movie/list',
       queryParameters: {
-        'api_key': ApiStrings.apiKey,
+        'api_key': settings['api_key'],
       },
     );
 
@@ -104,7 +106,7 @@ class TmdbDatasource {
     Map<String, dynamic> settings = sl<UserSettings>().getSettings();
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}movie/$id',
+      '${UrlStrings.baseUrl}movie/$id',
       queryParameters: {
         'api_key': settings['api_key'],
         'append_to_response': 'credits,videos,reviews',
@@ -120,7 +122,7 @@ class TmdbDatasource {
     settings['query'] = query;
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}search/movie',
+      '${UrlStrings.baseUrl}search/movie',
       queryParameters: settings,
     );
 
@@ -133,7 +135,7 @@ class TmdbDatasource {
     settings['with_genres'] = genreId;
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}discover/movie',
+      '${UrlStrings.baseUrl}discover/movie',
       queryParameters: settings,
     );
 
@@ -144,7 +146,7 @@ class TmdbDatasource {
     Map<String, dynamic> settings = sl<UserSettings>().getSettings();
 
     final response = await dio.get(
-      '${ApiStrings.baseUrl}movie/$movieId/similar',
+      '${UrlStrings.baseUrl}movie/$movieId/similar',
       queryParameters: {
         'api_key': settings['api_key'],
         'language': settings['language'],

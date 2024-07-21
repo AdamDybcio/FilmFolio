@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/movies/data/models/movie_model.dart';
-import '../strings/api_strings.dart';
+import '../strings/url_strings.dart';
 
 class UiHelpers {
   BoxDecoration displayImageDecoration(BuildContext context, MovieModel movie, bool isBackdrop) {
@@ -11,9 +11,9 @@ class UiHelpers {
           ? DecorationImage(
               image: CachedNetworkImageProvider(
                 isBackdrop
-                    ? (movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath)
+                    ? (movie.backdropPath != '' ? UrlStrings.imageUrl + movie.backdropPath : UrlStrings.imageUrl + movie.posterPath)
                     : movie.posterPath != ''
-                        ? ApiStrings.imageUrl + movie.posterPath
+                        ? UrlStrings.imageUrl + movie.posterPath
                         : movie.backdropPath,
               ),
               fit: BoxFit.cover,
@@ -45,8 +45,8 @@ class UiHelpers {
             fit: BoxFit.cover,
             image: CachedNetworkImageProvider(
               isPoster
-                  ? (movie.posterPath != '' ? ApiStrings.imageUrl + movie.posterPath : ApiStrings.imageUrl + movie.backdropPath)
-                  : (movie.backdropPath != '' ? ApiStrings.imageUrl + movie.backdropPath : ApiStrings.imageUrl + movie.posterPath),
+                  ? (movie.posterPath != '' ? UrlStrings.imageUrl + movie.posterPath : UrlStrings.imageUrl + movie.backdropPath)
+                  : (movie.backdropPath != '' ? UrlStrings.imageUrl + movie.backdropPath : UrlStrings.imageUrl + movie.posterPath),
             ),
           )
         : null;

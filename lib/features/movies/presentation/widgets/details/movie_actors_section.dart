@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+import 'package:movie_bloc_app/core/utils/strings/url_strings.dart';
 import 'package:movie_bloc_app/features/movies/data/models/actor_model.dart';
 
 import '../../../../../common/widgets/texts/header.dart';
@@ -48,7 +48,7 @@ class MovieActorsSection extends StatelessWidget {
                                 child: CircleAvatar(
                                     radius: size.width * 0.1,
                                     backgroundColor: Theme.of(context).colorScheme.primary,
-                                    backgroundImage: actor.profilePath.trim() != '' ? CachedNetworkImageProvider(ApiStrings.imageUrl + actor.profilePath) : null,
+                                    backgroundImage: actor.profilePath.trim() != '' ? CachedNetworkImageProvider(UrlStrings.imageUrl + actor.profilePath) : null,
                                     child: actor.profilePath.trim() == ''
                                         ? const FittedBox(
                                             fit: BoxFit.fill,

@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_bloc_app/core/utils/strings/api_strings.dart';
+import 'package:movie_bloc_app/core/utils/strings/url_strings.dart';
 
 import '../../../../../common/styles/styles.dart';
 import '../../../../../common/widgets/texts/header.dart';
@@ -40,7 +40,7 @@ class MovieProductionCompaniesSection extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(4),
                             child: CachedNetworkImage(
-                              imageUrl: ApiStrings.imageUrl + company.logoPath,
+                              imageUrl: UrlStrings.imageUrl + company.logoPath,
                               height: size.height * 0.075,
                               width: size.width * 0.25,
                               errorWidget: (context, url, error) => FadeIn(

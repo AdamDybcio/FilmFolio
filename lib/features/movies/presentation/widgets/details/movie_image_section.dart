@@ -19,45 +19,47 @@ class MovieImageSection extends StatelessWidget {
     return FadeIn(
       child: SizedBox(
         height: size.height * 0.4,
-        child: Stack(
-          children: [
-            Blur(
-              colorOpacity: 0.25,
-              blurColor: Colors.black,
-              child: Container(
-                width: double.infinity,
-                height: size.height * 0.4,
-                decoration: Styles(context: context, imagePath: movie.backdropPath).cardBoxDecoration,
-              ),
-            ),
-            Center(
-              child: SizedBox(
-                height: size.height * 0.35,
-                child: MovieCard(
-                  movie: movie,
-                  showInfo: false,
-                  aspectRatio: 10 / 16,
-                  touchable: false,
+        child: FadeIn(
+          child: Stack(
+            children: [
+              Blur(
+                colorOpacity: 0.25,
+                blurColor: Colors.black,
+                child: Container(
+                  width: double.infinity,
+                  height: size.height * 0.4,
+                  decoration: Styles(context: context, imagePath: movie.backdropPath).cardBoxDecoration,
                 ),
               ),
-            ),
-            if (movie.adult)
-              const AdultWidget(
-                alignment: Alignment.topRight,
-                padding: EdgeInsets.only(right: 20, top: 20),
-                width: 50,
-                height: 50,
-                hasShadow: true,
+              Center(
+                child: SizedBox(
+                  height: size.height * 0.35,
+                  child: MovieCard(
+                    movie: movie,
+                    showInfo: false,
+                    aspectRatio: 10 / 16,
+                    touchable: false,
+                  ),
+                ),
               ),
-            VoteAvgWidget(
-              alignment: Alignment.bottomRight,
-              voteAvg: movie.voteAverage,
-              width: 70,
-              height: 70,
-              hasShadow: true,
-              padding: const EdgeInsets.only(bottom: 20, right: 20),
-            ),
-          ],
+              if (movie.adult)
+                const AdultWidget(
+                  alignment: Alignment.topRight,
+                  padding: EdgeInsets.only(right: 20, top: 20),
+                  width: 50,
+                  height: 50,
+                  hasShadow: true,
+                ),
+              VoteAvgWidget(
+                alignment: Alignment.bottomRight,
+                voteAvg: movie.voteAverage,
+                width: 70,
+                height: 70,
+                hasShadow: true,
+                padding: const EdgeInsets.only(bottom: 20, right: 20),
+              ),
+            ],
+          ),
         ),
       ),
     );

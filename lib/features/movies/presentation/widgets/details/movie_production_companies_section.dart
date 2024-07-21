@@ -63,15 +63,22 @@ class MovieProductionCompaniesSection extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 5),
-                        Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: AutoSizeText(
-                            company.name,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                        Expanded(
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: AutoSizeText(
+                                company.name,
+                                minFontSize: 8,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                            textAlign: TextAlign.center,
                           ),
                         ),
                       ],

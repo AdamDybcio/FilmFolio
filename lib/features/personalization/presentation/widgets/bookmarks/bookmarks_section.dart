@@ -20,9 +20,9 @@ class BookmarksSection extends StatelessWidget {
             child: SafeArea(
               child: GridView.count(
                 childAspectRatio: 9 / 16,
-                padding: const EdgeInsets.all(8),
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
+                padding: const EdgeInsets.all(6),
+                crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
                 crossAxisCount: 3,
                 children: [
                   if (state.showAdultContent)

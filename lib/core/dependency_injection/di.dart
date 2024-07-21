@@ -16,6 +16,7 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_similar.dart'
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_toprated.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/home/all_movies/all_movies_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/carousel_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/home/home_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/search/search/search_bloc.dart';
@@ -60,6 +61,15 @@ Future initDependencyInjection() async {
         bookmarks: sl(instanceName: 'bookmarks'),
         bookmarkIds: sl(instanceName: 'bookmarkIds'),
       ));
+
+  sl.registerFactory(
+    () => AllMoviesBloc(
+      getUpcoming: sl(),
+      getNowplaying: sl(),
+      getToprated: sl(),
+      getPopular: sl(),
+    ),
+  );
 
   //Pages Blocs
   sl.registerFactory(

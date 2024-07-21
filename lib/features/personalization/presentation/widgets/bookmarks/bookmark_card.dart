@@ -40,8 +40,8 @@ class BookmarkCard extends StatelessWidget {
             ),
           ),
           MarkWidget(movie: movie),
-          VoteAvgWidget(voteAvg: movie.voteAverage, alignment: Alignment.bottomRight),
-          if (movie.adult) const AdultWidget(),
+          VoteAvgWidget(voteAvg: movie.voteAverage, alignment: Alignment.bottomRight, width: 30, height: 30),
+          if (movie.adult) const AdultWidget(width: 30, height: 30),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_bloc_app/common/widgets/texts/centered_message.dart';
 import 'package:movie_bloc_app/common/widgets/texts/header.dart';
@@ -94,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                             Header(
                               title: 'Upcoming Movies',
                               onTap: () {
-                                //TODO: Navigate
+                                context.push('/all/upcoming', extra: 'Upcoming Movies');
                               },
                             ),
                             MoviesSection(
@@ -108,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                             Header(
                               title: 'Now Playing Movies',
                               onTap: () {
-                                //TODO: Navigate
+                                context.push('/all/now_playing', extra: 'Now Playing Movies');
                               },
                             ),
                             MoviesSection(
@@ -119,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                             Header(
                               title: 'Top Rated Movies',
                               onTap: () {
-                                //TODO: Navigate
+                                context.push('/all/top_rated', extra: 'Top Rated Movies');
                               },
                             ),
                             MoviesSection(
@@ -130,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                             Header(
                               title: 'Popular Movies',
                               onTap: () {
-                                //TODO: Navigate
+                                context.push('/all/popular', extra: 'Popular Movies');
                               },
                             ),
                             MoviesSection(

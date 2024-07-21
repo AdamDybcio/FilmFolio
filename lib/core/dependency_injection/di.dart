@@ -9,6 +9,7 @@ import 'package:movie_bloc_app/features/movies/data/repositories/movie_repo_impl
 import 'package:movie_bloc_app/features/movies/domain/repositories/movie_repo.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_genres.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_details.dart';
+import 'package:movie_bloc_app/features/movies/domain/usecases/get_movie_reviews.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_movies_by_genre.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_nowplaying.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_search_movies.dart';
@@ -17,6 +18,7 @@ import 'package:movie_bloc_app/features/movies/domain/usecases/get_similar.dart'
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_toprated.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_trending.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_upcoming.dart';
+import 'package:movie_bloc_app/features/movies/presentation/blocs/details/reviews/reviews_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/all_movies/all_movies_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/carousel/carousel_bloc.dart';
 import 'package:movie_bloc_app/features/movies/presentation/blocs/home/genre_movies/genre_movies_bloc.dart';
@@ -25,7 +27,7 @@ import 'package:movie_bloc_app/features/movies/presentation/blocs/search/search/
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/bookmarks/bookmarks_bloc.dart';
 import 'package:movie_bloc_app/features/personalization/presentation/blocs/settings/settings_bloc.dart';
 
-import '../../features/movies/presentation/blocs/details/details_bloc.dart';
+import '../../features/movies/presentation/blocs/details/details/details_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -55,6 +57,7 @@ Future initDependencyInjection() async {
   sl.registerLazySingleton<GetTrending>(() => GetTrending(sl()));
   sl.registerLazySingleton<GetSimilar>(() => GetSimilar(sl()));
   sl.registerLazySingleton<GetMoviesByGenre>(() => GetMoviesByGenre(sl()));
+  sl.registerLazySingleton<GetMovieReviews>(() => GetMovieReviews(sl()));
 
   //Blocs
   sl.registerFactory(() => NavBarBloc());
@@ -75,6 +78,8 @@ Future initDependencyInjection() async {
   );
 
   sl.registerFactory(() => GenreMoviesBloc(getMoviesByGenre: sl()));
+
+  sl.registerFactory(() => ReviewsBloc(getMovieReviews: sl()));
 
   //Pages Blocs
   sl.registerFactory(

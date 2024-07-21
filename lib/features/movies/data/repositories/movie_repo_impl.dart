@@ -1,5 +1,6 @@
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/reviews_result_model.dart';
 
 import '../../domain/repositories/movie_repo.dart';
 import '../datasources/remote/tmdb_datasource.dart';
@@ -106,6 +107,16 @@ class MovieRepoImpl extends MovieRepo {
   Future<MoviesResultModel> getMoviesByGenre({required int genreId, int page = 1, int? year}) {
     try {
       final movies = tmdbDatasource.getMoviesByGenre(genreId: genreId, page: page, year: year);
+      return movies;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<ReviewsResultModel> getMovieReviews({required int movieId, int page = 1}) {
+    try {
+      final movies = tmdbDatasource.getMovieReviews(movieId: movieId, page: page);
       return movies;
     } catch (e) {
       throw Exception(e);

@@ -4,9 +4,9 @@ import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.d
 import 'package:movie_bloc_app/features/movies/data/models/movies_result_model.dart';
 import 'package:movie_bloc_app/features/movies/domain/usecases/get_similar.dart';
 
-import '../../../../../core/utils/helpers/helper_functions.dart';
-import '../../../domain/entities/params/params.dart';
-import '../../../domain/usecases/get_movie_details.dart';
+import '../../../../../../core/utils/helpers/helper_functions.dart';
+import '../../../../domain/entities/params/params.dart';
+import '../../../../domain/usecases/get_movie_details.dart';
 
 part 'details_event.dart';
 part 'details_state.dart';

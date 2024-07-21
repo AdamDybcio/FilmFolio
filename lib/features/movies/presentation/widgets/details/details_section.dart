@@ -6,7 +6,7 @@ import 'package:movie_bloc_app/common/widgets/movie/movies_section.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
 
 import '../../../../../common/widgets/texts/centered_message.dart';
-import '../../blocs/details/details_bloc.dart';
+import '../../blocs/details/details/details_bloc.dart';
 import 'movie_actors_section.dart';
 import 'movie_genres_section.dart';
 import 'movie_image_section.dart';
@@ -71,7 +71,7 @@ class DetailsSection extends StatelessWidget {
                   if (state.details.productionCompanies.isNotEmpty) MovieProductionCompaniesSection(productionCompanies: state.details.productionCompanies),
                   if (state.details.videos.isNotEmpty && trailer != '') MovieVideoSection(trailer: trailer),
                   if (state.similar.movies!.isNotEmpty) MoviesSection(movies: state.similar.movies!, isSimilar: true),
-                  if (state.details.reviews.totalPages > 0) MovieReviewsSection(reviews: state.details.reviews),
+                  if (state.details.reviews.totalPages > 0) MovieReviewsSection(reviews: state.details.reviews, movieId: movie.id.toString()),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 ],
               ),

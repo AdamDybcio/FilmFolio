@@ -5,7 +5,7 @@ import 'package:movie_bloc_app/common/widgets/movie/mark_widget.dart';
 
 import '../../../../../core/dependency_injection/di.dart';
 import '../../../data/models/movie_model.dart';
-import '../../blocs/details/details_bloc.dart';
+import '../../blocs/details/details/details_bloc.dart';
 import '../../widgets/details/details_section.dart';
 
 class DetailsScreen extends StatelessWidget {

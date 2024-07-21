@@ -84,6 +84,7 @@ class GenreMoviesBloc extends Bloc<GenreMoviesEvent, GenreMoviesState> {
         emit(GenreMoviesLoading());
         emit(GenreMoviesLoaded(movies, isMaxPage, selectedYear));
       } catch (e) {
+        currentPage--;
         emit(const GenreMoviesError('Error fetching movies'));
       }
     });

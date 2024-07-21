@@ -112,6 +112,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         emit(AllMoviesLoading());
         emit(AllMoviesLoaded(movies: allMovies, isMaxPage: isMaxPage));
       } catch (e) {
+        currentPage--;
         emit(const AllMoviesError(message: 'Error fetching movies'));
       }
     });

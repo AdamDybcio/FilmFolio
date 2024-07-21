@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_bloc_app/common/blocs/bloc/nav_bar_bloc.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_model.dart';
+import 'package:movie_bloc_app/features/movies/presentation/pages/details/all_reviews_screen.dart';
 import 'package:movie_bloc_app/features/movies/presentation/pages/home/all_movies_screen.dart';
 import 'package:movie_bloc_app/features/movies/presentation/pages/details/details_screen.dart';
 import 'package:movie_bloc_app/features/movies/presentation/pages/home/genre_movies_screen.dart';
@@ -57,6 +58,12 @@ class CustomGoRouterConfig {
         path: '/genre/:genreId',
         builder: (BuildContext context, GoRouterState state) {
           return GenreMoviesScreen(genreId: state.pathParameters['genreId']!, genreName: state.extra as String);
+        },
+      ),
+      GoRoute(
+        path: '/reviews/:movieId',
+        builder: (BuildContext context, GoRouterState state) {
+          return AllReviewsScreen(movieId: state.pathParameters['movieId']!);
         },
       ),
     ],

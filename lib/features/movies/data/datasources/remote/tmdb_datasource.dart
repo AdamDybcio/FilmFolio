@@ -3,6 +3,7 @@ import 'package:movie_bloc_app/core/dependency_injection/di.dart';
 import 'package:movie_bloc_app/core/settings/user_settings.dart';
 import 'package:movie_bloc_app/features/movies/data/models/genre_model.dart';
 import 'package:movie_bloc_app/features/movies/data/models/movie_details_model.dart';
+import 'package:movie_bloc_app/features/movies/data/models/reviews_result_model.dart';
 
 import '../../../../../core/utils/strings/url_strings.dart';
 import '../../models/movies_result_model.dart';
@@ -160,5 +161,20 @@ class TmdbDatasource {
     );
 
     return MoviesResultModel.fromJson(response.data);
+  }
+
+  Future<ReviewsResultModel> getMovieReviews({required int movieId, int page = 1}) async {
+    Map<String, dynamic> settings = sl<UserSettings>().getSettings();
+
+    final response = await dio.get(
+      '${UrlStrings.baseUrl}movie/$movieId/reviews',
+      queryParameters: {
+        'api_key': settings['api_key'],
+        'language': settings['language'],
+        'page': page,
+      },
+    );
+
+    return ReviewsResultModel.fromJson(response.data);
   }
 }

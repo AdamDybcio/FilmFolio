@@ -20,6 +20,7 @@ class MovieCard extends StatelessWidget {
     this.horizontalPadding = 12,
     this.showInfo = true,
     this.touchable = true,
+    this.isHomePage = false,
   });
 
   final MovieModel movie;
@@ -28,6 +29,7 @@ class MovieCard extends StatelessWidget {
   final double horizontalPadding;
   final bool showInfo;
   final bool touchable;
+  final bool isHomePage;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,11 @@ class MovieCard extends StatelessWidget {
           return GestureDetector(
             onTap: touchable
                 ? () {
-                    context.push('/details/${movie.id}', extra: movie);
+                    if (isHomePage) {
+                      context.push('/details/${movie.id}', extra: movie);
+                    } else {
+                      context.pushReplacement('/details/${movie.id}', extra: movie);
+                    }
                   }
                 : null,
             child: Padding(

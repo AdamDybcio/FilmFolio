@@ -97,7 +97,10 @@ class HomeScreen extends StatelessWidget {
                                 //TODO: Navigate
                               },
                             ),
-                            MoviesSection(movies: state2.showAdultContent ? state.upcomingMovies.movies! : state.upcomingMovies.movies!.where((movie) => !movie.adult).toList()),
+                            MoviesSection(
+                              movies: state2.showAdultContent ? state.upcomingMovies.movies! : state.upcomingMovies.movies!.where((movie) => !movie.adult).toList(),
+                              isHomePage: true,
+                            ),
                             SizedBox(height: size.height * 0.05),
                             const Header(title: 'Movie Genres'),
                             MovieGenres(genres: state.genres),
@@ -109,7 +112,9 @@ class HomeScreen extends StatelessWidget {
                               },
                             ),
                             MoviesSection(
-                                movies: state2.showAdultContent ? state.nowPlayingMovies.movies! : state.nowPlayingMovies.movies!.where((movie) => !movie.adult).toList()),
+                              movies: state2.showAdultContent ? state.nowPlayingMovies.movies! : state.nowPlayingMovies.movies!.where((movie) => !movie.adult).toList(),
+                              isHomePage: true,
+                            ),
                             SizedBox(height: size.height * 0.05),
                             Header(
                               title: 'Top Rated Movies',
@@ -117,7 +122,10 @@ class HomeScreen extends StatelessWidget {
                                 //TODO: Navigate
                               },
                             ),
-                            MoviesSection(movies: state2.showAdultContent ? state.topRatedMovies.movies! : state.topRatedMovies.movies!.where((movie) => !movie.adult).toList()),
+                            MoviesSection(
+                              movies: state2.showAdultContent ? state.topRatedMovies.movies! : state.topRatedMovies.movies!.where((movie) => !movie.adult).toList(),
+                              isHomePage: true,
+                            ),
                             SizedBox(height: size.height * 0.05),
                             Header(
                               title: 'Popular Movies',
@@ -125,7 +133,10 @@ class HomeScreen extends StatelessWidget {
                                 //TODO: Navigate
                               },
                             ),
-                            MoviesSection(movies: state2.showAdultContent ? state.popularMovies.movies! : state.popularMovies.movies!.where((movie) => !movie.adult).toList()),
+                            MoviesSection(
+                              movies: state2.showAdultContent ? state.popularMovies.movies! : state.popularMovies.movies!.where((movie) => !movie.adult).toList(),
+                              isHomePage: true,
+                            ),
                             SizedBox(height: size.height * 0.05),
                           ],
                         ),

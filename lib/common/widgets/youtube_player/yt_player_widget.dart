@@ -52,6 +52,7 @@ class _YtPlayerWidgetState extends State<YtPlayerWidget> {
             child: YoutubePlayer(
               controller: controller,
               showVideoProgressIndicator: true,
+              thumbnail: const SizedBox.shrink(),
               progressIndicatorColor: Theme.of(context).colorScheme.tertiary,
               progressColors: ProgressBarColors(
                 playedColor: Theme.of(context).colorScheme.tertiary,

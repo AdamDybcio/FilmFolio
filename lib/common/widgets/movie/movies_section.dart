@@ -7,10 +7,11 @@ import 'package:movie_bloc_app/common/widgets/texts/header.dart';
 import '../../../features/movies/data/models/movie_model.dart';
 
 class MoviesSection extends StatelessWidget {
-  const MoviesSection({super.key, required this.movies, this.isSimilar = false});
+  const MoviesSection({super.key, required this.movies, this.isSimilar = false, this.isHomePage = false});
 
   final List<MovieModel> movies;
   final bool isSimilar;
+  final bool isHomePage;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class MoviesSection extends StatelessWidget {
                   movie: movie,
                   verticalPadding: 2,
                   horizontalPadding: 2,
+                  isHomePage: isHomePage,
                 ),
               );
             },

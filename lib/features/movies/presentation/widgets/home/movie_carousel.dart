@@ -46,7 +46,7 @@ class MovieCarousel extends StatelessWidget {
                         },
                       ),
                       itemBuilder: (_, index, realIndex) {
-                        return MovieCard(movie: movies[index]);
+                        return MovieCard(movie: movies[index], isHomePage: true);
                       },
                     ),
                     MovieTitle(movies: movies),

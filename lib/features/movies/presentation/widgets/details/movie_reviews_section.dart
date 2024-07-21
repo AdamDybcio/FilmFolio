@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_bloc_app/common/styles/styles.dart';
 import 'package:movie_bloc_app/features/movies/data/models/reviews_result_model.dart';
@@ -55,13 +55,15 @@ class MovieReviewsSection extends StatelessWidget {
                             child: FittedBox(
                               fit: BoxFit.cover,
                               child: CircleAvatar(
-                                backgroundImage: reviews.reviews[i].avatarPath != ''
-                                    ? CachedNetworkImageProvider(
+                                backgroundImage: reviews.reviews[i].avatarPath.trim() != ''
+                                    ? ExtendedNetworkImageProvider(
                                         '${UrlStrings.imageUrl}${reviews.reviews[i].avatarPath}',
+                                        cache: true,
+                                        printError: false,
                                       )
                                     : null,
                                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                                child: reviews.reviews[i].avatarPath == '' ? const Icon(Icons.person) : null,
+                                child: reviews.reviews[i].avatarPath.trim() == '' ? const Icon(Icons.person) : null,
                               ),
                             ),
                           ),

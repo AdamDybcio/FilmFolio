@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_bloc_app/core/utils/strings/url_strings.dart';
@@ -27,9 +27,13 @@ class MovieBackdrop extends StatelessWidget {
             child: Container(
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(
-                image: movies[state.index].backdropPath != ''
+                image: movies[state.index].backdropPath.trim() != ''
                     ? DecorationImage(
-                        image: CachedNetworkImageProvider(UrlStrings.imageUrl + movies[state.index].backdropPath),
+                        image: ExtendedNetworkImageProvider(
+                          UrlStrings.imageUrl + movies[state.index].backdropPath,
+                          cache: true,
+                          printError: false,
+                        ),
                         fit: BoxFit.cover,
                       )
                     : null,

@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,17 +19,12 @@ class SearchCardImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: AspectRatio(
         aspectRatio: 10 / 16,
-        child: movie.posterPath != ''
-            ? CachedNetworkImage(
-                imageUrl: '${UrlStrings.imageUrl}${movie.posterPath}',
+        child: movie.posterPath.trim() != ''
+            ? ExtendedImage.network(
+                '${UrlStrings.imageUrl}${movie.posterPath}',
+                cache: true,
+                printError: false,
                 fit: BoxFit.cover,
-                errorWidget: (context, url, error) => const Padding(
-                  padding: EdgeInsets.all(16),
-                  child: FaIcon(
-                    FontAwesomeIcons.film,
-                    color: Colors.white,
-                  ),
-                ),
               )
             : FittedBox(
                 fit: BoxFit.cover,

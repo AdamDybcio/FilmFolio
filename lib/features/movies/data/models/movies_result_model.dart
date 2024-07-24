@@ -21,4 +21,9 @@ class MoviesResultModel {
       totalPages = 0;
     }
   }
+
+  MoviesResultModel.empty() {
+    movies = [];
+    totalPages = 0;
+  }
 }

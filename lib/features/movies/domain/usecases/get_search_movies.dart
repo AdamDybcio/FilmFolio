@@ -11,6 +11,6 @@ class GetSearchMovies extends Usecase<MoviesResultModel, Params> {
 
   @override
   Future<MoviesResultModel> call(Params params) async {
-    return await repository.searchMovies(query: params.query!);
+    return await repository.searchMovies(query: params.query!, page: params.page!);
   }
 }

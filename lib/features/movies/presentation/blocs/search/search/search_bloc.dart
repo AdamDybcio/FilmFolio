@@ -15,24 +15,34 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   TextEditingController controller;
   List<MovieModel> movies;
 
+  int currentPage = 1;
+  int maxPages = 1;
+
+  bool isMaxPage = false;
+
   SearchBloc({required this.getSearchMovies, required this.controller, required this.movies}) : super(SearchInitial()) {
     on<SearchMovies>((event, emit) async {
+      movies.clear();
+      currentPage = 1;
+      maxPages = 0;
+      isMaxPage = false;
       final String initialValue = controller.text;
 
       if (event.query.trim().isEmpty) {
-        movies.clear();
         emit(SearchInitial());
         return;
       }
+
       final hasConnection = await HelperFunctions.hasConnection();
       if (!hasConnection) {
-        movies.clear();
         emit(SearchNoInternet());
         return;
       }
+
       emit(SearchLoading());
+
       try {
-        final movieResult = await getSearchMovies(Params(query: event.query));
+        final movieResult = await getSearchMovies(Params(query: event.query, page: currentPage));
 
         if (controller.text != initialValue) {
           return;
@@ -41,12 +51,45 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         if (movieResult.movies!.isEmpty) {
           emit(SearchEmpty());
         } else {
-          movies.clear();
+          maxPages = movieResult.totalPages!;
+
+          if (currentPage == maxPages) {
+            isMaxPage = true;
+          }
+
           movies.addAll(movieResult.movies!);
-          emit(SearchLoaded(movies));
+          emit(SearchLoaded(movies, isMaxPage));
         }
       } catch (e) {
-        movies.clear();
+        emit(SearchError(e.toString()));
+      }
+    });
+    on<SearchLoadMore>((event, emit) async {
+      final hasConnection = await HelperFunctions.hasConnection();
+      if (!hasConnection) {
+        return;
+      }
+
+      currentPage++;
+
+      if (currentPage == maxPages) {
+        isMaxPage = true;
+      }
+
+      try {
+        final movieResult = await getSearchMovies(Params(query: controller.text, page: currentPage));
+        currentPage++;
+
+        if (currentPage == maxPages) {
+          isMaxPage = true;
+        }
+
+        movies.addAll(movieResult.movies!);
+
+        emit(SearchLoading());
+        emit(SearchLoaded(movies, isMaxPage));
+      } catch (e) {
+        currentPage--;
         emit(SearchError(e.toString()));
       }
     });

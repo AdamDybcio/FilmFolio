@@ -14,11 +14,12 @@ final class DetailsLoading extends DetailsState {}
 final class DetailsLoaded extends DetailsState {
   final MovieDetailsModel details;
   final MoviesResultModel similar;
+  final bool isMaxPageSimilar;
 
-  const DetailsLoaded(this.details, this.similar);
+  const DetailsLoaded(this.details, this.similar, this.isMaxPageSimilar);
 
   @override
-  List<Object> get props => [details, similar];
+  List<Object> get props => [details, similar, isMaxPageSimilar];
 }
 
 final class DetailsError extends DetailsState {

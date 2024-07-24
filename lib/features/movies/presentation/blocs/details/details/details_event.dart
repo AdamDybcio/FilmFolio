@@ -15,3 +15,5 @@ final class GetMovieDetailsEvent extends DetailsEvent {
   @override
   List<Object> get props => [movieId];
 }
+
+final class LoadMoreSimilar extends DetailsEvent {}

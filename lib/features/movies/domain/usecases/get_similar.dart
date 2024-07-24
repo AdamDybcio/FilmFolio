@@ -11,6 +11,6 @@ class GetSimilar extends Usecase<MoviesResultModel, Params> {
 
   @override
   Future<MoviesResultModel> call(Params params) async {
-    return await repository.getSimilarMovies(movieId: params.id!);
+    return await repository.getSimilarMovies(movieId: params.id!, page: params.page!);
   }
 }

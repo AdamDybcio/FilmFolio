@@ -21,12 +21,17 @@ class SearchResults extends StatelessWidget {
             builder: (context, state) {
               if (state is SearchLoaded) {
                 return Expanded(
-                  child: SearchedMoviesList(movies: state2.showAdultContent ? state.movies : state.movies.where((movie) => !movie.adult).toList()),
+                  child: SearchedMoviesList(
+                    movies: state2.showAdultContent ? state.movies : state.movies.where((movie) => !movie.adult).toList(),
+                    isMaxPage: state.isMaxPage,
+                  ),
                 );
               } else if (state is SearchInitial && context.read<SearchBloc>().movies.isNotEmpty) {
                 return Expanded(
                   child: SearchedMoviesList(
-                      movies: state2.showAdultContent ? context.read<SearchBloc>().movies : context.read<SearchBloc>().movies.where((movie) => !movie.adult).toList()),
+                    movies: state2.showAdultContent ? context.read<SearchBloc>().movies : context.read<SearchBloc>().movies.where((movie) => !movie.adult).toList(),
+                    isMaxPage: context.read<SearchBloc>().isMaxPage,
+                  ),
                 );
               }
 

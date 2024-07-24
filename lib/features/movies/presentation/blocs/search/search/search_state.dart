@@ -13,11 +13,12 @@ final class SearchLoading extends SearchState {}
 
 final class SearchLoaded extends SearchState {
   final List<MovieModel> movies;
+  final bool isMaxPage;
 
-  const SearchLoaded(this.movies);
+  const SearchLoaded(this.movies, this.isMaxPage);
 
   @override
-  List<Object> get props => [movies];
+  List<Object> get props => [movies, isMaxPage];
 }
 
 final class SearchError extends SearchState {

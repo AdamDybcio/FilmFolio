@@ -117,10 +117,11 @@ class TmdbDatasource {
     return MovieDetailsModel.fromJson(response.data);
   }
 
-  Future<MoviesResultModel> searchMovies({required String query}) async {
+  Future<MoviesResultModel> searchMovies({required String query, int page = 1}) async {
     Map<String, dynamic> settings = sl<UserSettings>().getSettings();
 
     settings['query'] = query;
+    settings['page'] = page;
 
     final response = await dio.get(
       '${UrlStrings.baseUrl}search/movie',
@@ -149,7 +150,7 @@ class TmdbDatasource {
     return MoviesResultModel.fromJson(response.data);
   }
 
-  Future<MoviesResultModel> getSimilarMovies({required int movieId}) async {
+  Future<MoviesResultModel> getSimilarMovies({required int movieId, int page = 1}) async {
     Map<String, dynamic> settings = sl<UserSettings>().getSettings();
 
     final response = await dio.get(
@@ -157,6 +158,7 @@ class TmdbDatasource {
       queryParameters: {
         'api_key': settings['api_key'],
         'language': settings['language'],
+        'page': page,
       },
     );
 

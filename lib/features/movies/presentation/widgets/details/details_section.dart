@@ -70,7 +70,7 @@ class DetailsSection extends StatelessWidget {
                   if (state.details.actors.isNotEmpty) MovieActorsSection(actors: state.details.actors),
                   if (state.details.productionCompanies.isNotEmpty) MovieProductionCompaniesSection(productionCompanies: state.details.productionCompanies),
                   if (state.details.videos.isNotEmpty && trailer != '') MovieVideoSection(trailer: trailer),
-                  if (state.similar.movies!.isNotEmpty) MoviesSection(movies: state.similar.movies!, isSimilar: true),
+                  if (state.similar.movies!.isNotEmpty) MoviesSection(movies: state.similar.movies!, isSimilar: true, isMaxPage: state.isMaxPageSimilar),
                   if (state.details.reviews.totalPages > 0) MovieReviewsSection(reviews: state.details.reviews, movieId: movie.id.toString()),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 ],

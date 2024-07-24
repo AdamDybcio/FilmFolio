@@ -13,7 +13,7 @@ abstract class MovieRepo {
 
   Future<MovieDetailsModel> getMovieDetails({required int movieId});
 
-  Future<MoviesResultModel> searchMovies({required String query});
+  Future<MoviesResultModel> searchMovies({required String query, int page = 1});
 
   Future<MoviesResultModel> getNowPlayingMovies({int page = 1});
 
@@ -21,7 +21,7 @@ abstract class MovieRepo {
 
   Future<MoviesResultModel> getTrendingMovies();
 
-  Future<MoviesResultModel> getSimilarMovies({required int movieId});
+  Future<MoviesResultModel> getSimilarMovies({required int movieId, int page = 1});
 
   Future<MoviesResultModel> getMoviesByGenre({required int genreId, int page = 1, int? year});
 

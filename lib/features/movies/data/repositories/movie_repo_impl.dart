@@ -54,9 +54,9 @@ class MovieRepoImpl extends MovieRepo {
   }
 
   @override
-  Future<MoviesResultModel> searchMovies({required String query}) {
+  Future<MoviesResultModel> searchMovies({required String query, int page = 1}) {
     try {
-      final movies = tmdbDatasource.searchMovies(query: query);
+      final movies = tmdbDatasource.searchMovies(query: query, page: page);
       return movies;
     } catch (e) {
       throw Exception(e);
@@ -94,9 +94,9 @@ class MovieRepoImpl extends MovieRepo {
   }
 
   @override
-  Future<MoviesResultModel> getSimilarMovies({required int movieId}) {
+  Future<MoviesResultModel> getSimilarMovies({required int movieId, int page = 1}) {
     try {
-      final movies = tmdbDatasource.getSimilarMovies(movieId: movieId);
+      final movies = tmdbDatasource.getSimilarMovies(movieId: movieId, page: page);
       return movies;
     } catch (e) {
       throw Exception(e);
